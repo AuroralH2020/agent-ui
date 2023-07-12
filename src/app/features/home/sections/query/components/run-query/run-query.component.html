@@ -1,23 +1,42 @@
 <div class="grow mt-4">
-  <div>
-    <div class="card-loose">
+  <div class="grid grid-cols-12 gap-10">
+    <div class="col-span-7">
       <div>
         <form [formGroup]="form">
           <div class="item-label pb-2">{{ title }}:</div>
-          <app-sparql-editor formControlName="query"></app-sparql-editor>
+          <app-sparql-editor
+            formControlName="query"
+            style="width: 100%; height: calc(100vh - 383px)"
+          ></app-sparql-editor>
         </form>
       </div>
-      <div class="mt-2 ml-2" #result>
-        <p-button label="Execute query" icon="pi pi-database" (click)="executeQuery()" [loading]="loading"></p-button>
+      <div class="mt-4 ml-2">
+        <p-button
+          label="Execute query"
+          icon="pi pi-database"
+          (click)="executeQuery()"
+          [loading]="loading"
+          [style]="{ width: '160px' }"
+        ></p-button>
       </div>
-      <div>
-        <div *ngIf="queryResult && !loading">
-          <div class="mt-4 ml-4 py-2">
-            <p-fieldset legend="Result">
-              <pre>{{ queryResult | json }}</pre>
-            </p-fieldset>
+    </div>
+    <div class="col-span-5">
+      <div style="padding-top: 2px">
+        <p-fieldset legend="Result" [ngClass]="['w-full', queryResult ? ' custom-fieldset' : '']">
+          <div [style]="queryResult ? 'height: calc(100vh - 424px)': 'height: calc(100vh - 442px)'">
+            <div *ngIf="loading" class="h-full w-full flex flex-col justify-center items-center">
+              <app-spinner></app-spinner>
+            </div>
+            <div [hidden]="loading" class="w-full h-full">
+              <div *ngIf="!queryResult" class="h-full w-full flex flex-col justify-center items-center gap-2">
+                <app-sad-face></app-sad-face>
+                <div>No result</div>
+                <div class="text-text-300 text-sm w-60 text-center">To see the result, type and execute the query</div>
+              </div>
+              <div [hidden]="!queryResult" #result style="width: 100%; height: 100%"></div>
+            </div>
           </div>
-        </div>
+        </p-fieldset>
       </div>
     </div>
   </div>

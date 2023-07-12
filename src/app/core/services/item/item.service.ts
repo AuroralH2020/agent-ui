@@ -19,7 +19,7 @@ export class ItemsService {
   myOrgItems: ItemUI[] | undefined
 
   public async initItems(orgAgids: string[]) {
-    await Promise.all([await this._initMyItems(), await this._initMyOrgItems(orgAgids)])
+    // await Promise.all([await this._initMyItems(), await this._initMyOrgItems(orgAgids)])
   }
 
   private async _initMyItems(): Promise<void> {
@@ -81,7 +81,7 @@ export class ItemsService {
     remoteOid: string,
     pid: string,
     params?: Record<string, string>,
-    body?: string
+    body?: any
   ): Promise<any> {
     return await firstValueFrom(
       this._http
@@ -89,7 +89,7 @@ export class ItemsService {
           params,
           headers: {
             accept: 'application/json',
-            'Content-Type': 'text/plain',
+            'Content-Type': 'application/json; charset=utf-8',
           },
         })
         .pipe(take(1))

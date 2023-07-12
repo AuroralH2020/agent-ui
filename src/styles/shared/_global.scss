@@ -29,19 +29,20 @@ body {
 
   /* Handle, default i.e will not go below this dimensions */
   ::-webkit-scrollbar-thumb {
-      @apply bg-grey;
-      @apply rounded-sm;
-      width: 100px;
-      height: 100px;
+    @apply py-1;
+    @apply bg-borderGrey;
+    @apply rounded-sm;
+    width: 100px;
+    height: 100px;
   }
-
+  
   ::-webkit-scrollbar-corner {
       @apply bg-transparent;
   }
-
+  
   /* Thumb on hover */
   ::-webkit-scrollbar-thumb:hover {
-      @apply bg-grey;
+      @apply bg-primary-200;
       @apply rounded-sm;
   }
 

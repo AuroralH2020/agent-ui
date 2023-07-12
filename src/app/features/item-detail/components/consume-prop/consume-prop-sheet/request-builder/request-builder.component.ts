@@ -68,7 +68,7 @@ export class RequestBuilderComponent {
     this.showResult = true;
     this.loading = true
     const params = this._parseParams()
-    const body = this.body.value as string
+    const body = this.body.value
     try {
       switch(this.requestType) {
         case 'get':
@@ -76,6 +76,7 @@ export class RequestBuilderComponent {
           break;
         case 'put':
           this.data = await this._itemsService.updateProperty(this.oid, this.item.oid, this.prop.pid, params, body)
+          break;
       }
     }
     catch(e) {

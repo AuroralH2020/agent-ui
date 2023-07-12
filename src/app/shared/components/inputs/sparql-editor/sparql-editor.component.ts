@@ -1,10 +1,12 @@
-import { AfterContentChecked, AfterViewChecked, AfterViewInit, Component, OnInit, forwardRef } from '@angular/core'
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild, ViewEncapsulation, forwardRef } from '@angular/core'
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms'
+import * as ace from 'ace-builds'
 
 @Component({
   selector: 'app-sparql-editor',
   templateUrl: './sparql-editor.component.html',
   styleUrls: ['./sparql-editor.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -13,24 +15,39 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms'
     },
   ],
 })
-export class SparqlEditorComponent implements OnInit, ControlValueAccessor, AfterViewChecked {
+export class SparqlEditorComponent implements OnInit, ControlValueAccessor, AfterViewInit {
+  @ViewChild('editor') private editor!: ElementRef<HTMLElement>
+
+  @Input() style?: string;
+
+  aceEditor!: ace.Ace.Editor
+
   private _value: string = ''
 
   protected focused: boolean = false
-
-  autoResize: boolean = false
 
   constructor() {
     return
   }
 
-  // Workaround to fix https://github.com/primefaces/primeng/issues/9890
-  ngAfterViewChecked(): void {
-    if (!this.autoResize) {
-      setTimeout(()=> {
-        this.autoResize = true
-    }, 0);
-    }
+  ngAfterViewInit(): void {
+    ace.config.set('fontSize', '14px')
+    ace.config.set('basePath', 'https://unpkg.com/ace-builds@1.4.12/src-noconflict')
+    this.aceEditor = ace.edit(this.editor.nativeElement)
+    this.aceEditor.session.setValue(this.value)
+    // this.aceEditor.setTheme('ace/theme/kuroir')
+    this.aceEditor.container.style.borderRadius = '8px'
+    this.aceEditor.renderer.setShowPrintMargin(false);
+    this.aceEditor.session.setMode('ace/mode/sparql')
+    this.aceEditor.on('change', () => {
+      this.value = this.aceEditor.getValue()
+    })
+    this.aceEditor.on('focus', () => {
+      this.focused = true
+    })
+    this.aceEditor.on('blur', () => {
+      this.focused = false
+    })
   }
 
   set value(value: string) {
@@ -58,8 +75,4 @@ export class SparqlEditorComponent implements OnInit, ControlValueAccessor, Afte
   }
 
   ngOnInit(): void {}
-
-  setFocus(value: boolean) {
-    this.focused = value
-  }
 }

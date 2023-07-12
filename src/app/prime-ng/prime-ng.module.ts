@@ -23,9 +23,10 @@ import { MessagesModule } from 'primeng/messages'
 import { MessageModule } from 'primeng/message'
 import { TooltipModule } from 'primeng/tooltip'
 import { InputTextareaModule } from 'primeng/inputtextarea'
-import { ScrollTopModule } from 'primeng/scrolltop';
-import { KeyFilterModule } from 'primeng/keyfilter';
-import { MenuModule } from 'primeng/menu';
+import { ScrollTopModule } from 'primeng/scrolltop'
+import { KeyFilterModule } from 'primeng/keyfilter'
+import { MenuModule } from 'primeng/menu'
+import { TreeModule } from 'primeng/tree'
 
 @NgModule({
   declarations: [],
@@ -56,6 +57,7 @@ import { MenuModule } from 'primeng/menu';
     ScrollTopModule,
     KeyFilterModule,
     MenuModule,
+    TreeModule,
   ],
   exports: [
     InputTextModule,
@@ -82,7 +84,8 @@ import { MenuModule } from 'primeng/menu';
     InputTextareaModule,
     ScrollTopModule,
     KeyFilterModule,
-    MenuModule
+    MenuModule,
+    TreeModule,
   ],
 })
 export class PrimeNgModule {}
