@@ -1,0 +1,39 @@
+<div>
+  <form [formGroup]="form">
+    <p-fileUpload
+      *ngIf="!uploaded"
+      name="myfile[]"
+      [multiple]="false"
+      accept=".jsonld,.json"
+      [maxFileSize]="1000000"
+      [auto]="true"
+      [customUpload]="true"
+      (uploadHandler)="onFileUpload($event)"
+      chooseLabel="Choose a file"
+      chooseIcon="pi pi-folder-open"
+    >
+      <ng-template pTemplate="content">
+        <div
+          [ngClass]="[
+            'w-[calc(792px)] h-[calc(100vh-500px)] border-2 rounded-sm items-center justify-center',
+            over ? ' border-secondary-500' : ' border-text-300 border-dashed'
+          ]"
+          (dragover)="over = true"
+          (dragleave)="over = false"
+        >
+          <div class="w-full h-full">
+            <div class="flex flex-col items-center justify-center w-full h-full">
+              <i class="pi pi-file-import" style="font-size: 2rem"></i>
+              <div class="text-sm font-medium"><span class="font-bold">Choose a file</span> or drag it here</div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </p-fileUpload>
+    <div [hidden]="!uploaded">
+      <div style="width: 800px; height: calc(100vh - 362px)">
+        <app-jsonld-editor formControlName="td"></app-jsonld-editor>
+      </div>
+    </div>
+  </form>
+</div>

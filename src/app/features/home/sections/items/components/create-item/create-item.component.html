@@ -1,0 +1,44 @@
+<p-tabView styleClass="tabview-custom">
+  <p-tabPanel>
+    <ng-template pTemplate="header">
+      <div class="flex items-center gap-2">
+        <i class="pi pi-file-import" style="font-size: 1.5rem"></i>
+        <div>File</div>
+      </div>
+    </ng-template>
+    <div>
+      <app-td-upload [control]="fileControl"></app-td-upload>
+      <div class="flex items-center w-full justify-end mt-8">
+        <p-button
+          label="Create Item"
+          icon="pi pi-plus"
+          [disabled]="disabledFile"
+          [loading]="loading"
+          (click)="createItem(fileControl)"
+        ></p-button>
+      </div>
+    </div>
+  </p-tabPanel>
+  <p-tabPanel>
+    <ng-template pTemplate="header">
+      <div class="flex items-center gap-2">
+        <i class="pi pi-code" style="font-size: 1.5rem"></i>
+        <div>Code</div>
+      </div>
+    </ng-template>
+    <div>
+      <div style="width: 800px; height: calc(100vh - 362px)">
+        <app-jsonld-editor [formControl]="codeControl"></app-jsonld-editor>
+      </div>
+      <div class="flex items-center w-full justify-end mt-8">
+        <p-button
+          label="Create Item"
+          icon="pi pi-plus"
+          [disabled]="disabledCode"
+          [loading]="loading"
+          (click)="createItem(codeControl)"
+        ></p-button>
+      </div>
+    </div>
+  </p-tabPanel>
+</p-tabView>

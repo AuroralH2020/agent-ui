@@ -1,24 +1,18 @@
 <div
   [ngClass]="[
-    'btn',
-    'flex',
-    'items-center',
-    'cursor-pointer',
-    'font-medium',
-    'text-text-50',
-    'select-none',
-    'h-12',
-    'tracking-wider',
-    folded ? 'w-12': 'w-40'
+    'bg-transparent relative flex items-center cursor-pointer text-xs font-medium text-white select-none h-12 tracking-wider hover:bg-primary-400',
+    (menuFolded$ | async) ? 'w-12' : 'w-40'
   ]"
   [routerLink]="[path]"
-  [routerLinkActive]="'bg-primary-500'"
+  [routerLinkActive]="'!bg-primary-500'"
   [routerLinkActiveOptions]="{ exact: true }"
-  #router="routerLinkActive"
 >
-  <div *ngIf="router.isActive" class="w-1 h-12 bg-secondary-400 strip"></div>
-  <div class="flex items-center px-4">
-    <i *ngIf="icon" [ngClass]="['pi', icon]" style="font-size: 1rem"></i>
-    <div *ngIf="!folded" class="pl-2 text-white text-xs font-medium">{{ name ?? 'Menu item' }}</div>
+  <div *ngIf="isActive" class="w-1 h-12 bg-secondary-400 absolute top-0 right-0"></div>
+  <div class="flex items-center text-white px-4">
+    <div *ngIf="symbol" class="w-8 pr-4 flex items-center justify-center">
+      {{ symbol }}
+    </div>
+    <fa-icon *ngIf="icon" class="w-8 text-white pr-4" style="font-size: 1rem" [icon]="icon"></fa-icon>
+    <div *ngIf="!(menuFolded$ | async)">{{ name ?? 'Menu item' }}</div>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { NodesService } from '@core/services/nodes/nodes.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { NodesService } from '@core/services/nodes/nodes.service';
   templateUrl: './my-org-query.component.html',
   styleUrls: ['./my-org-query.component.scss']
 })
-export class MyOrgQueryComponent implements OnInit {
+export class MyOrgQueryComponent {
 
   @ViewChild('result') result!: ElementRef
 
@@ -19,13 +19,7 @@ export class MyOrgQueryComponent implements OnInit {
     return this._nodesService.queryRemoteNodes(agids, query)
   }
 
-  ngOnInit(): void {
-  }
-
-  ngOnDestroy() {}
-
   get organisation(): string {
     return this._nodesService.myNode.organisation
   }
-
 }

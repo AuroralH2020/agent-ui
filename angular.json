@@ -43,7 +43,10 @@
             "stylePreprocessorOptions": {
               "includePaths": ["src/styles"]
             },
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "ace-builds"
+            ]
           },
           "configurations": {
             "production": {

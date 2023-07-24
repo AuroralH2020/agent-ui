@@ -1,16 +1,11 @@
 <div class="flex justify-center h-full">
   <div class="container">
     <div class="h-14 flex flex-col justify-center">
-      <p-button
-        routerLink="/home/sections/items"
-        icon="pi pi-chevron-left"
-        [label]="back"
-        styleClass="p-button-text"
-      ></p-button>
+      <p-button (click)="onBack()" icon="pi pi-chevron-left" [label]="back" styleClass="p-button-text"></p-button>
     </div>
     <div class="">
       <div class="card-loose">
-        <div class="grid grid-cols-12 gap-4">
+        <div class="grid grid-cols-12 gap-2">
           <div class="col-span-12 md:col-span-12 lg:col-span-3">
             <div>
               <div>
@@ -18,7 +13,46 @@
                 <div class="text-text-600 text-md">{{ item.name }}</div>
               </div>
               <div class="mt-4 section text-sm font-medium text-text-500">
-                <ng-template *ngIf="descriptionRef" [ngTemplateOutlet]="descriptionRef"></ng-template>
+                <div class="px-5">
+                  <div class="w-60 pb-4">
+                    <div class="item-label">Oid:</div>
+                    <div class="flex justify-end items-end">
+                      <div>
+                        {{ item.oid }}
+                        <span
+                          class="justify-center cursor-pointer text-primary-500"
+                          appCopyToClipboard
+                          [textToCopy]="item.oid"
+                          copyMessage="Oid copied to clipboard"
+                        >
+                          <i class="pi pi-copy" style="font-size: 1.25rem"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="item.desc && item.desc.length > 0" class="w-72 pb-4">
+                    <div class="item-label">Description:</div>
+                    <div>
+                      {{ item.desc }}
+                    </div>
+                  </div>
+                  <div *ngIf="organisation && organisation.length > 0" class="w-72 pb-4">
+                    <div class="item-label">Owner:</div>
+                    <div class="mt-1">
+                      <app-pictogram shape="square" contentColor="white">
+                        <ng-template #pictogramRef>
+                          <div>{{ organisation.charAt(0).toUpperCase() }}</div>
+                        </ng-template>
+                        <div class="leading-none">
+                          {{ organisation }}
+                        </div>
+                      </app-pictogram>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="infoBodyRef" class="pb-4">
+                  <ng-template [ngTemplateOutlet]="infoBodyRef"></ng-template>
+                </div>
               </div>
             </div>
           </div>
@@ -28,15 +62,15 @@
                 <div *ngIf="propsInfoRef" class="h-12 mb-5">
                   <ng-template [ngTemplateOutlet]="propsInfoRef"></ng-template>
                 </div>
-                <div class="w-full fade-bottom">
+                <div class="w-full fade-bottom" [style.height]="tableHeight">
                   <p-table
                     [value]="item.properties ?? []"
                     dataKey="pid"
                     [filterDelay]="0"
-                    [scrollHeight]="scrollHeight"
                     [scrollable]="true"
                     [resizableColumns]="true"
                     [autoLayout]="true"
+                    [scrollHeight]="tableHeight"
                   >
                     <ng-template pTemplate="header">
                       <ng-template *ngIf="propsHeaderRef" [ngTemplateOutlet]="propsHeaderRef"></ng-template>

@@ -1,35 +1,44 @@
-import { NgModule } from '@angular/core'
-import { RouterModule, Routes } from '@angular/router'
-import { ItemsComponent } from './items.component'
-import { MyOrgItemsComponent } from './my-org-items/my-org-items.component'
-import { NodeItemsComponent } from './node-items/node-items.component'
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { ItemsComponent } from './items.component';
+import { MyNodeItemsComponent } from './my-node-items/my-node-items.component';
+import { MyOrgItemsComponent } from './my-org-items/my-org-items.component';
+import { CommunityItemsComponent } from './community-items/community-items.component';
+import { PartnershipItemsComponent } from './partnership-items/partnership-items.component';
 
 const routes: Routes = [
-    {
-        path: '',
-        component: NodeItemsComponent,
-        data: {
-          saveComponent: true,
-        },
+  {
+    path: '',
+    component: ItemsComponent,
+    children: [
+      {
+        path: 'my-node',
+        component: MyNodeItemsComponent
       },
       {
         path: 'my-org',
-        component: MyOrgItemsComponent,
-        data: {
-          saveComponent: true,
-        },
+        component: MyOrgItemsComponent
       },
       {
-        path: 'my-node',
-        component: ItemsComponent,
+        path: 'community',
+        component: CommunityItemsComponent,
         data: {
-          saveComponent: true,
-        },
+          saveComponent: true
+        }
       },
-]
+      {
+        path: 'partnership',
+        component: PartnershipItemsComponent,
+        data: {
+          saveComponent: true
+        }
+      },
+    ],
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
-export class ItemsRoutingModule {}
+export class ItemsRoutingModule { }

@@ -1,27 +1,4 @@
-<app-detail [item]="item" back="My Node items">
-  <ng-template #descriptionRef>
-    <div class="w-72">
-      <div class="item-label">Description:</div>
-      <div>{{ item.desc }}</div>
-    </div>
-    <div class="w-72 mt-4">
-      <div class="item-label">Owner:</div>
-      <div class="mt-1">
-        <app-pictogram shape="square" contentColor="white">
-          <ng-template #pictogramRef>
-            <div>{{ organisation.charAt(0).toUpperCase() }}</div>
-          </ng-template>
-          <div>
-            <div class="leading-none">{{ organisation }}</div>
-            <div class="flex gap-1 items-center mt-1">
-              <i class="pi pi-user" style="font-size: 0.9rem"></i>
-              <div class="text-sm leading-none">(your org)</div>
-            </div>
-          </div>
-        </app-pictogram>
-      </div>
-    </div>
-  </ng-template>
+<app-detail [item]="item" back="My Org items" [organisation]="organisation">
   <ng-template *ngIf="!oidOfmyNodesFirstItem" #propsInfoRef>
     <p-message severity="warn" [text]="'Unable to get data - your Node doesn\'t have any registred items.'"></p-message>
   </ng-template>

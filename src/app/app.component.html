@@ -1,16 +1,18 @@
 <app-toast>
-  <div *ngIf="!loading">
-    <div>
-      <app-header></app-header>
-      <div class="wrapper h-[calc(100%-58px)]">
-        <router-outlet></router-outlet>
+  <div>
+    <div *ngIf="!loading">
+      <div>
+        <app-header></app-header>
+        <div class="wrapper h-[calc(100vh-58px)] text-text-500">
+          <router-outlet></router-outlet>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div *ngIf="loading">
-    <div class="w-screen h-screen grid place-items-center">
-      <app-spinner></app-spinner>
+    <div *ngIf="loading">
+      <div class="w-screen h-screen grid place-items-center">
+        <app-spinner></app-spinner>
+      </div>
     </div>
   </div>
 </app-toast>

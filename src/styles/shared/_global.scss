@@ -115,6 +115,11 @@ body {
   border: 1px solid #DEE2E6;
 }
 
+.section-p-0 {
+  @apply section;
+  @apply p-0;
+}
+
 .section-pt-0 {
   @apply section;
   @apply pt-0;

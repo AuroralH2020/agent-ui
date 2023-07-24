@@ -6,6 +6,5 @@ import { Component, OnInit } from '@angular/core'
   styleUrls: ['./items.component.scss'],
 })
 export class ItemsComponent implements OnInit {
-  constructor() {}
   ngOnInit(): void {}
 }

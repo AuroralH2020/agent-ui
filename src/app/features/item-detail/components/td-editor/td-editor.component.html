@@ -1,0 +1,28 @@
+<div
+  [ngStyle]="{
+    width: '100%',
+    height: 'calc(100vh - 256px)'
+  }"
+>
+  <div *ngIf="loading" class="w-full h-full flex items-center justify-center">
+    <app-spinner></app-spinner>
+  </div>
+  <app-jsonld-editor [hidden]="loading" [formControl]="td" [readOnly]="!edit"></app-jsonld-editor>
+  <div class="flex items-center w-full justify-end mt-8 gap-4">
+    <p-button
+      label="Copy TD"
+      appCopyToClipboard
+      [textToCopy]="thingDescription"
+      copyMessage="Thing Description copied to clipboard"
+      icon="pi pi-copy"
+      styleClass="p-button-outlined"
+    ></p-button>
+    <p-button
+      *ngIf="edit"
+      label="Update Item"
+      icon="pi pi-pencil"
+      [loading]="updating"
+      (click)="updateItem()"
+    ></p-button>
+  </div>
+</div>

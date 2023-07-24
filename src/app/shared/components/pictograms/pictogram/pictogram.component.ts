@@ -1,7 +1,7 @@
 import { Component, ContentChild, Input, OnInit, TemplateRef } from '@angular/core'
 
 export type Size = 'normal' | 'small'
-export type Shape = 'rounded' | 'square'
+export type Shape = 'circle' | 'square'
 
 @Component({
   selector: 'app-pictogram',
@@ -12,8 +12,8 @@ export class PictogramComponent implements OnInit {
 
   @ContentChild('pictogramRef') pictogramRef: TemplateRef<any> | undefined
 
-  @Input() size: Size = 'normal'
-  @Input() shape: Shape = 'rounded'
+  @Input() size?: Size = 'normal'
+  @Input() shape?: Shape = 'circle'
   @Input() pictogramColor: string | undefined
   @Input() contentColor: string | undefined
 

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core'
 import { ItemUI } from '@core/models/item.model'
 import { valueBasedOnItemType } from 'src/app/utils'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
+import { Size } from '../pictogram/pictogram.component'
 
 @Component({
   selector: 'app-item-pictogram',
@@ -10,6 +11,7 @@ import { IconProp } from '@fortawesome/fontawesome-svg-core'
 })
 export class ItemPictogramComponent implements OnInit {
   @Input() item!: ItemUI
+  @Input() size?: Size
 
   constructor() {}
 

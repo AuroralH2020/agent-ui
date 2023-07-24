@@ -31,7 +31,7 @@ export class SparqlEditorComponent implements OnInit, ControlValueAccessor, Afte
   }
 
   ngAfterViewInit(): void {
-    ace.config.set('fontSize', '14px')
+    ace.config.set('fontSize', '12px')
     ace.config.set('basePath', 'https://unpkg.com/ace-builds@1.4.12/src-noconflict')
     this.aceEditor = ace.edit(this.editor.nativeElement)
     this.aceEditor.session.setValue(this.value)
@@ -39,8 +39,19 @@ export class SparqlEditorComponent implements OnInit, ControlValueAccessor, Afte
     this.aceEditor.container.style.borderRadius = '8px'
     this.aceEditor.renderer.setShowPrintMargin(false);
     this.aceEditor.session.setMode('ace/mode/sparql')
+    this._listenForChange()
+  }
+
+  _ignore = false
+
+  private _listenForChange() {
     this.aceEditor.on('change', () => {
-      this.value = this.aceEditor.getValue()
+      if (this._ignore) {
+        return
+      }
+      const value = this.aceEditor.getValue()
+      this._value = value
+      this.onChange(value)
     })
     this.aceEditor.on('focus', () => {
       this.focused = true
@@ -53,6 +64,11 @@ export class SparqlEditorComponent implements OnInit, ControlValueAccessor, Afte
   set value(value: string) {
     this._value = value
     this.onChange(value)
+    if (this.aceEditor) {
+      this._ignore = true
+      this.aceEditor.setValue(value)
+      this._ignore = false
+    }
   }
 
   get value(): string {

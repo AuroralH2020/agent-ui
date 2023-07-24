@@ -1,5 +1,68 @@
-import { Component, Input } from '@angular/core'
-import { TreeNode } from 'primeng/api'
+import { Component } from '@angular/core'
+import { AdminService } from '@core/services/admin/admin.service'
+import { IconProp } from '@fortawesome/fontawesome-svg-core'
+import { Observable } from 'rxjs'
+
+interface HomeNav {
+  name: string
+  path: string
+  icon?: IconProp
+  children?: HomeNav[]
+}
+
+const homeNav: HomeNav[] = [
+  {
+    name: 'My Node',
+    path: '/home/my-node/',
+    icon: 'circle-nodes',
+  },
+  {
+    name: 'Items',
+    path: '/home/items/',
+    icon: 'list',
+    children: [
+      {
+        name: 'My Node',
+        path: 'my-node',
+      },
+      {
+        name: 'My Org',
+        path: 'my-org',
+      },
+      {
+        name: 'Partnership',
+        path: 'partnership',
+      },
+      {
+        name: 'Community',
+        path: 'community',
+      }
+    ]
+  },
+  {
+    name: 'Query',
+    path: '/home/query/',
+    icon: 'database',
+    children: [
+      {
+        name: 'My Node',
+        path: 'my-node',
+      },
+      {
+        name: 'My Org',
+        path: 'my-org',
+      },
+      {
+        name: 'Partnership',
+        path: 'partnership',
+      },
+      {
+        name: 'Community',
+        path: 'community',
+      }
+    ]
+  },
+]
 
 @Component({
   selector: 'app-home-nav',
@@ -7,72 +70,15 @@ import { TreeNode } from 'primeng/api'
   styleUrls: ['./home-nav.component.scss'],
 })
 export class HomeNavComponent {
-  files!: TreeNode[]
 
-  @Input() folded: boolean = false
+  constructor(private _adminService: AdminService) {
+  }
 
-  constructor() {
-    this.files = [
-      {
-        label: 'Documents',
-        data: 'Documents Folder',
-        expandedIcon: 'pi pi-folder-open',
-        collapsedIcon: 'pi pi-folder',
-        children: [
-          {
-            label: 'Work',
-            data: 'Work Folder',
-            expandedIcon: 'pi pi-folder-open',
-            collapsedIcon: 'pi pi-folder',
-            children: [
-              { label: 'Expenses.doc', icon: 'pi pi-file', data: 'Expenses Document' },
-              { label: 'Resume.doc', icon: 'pi pi-file', data: 'Resume Document' },
-            ],
-          },
-          {
-            label: 'Home',
-            data: 'Home Folder',
-            expandedIcon: 'pi pi-folder-open',
-            collapsedIcon: 'pi pi-folder',
-            children: [{ label: 'Invoices.txt', icon: 'pi pi-file', data: 'Invoices for this month' }],
-          },
-        ],
-      },
-      {
-        label: 'Pictures',
-        data: 'Pictures Folder',
-        expandedIcon: 'pi pi-folder-open',
-        collapsedIcon: 'pi pi-folder',
-        children: [
-          { label: 'barcelona.jpg', icon: 'pi pi-image', data: 'Barcelona Photo' },
-          { label: 'logo.jpg', icon: 'pi pi-image', data: 'PrimeFaces Logo' },
-          { label: 'primeui.png', icon: 'pi pi-image', data: 'PrimeUI Logo' },
-        ],
-      },
-      {
-        label: 'Movies',
-        data: 'Movies Folder',
-        expandedIcon: 'pi pi-folder-open',
-        collapsedIcon: 'pi pi-folder',
-        children: [
-          {
-            label: 'Al Pacino',
-            data: 'Pacino Movies',
-            children: [
-              { label: 'Scarface', icon: 'pi pi-video', data: 'Scarface Movie' },
-              { label: 'Serpico', icon: 'pi pi-video', data: 'Serpico Movie' },
-            ],
-          },
-          {
-            label: 'Robert De Niro',
-            data: 'De Niro Movies',
-            children: [
-              { label: 'Goodfellas', icon: 'pi pi-video', data: 'Goodfellas Movie' },
-              { label: 'Untouchables', icon: 'pi pi-video', data: 'Untouchables Movie' },
-            ],
-          },
-        ],
-      },
-    ]
+  get menuFolded$(): Observable<boolean> {
+    return this._adminService.menuFolded$
+  }
+
+  get nav(): HomeNav[] {
+    return homeNav
   }
 }

@@ -17,7 +17,7 @@ export interface ItemServer {
   oid?: Data
   itemname?: Data
   itemtype?: Data
-  itemdesc?:   Data;
+  itemdesc?: Data
   pid?: Data
   propname?: Data
   proptype?: Data
@@ -30,6 +30,12 @@ export interface Data {
   type?: string
   value?: string
   'xml:lang'?: string
+}
+
+export interface RegisterItem {
+  name: string
+  oid: string
+  password: string
 }
 
 //------- UI -------//

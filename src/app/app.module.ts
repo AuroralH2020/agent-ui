@@ -18,7 +18,12 @@ import { fas } from '@fortawesome/free-solid-svg-icons'
 import { far } from '@fortawesome/free-regular-svg-icons'
 import { SharedModule } from '@shared/shared.module'
 import { RouteReuseStrategy } from '@angular/router'
-import { CacheRouteReuseStrategy } from '@core/route-strategy/cache-route-reuse.strategy'
+import { CacheRouteReuseStrategy } from '@core/route-strategy/cache-route-reuse.strategy';
+import { ItemsModule } from './features/home/sections/items/items.module';
+import { QueryModule } from './features/home/sections/query/query.module';
+import { ComponentsLibraryModule } from './features/home/sections/components-library/components-library.module';
+import { TdEditorModule } from './features/td-editor/td-editor.module';
+import { MyNodeModule } from './features/home/sections/my-node/my-node.module'
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,6 +37,11 @@ import { CacheRouteReuseStrategy } from '@core/route-strategy/cache-route-reuse.
     ItemDetailModule,
     FontAwesomeModule,
     SharedModule,
+    ItemsModule,
+    QueryModule,
+    ComponentsLibraryModule,
+    TdEditorModule,
+    MyNodeModule,
   ],
   providers: [
     { provide: 'BASE_URL', useValue: environment.baseurl },

@@ -1,30 +1,30 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 import { HomeComponent } from './home.component'
-import { ItemsComponent } from './sections/items/items.component'
-import { QueryComponent } from './sections/query/query.component'
-
-const sections: any = [
-  // { path: 'components-library', component: ComponentsLibraryComponent },
-  {
-    path: 'items',
-    component: ItemsComponent,
-    data: {
-      saveComponent: true,
-    },
-  },
-  {
-    path: 'query',
-    component: QueryComponent,
-  },
-]
 
 const routes: Routes = [
-  { path: '', redirectTo: `sections/${sections[0].path}`, pathMatch: 'full' },
   {
-    path: 'sections',
+    path: '',
     component: HomeComponent,
-    children: sections,
+    children: [
+      {
+        path: 'components',
+        loadChildren: () =>
+          import('./sections/components-library/components-library.module').then((m) => m.ComponentsLibraryModule),
+      },
+      {
+        path: 'my-node',
+        loadChildren: () => import('./sections/my-node/my-node.module').then((m) => m.MyNodeModule),
+      },
+      {
+        path: 'items',
+        loadChildren: () => import('./sections/items/items.module').then((m) => m.ItemsModule),
+      },
+      {
+        path: 'query',
+        loadChildren: () => import('./sections/query/query.module').then((m) => m.QueryModule),
+      },
+    ],
   },
 ]
 

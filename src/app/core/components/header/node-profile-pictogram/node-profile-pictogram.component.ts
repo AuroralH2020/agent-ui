@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core'
+import { NodesService } from '@core/services/nodes/nodes.service'
 
 type Size = 'small' | 'large'
 
@@ -10,7 +11,11 @@ type Size = 'small' | 'large'
 export class NodeProfilePictogramComponent implements OnInit {
   @Input() size: Size = 'small'
 
-  constructor() {}
+  constructor(private _nodeService: NodesService) {}
 
   ngOnInit(): void {}
+
+  get organisation(): string {
+    return this._nodeService.myNode.organisation
+  }
 }

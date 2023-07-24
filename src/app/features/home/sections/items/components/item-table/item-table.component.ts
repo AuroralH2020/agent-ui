@@ -1,5 +1,6 @@
 import { Component, ContentChild, Input, TemplateRef, ViewChild } from '@angular/core'
 import { ItemUI } from '@core/models/item.model'
+import { ItemsService } from '@core/services/item/item.service'
 import { Table } from 'primeng/table'
 
 @Component({
@@ -9,15 +10,22 @@ import { Table } from 'primeng/table'
 })
 export class ItemTableComponent {
   @ViewChild('dt') dt!: Table
+
+  filterVisible: boolean = false
   selectedFilter: string = 'All'
 
-  @ContentChild('tableControlRef') tableControlRef: TemplateRef<any> | undefined
+  selectedItems: ItemUI[] = []
+
+  @ContentChild('header') header: TemplateRef<any> | undefined
+  @ContentChild('actions') actions: TemplateRef<any> | undefined
   @Input() itemsUI: ItemUI[] = []
   @Input() showSearch: boolean = true
   @Input() showTable: boolean = true
   @Input() loadingData: boolean = false
   @Input() linkToDetail!: string
   @Input() state: any
+
+  constructor(private _itemsService: ItemsService) {}
 
   search(event: Event) {
     const searchValue = (event.target as HTMLInputElement).value
@@ -34,5 +42,9 @@ export class ItemTableComponent {
 
   combineState(item: ItemUI) {
     return { item, ...this.state }
+  }
+
+  isNew(item: ItemUI): boolean {
+    return this._itemsService.isNew(item)
   }
 }

@@ -9,7 +9,6 @@ import { NodesService } from '@core/services/nodes/nodes.service';
   styleUrls: ['./my-org-items.component.scss']
 })
 export class MyOrgItemsComponent implements OnInit {
-
   itemsUI: ItemUI[] = [];
 
   constructor(

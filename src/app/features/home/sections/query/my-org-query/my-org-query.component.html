@@ -1,9 +1,4 @@
-<div class="w-56">
-  <app-pictogram shape="square">
-    <ng-template #pictogramRef>
-      {{ organisation.charAt(0).toUpperCase() }}
-    </ng-template>
-    <div class="w-36">{{ organisation }}</div>
-  </app-pictogram>
+<div class="h-14">
+  <app-org-pictogram shape="circle" [organisation]="organisation"> </app-org-pictogram>
 </div>
-<app-run-query [runQuery]="runQuery" title="Query Organisation (SPARQL)"> </app-run-query>
+<app-run-query [runQuery]="runQuery" title="Query My Organisation (SPARQL)"> </app-run-query>

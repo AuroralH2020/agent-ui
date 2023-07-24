@@ -6,12 +6,10 @@ describe('MyOrgQueryComponent', () => {
   let component: MyOrgQueryComponent;
   let fixture: ComponentFixture<MyOrgQueryComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ MyOrgQueryComponent ]
-    })
-    .compileComponents();
-
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [MyOrgQueryComponent]
+    });
     fixture = TestBed.createComponent(MyOrgQueryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

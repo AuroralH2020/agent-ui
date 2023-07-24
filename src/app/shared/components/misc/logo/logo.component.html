@@ -1,11 +1,11 @@
 <a [routerLink]="['/home']"
   ><div
-    [ngClass]="['flex', 'items-center', 'justify-center', 'bg-transparent', 'h-14', size === 'small' ? 'w-12' : 'w-56']"
+    [ngClass]="['flex', 'items-center', 'justify-center', 'bg-transparent', 'h-14', size === 'small' ? 'w-12' : 'w-40']"
   >
     <img
       src="assets/images/auroral-logo-{{ theme }}{{ size === 'small' ? '-small' : '' }}.png"
       alt=""
-      [width]="size === 'small' ? 32 : 140"
+      [width]="size === 'small' ? 32 : 120"
       [height]="size === 'small' ? 32 : 46"
     />
   </div>

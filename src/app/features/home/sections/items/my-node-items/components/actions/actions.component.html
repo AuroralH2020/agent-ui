@@ -1,0 +1,9 @@
+<div class="flex items-center gap-4">
+  <p-button
+    icon="pi pi-trash"
+    styleClass="p-button-rounded p-button-danger p-button-text"
+    (click)="deleteItem(item, $event)"
+    [loading]="deleting"
+  ></p-button>
+</div>
+<p-confirmPopup></p-confirmPopup>

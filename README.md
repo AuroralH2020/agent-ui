@@ -10,7 +10,7 @@ ng g component features/{module_name}/{component_path}  --module features/{modul
 
 Generate shared component:
 ```
-ng g component shared/{component_path}  --module shared/shared.module.ts
+ng g component shared/components/{component_path}  --module shared/shared.module.ts
 ```
 
 Generate core component:

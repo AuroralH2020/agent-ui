@@ -1,14 +1,14 @@
-import { Component, OnInit } from "@angular/core";
-import { FormControl, Validators } from "@angular/forms";
-import { CheckboxGroupItem } from "@shared/models/checkbox-group.modele";
-import { FetchTableItems } from "@shared/models/table.modele";
+import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { CheckboxGroupItem } from '@shared/models/checkbox-group.modele';
+import { FetchTableItems } from '@shared/models/table.modele';
 
 @Component({
-  selector: "app-components-library",
-  templateUrl: "./components-library.component.html",
-  styleUrls: ["./components-library.component.scss"],
+  selector: 'app-components-library',
+  templateUrl: './components-library.component.html',
+  styleUrls: ['./components-library.component.scss']
 })
-export class ComponentsLibraryComponent implements OnInit {
+export class ComponentsLibraryComponent  implements OnInit {
   protected textFieldWithError: FormControl = new FormControl("", {
     validators: Validators.required,
     updateOn: "change",

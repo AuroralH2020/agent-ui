@@ -1,23 +1,20 @@
-import { Component, OnInit } from '@angular/core'
-import { BroadcasterService } from '@core/services/broadcaster/broadcaster.service'
-import { CONSTANTS } from '@core/services/constants'
+import { Component } from '@angular/core'
+import { AdminService } from '@core/services/admin/admin.service'
+import { Observable } from 'rxjs'
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
-  folded: boolean = false
-
-  constructor() {}
-
-  ngOnInit(): void {
-    this.folded = JSON.parse(sessionStorage.getItem(CONSTANTS.MENU_FOLDED) ?? 'false')
-  }
+export class HomeComponent {
+  constructor(private _adminService: AdminService) {}
 
   toggleMenu = () => {
-    this.folded = !this.folded
-    sessionStorage.setItem(CONSTANTS.MENU_FOLDED, JSON.stringify(this.folded))
+    this._adminService.toggleMenu()
+  }
+
+  get folded$(): Observable<boolean> {
+    return this._adminService.menuFolded$
   }
 }

@@ -27,6 +27,12 @@ import { ScrollTopModule } from 'primeng/scrolltop'
 import { KeyFilterModule } from 'primeng/keyfilter'
 import { MenuModule } from 'primeng/menu'
 import { TreeModule } from 'primeng/tree'
+import { BadgeModule } from 'primeng/badge';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { FileUploadModule } from 'primeng/fileupload';
+import { DividerModule } from 'primeng/divider';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
 
 @NgModule({
   declarations: [],
@@ -58,6 +64,12 @@ import { TreeModule } from 'primeng/tree'
     KeyFilterModule,
     MenuModule,
     TreeModule,
+    BadgeModule,
+    OverlayPanelModule,
+    FileUploadModule,
+    DividerModule,
+    ConfirmDialogModule,
+    ConfirmPopupModule,
   ],
   exports: [
     InputTextModule,
@@ -86,6 +98,12 @@ import { TreeModule } from 'primeng/tree'
     KeyFilterModule,
     MenuModule,
     TreeModule,
+    BadgeModule,
+    OverlayPanelModule,
+    FileUploadModule,
+    DividerModule,
+    ConfirmDialogModule,
+    ConfirmPopupModule,
   ],
 })
 export class PrimeNgModule {}

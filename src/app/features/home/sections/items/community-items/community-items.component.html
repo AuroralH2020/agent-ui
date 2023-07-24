@@ -1,0 +1,62 @@
+<div class="flex gap-2">
+  <div class="section h-[calc(100vh-138px)] overflow-y-auto shrink-0">
+    <div class="item-label" style="height: 24px">Select a community:</div>
+    <div
+      *ngIf="displayedCommunities.length === 0"
+      class="h-[calc(100%-24px)] w-full flex flex-col items-center justify-center text-center font-medium gap-2"
+    >
+      <app-sad-face></app-sad-face>
+      <div>No communities</div>
+      <div class="text-text-300 text-sm w-60 text-center" style="padding-bottom: 24px">
+        Your node is not part of any community
+      </div>
+    </div>
+    <div *ngIf="displayedCommunities.length !== 0">
+      <div *ngFor="let community of displayedCommunities">
+        <div
+          [ngClass]="[
+            'rounded-sm p-1 cursor-pointer',
+            selectedCommunity === community ? 'bg-white' : 'hover:bg-whitesmoke'
+          ]"
+          [style]="
+            selectedCommunity === community ? 'border: 2px solid rgb(0, 182, 235)' : 'border: 2px solid transparent'
+          "
+          (click)="selectCommunity(community)"
+        >
+          <div>
+            <app-community-pictogram
+              [community]="community.name"
+              [description]="community.description"
+              [width]="180"
+              size="small"
+            ></app-community-pictogram>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grow section">
+    <div class="pt-1 h-full w-full">
+      <app-item-table
+        *ngIf="selectedCommunity"
+        [itemsUI]="communityItemsUI"
+        [showSearch]="selectedCommunity !== undefined && !loading"
+        [showTable]="selectedCommunity !== undefined"
+        [loadingData]="loading"
+        linkToDetail="/item-detail/community"
+        class="w-full"
+      >
+        <ng-template #header>
+          <app-community-pictogram [community]="selectedCommunity.name" [minWidth]="126"></app-community-pictogram>
+        </ng-template>
+      </app-item-table>
+      <div *ngIf="!selectedCommunity" class="h-full w-full flex flex-col justify-center items-center font-medium gap-2">
+        <app-sad-face></app-sad-face>
+        <div>No community selected</div>
+        <div class="text-text-300 text-sm w-60 text-center">
+          To display the list of items, you must select a community
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
