@@ -1,7 +1,7 @@
 import { Component, Input, ViewChild } from '@angular/core'
 import { PropertyUI } from '@core/models/item.model'
 import { OverlayPanel } from 'primeng/overlaypanel'
-import { inflect } from 'src/app/utils'
+import { delay, inflect } from 'src/app/utils'
 
 @Component({
   selector: 'app-props-preview',
@@ -27,5 +27,13 @@ export class PropsPreviewComponent {
 
   get length(): number {
     return this.properties.length
+  }
+
+  get displayProperties(): PropertyUI[] {
+    return this.properties.slice(0, 5)
+  }
+
+  get moreThen5(): boolean {
+    return this.properties.length > 5
   }
 }

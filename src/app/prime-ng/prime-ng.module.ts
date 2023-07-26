@@ -33,6 +33,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { DividerModule } from 'primeng/divider';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ListboxModule } from 'primeng/listbox';
 
 @NgModule({
   declarations: [],
@@ -70,6 +71,7 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
     DividerModule,
     ConfirmDialogModule,
     ConfirmPopupModule,
+    ListboxModule,
   ],
   exports: [
     InputTextModule,
@@ -104,6 +106,7 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
     DividerModule,
     ConfirmDialogModule,
     ConfirmPopupModule,
+    ListboxModule,
   ],
 })
 export class PrimeNgModule {}

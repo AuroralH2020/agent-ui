@@ -10,19 +10,19 @@ const routes: Routes = [
       {
         path: 'components',
         loadChildren: () =>
-          import('./sections/components-library/components-library.module').then((m) => m.ComponentsLibraryModule),
+          import('../components-library/components-library.module').then((m) => m.ComponentsLibraryModule),
       },
       {
         path: 'my-node',
-        loadChildren: () => import('./sections/my-node/my-node.module').then((m) => m.MyNodeModule),
+        loadChildren: () => import('../my-node/my-node.module').then((m) => m.MyNodeModule),
       },
       {
         path: 'items',
-        loadChildren: () => import('./sections/items/items.module').then((m) => m.ItemsModule),
+        loadChildren: () => import('../items/items.module').then((m) => m.ItemsModule),
       },
       {
         path: 'query',
-        loadChildren: () => import('./sections/query/query.module').then((m) => m.QueryModule),
+        loadChildren: () => import('../query/query.module').then((m) => m.QueryModule),
       },
     ],
   },

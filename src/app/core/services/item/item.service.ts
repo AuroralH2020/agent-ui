@@ -14,6 +14,7 @@ const _itemsRemove = '/api/registration/remove'
 const _itemsUpdate = '/api/registration'
 
 const _itemLocalTd = '/api/discovery/local/td'
+const _itemRemoteTd = '/api/discovery/remote/td'
 
 @Injectable({
   providedIn: 'root',
@@ -27,8 +28,6 @@ export class ItemsService {
   private _newItems: string[] = []
 
   public async initItems(orgAgids: string[]) {
-    // this.myItems = []
-    // this.myOrgItems = []
     await this._initMyItems()
     // try {
     //   await Promise.all([await this._initMyItems(), await this._initMyOrgItems(orgAgids)])
@@ -95,6 +94,22 @@ export class ItemsService {
     return await firstValueFrom(
       this._http
         .get<Object>(_itemLocalTd + `/${oid}`, {
+          headers: {
+            accept: 'application/json',
+            'Content-Type': 'application/json; charset=utf-8',
+          },
+        })
+        .pipe(take(1))
+    )
+  }
+
+  async getRemoteTD(agid: string, oids: string[]): Promise<Object> {
+    let params = new HttpParams()
+    params = params.append('oids', oids.join(','))
+    return await firstValueFrom(
+      this._http
+        .get<Object>(_itemRemoteTd + `/${agid}`, {
+          params,
           headers: {
             accept: 'application/json',
             'Content-Type': 'application/json; charset=utf-8',

@@ -20,13 +20,13 @@
         </div>
       </div>
       <div class="col-span-5">
-        <div style="padding-top: 2px">
+        <div class="w-full" style="padding-top: 2px">
           <p-fieldset legend="Result" [ngClass]="['w-full', queryResult ? ' custom-fieldset' : '']">
-            <div [style]="queryResult ? 'height: calc(100vh - 388px)' : 'height: calc(100vh - 404px)'">
+            <div class="w-full" [style]="queryResult ? 'height: calc(100vh - 388px)' : 'height: calc(100vh - 404px)'">
               <div *ngIf="loading" class="h-full w-full flex flex-col justify-center items-center">
                 <app-spinner></app-spinner>
               </div>
-              <div [hidden]="loading" class="w-full h-full">
+              <div [hidden]="loading" class="w-full h-full relative">
                 <div *ngIf="!queryResult" class="h-full w-full flex flex-col justify-center items-center gap-2">
                   <app-sad-face></app-sad-face>
                   <div>No result</div>
@@ -42,6 +42,9 @@
                   [readOnly]="true"
                   style="width: 100%; height: 100%"
                 ></app-jsonld-editor>
+                <div *ngIf="queryResult && !loading" class="absolute -top-11 right-4">
+                  <p-button icon="pi pi-window-maximize" styleClass="p-button-rounded p-button-text" (click)="expandResult()"></p-button>
+                </div>
               </div>
             </div>
           </p-fieldset>

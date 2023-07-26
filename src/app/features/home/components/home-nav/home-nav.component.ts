@@ -22,7 +22,7 @@ const homeNav: HomeNav[] = [
     icon: 'list',
     children: [
       {
-        name: 'My Node',
+        name: 'This Node',
         path: 'my-node',
       },
       {
@@ -45,7 +45,7 @@ const homeNav: HomeNav[] = [
     icon: 'database',
     children: [
       {
-        name: 'My Node',
+        name: 'This Node',
         path: 'my-node',
       },
       {

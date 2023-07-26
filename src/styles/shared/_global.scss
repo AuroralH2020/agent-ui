@@ -115,9 +115,14 @@ body {
   border: 1px solid #DEE2E6;
 }
 
-.section-p-0 {
+.section {
+  @apply rounded-sm bg-white p-3;
+  border: 1px solid #DEE2E6;
+}
+
+.section-bg-lightGrey {
   @apply section;
-  @apply p-0;
+  @apply bg-lightGrey;
 }
 
 .section-pt-0 {

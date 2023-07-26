@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'home/my-node', pathMatch: 'full' },
   { path: 'home', loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule) },
   { path: 'item-detail', loadChildren: () => import('./features/item-detail/item-detail.module').then(m => m.ItemDetailModule) },
   { path: 'td-editor', loadChildren: () => import('./features/td-editor/td-editor.module').then(m => m.TdEditorModule) },

@@ -59,18 +59,18 @@ import { JsonldEditorComponent } from './components/inputs/jsonld-editor/jsonld-
 
   ],
   imports: [
-    PrimeNgModule,
     CommonModule,
-    RouterModule,
+    PrimeNgModule,
+    FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
     ClipboardModule,
-    FontAwesomeModule,
+    RouterModule,
   ],
   exports: [
     // Modules
-    FontAwesomeModule,
     PrimeNgModule,
+    FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
     ClipboardModule,

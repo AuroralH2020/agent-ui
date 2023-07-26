@@ -1,15 +1,17 @@
 import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core'
 import { FormGroup, FormControl } from '@angular/forms'
 import { SnackBarService } from '@core/services/snack-bar/snack-bar.service'
+import { QueryResultDialogComponent } from '../query-result-dialog/query-result-dialog.component'
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog'
 
 @Component({
   selector: 'app-run-query',
   templateUrl: './run-query.component.html',
   styleUrls: ['./run-query.component.scss'],
+  providers: [DialogService],
   encapsulation: ViewEncapsulation.None,
 })
 export class RunQueryComponent implements OnInit {
-
   @Input() runQuery!: (query: string) => Promise<any>
   @Input() title!: string
 
@@ -17,7 +19,9 @@ export class RunQueryComponent implements OnInit {
 
   queryResult: any
 
-  constructor(private _snackBar: SnackBarService) {}
+  ref: DynamicDialogRef | undefined
+
+  constructor(private _snackBar: SnackBarService, private _dialogService: DialogService) {}
 
   protected form!: FormGroup
   protected query: FormControl = new FormControl('', {
@@ -52,6 +56,20 @@ export class RunQueryComponent implements OnInit {
     } finally {
       this.loading = false
     }
+  }
+
+  expandResult() {
+    const result = this.result.value
+    this.ref = this._dialogService.open(QueryResultDialogComponent, {
+      header: `Result`,
+      width: 'calc(100vw - 80px)',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: false,
+      data: {
+        result,
+      },
+    })
   }
 
   get invalidQuery(): boolean {

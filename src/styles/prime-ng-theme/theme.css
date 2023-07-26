@@ -268,7 +268,7 @@ p-autocomplete.ng-dirty.ng-invalid > .p-autocomplete > .p-inputtext {
   border-color: #e24c4c;
 }
 .p-autocomplete-panel {
-  background: #F6F8F9;
+  background: #f6f8f9;
   color: #495057;
   border: 0 none;
   border-radius: 8px;
@@ -795,7 +795,7 @@ p-chips.p-chips-clearable .p-chips-clear-icon {
   right: 3rem;
 }
 .p-dropdown-panel {
-  background: #F6F8F9;
+  background: #f6f8f9;
   color: #495057;
   border: 0 none;
   border-radius: 8px;

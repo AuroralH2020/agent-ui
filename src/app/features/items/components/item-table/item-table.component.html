@@ -1,13 +1,13 @@
-<div class="w-full">
+<div class="w-full h-full">
   <div class="flex items-center gap-4 w-full justify-between">
     <div *ngIf="header">
       <ng-template [ngTemplateOutlet]="header"> </ng-template>
     </div>
   </div>
-  <div class="w-full">
-    <div *ngIf="showTable" class="w-full">
-      <div *ngIf="loadingData; else elseTableBlock">
-        <div class="flex justify-center items-center h-64">
+  <div class="w-full h-full">
+    <div *ngIf="showTable" class="w-full h-full">
+      <div *ngIf="loadingData; else elseTableBlock" class="h-full w-full">
+        <div class="flex justify-center items-center h-full w-full">
           <app-spinner></app-spinner>
         </div>
       </div>

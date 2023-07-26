@@ -11,6 +11,11 @@
       <th></th>
     </tr>
   </ng-template>
+  <ng-template #infoBodyRef>
+    <div class="mt-8 flex flex-col">
+      <p-button label="Show TD" (click)="showTD()" icon="pi pi-code" styleClass="p-button-text"></p-button>
+    </div>
+  </ng-template>
   <ng-template #propsBodyRef let-prop>
     <tr>
       <td style="width: 20%">

@@ -63,7 +63,7 @@ export class JsonldEditorComponent implements AfterViewInit {
     this.onChange(value)
     if (this.aceEditor) {
       this._ignore = true
-      this.aceEditor.setValue(value)
+      this.aceEditor.setValue(value, -1)
       this._ignore = false
     }
   }

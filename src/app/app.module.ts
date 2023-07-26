@@ -10,20 +10,13 @@ import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { FakeBackendInterceptor } from '@core/services/fake-backend.interceptor'
 import { JwtInterceptor } from '@core/services/jwt.interceptor'
-import { PrimeNgModule } from './prime-ng/prime-ng.module'
-import { ItemDetailModule } from './features/item-detail/item-detail.module'
 import { MessageService } from 'primeng/api'
-import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import { FaIconLibrary } from '@fortawesome/angular-fontawesome'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { far } from '@fortawesome/free-regular-svg-icons'
 import { SharedModule } from '@shared/shared.module'
 import { RouteReuseStrategy } from '@angular/router'
 import { CacheRouteReuseStrategy } from '@core/route-strategy/cache-route-reuse.strategy';
-import { ItemsModule } from './features/home/sections/items/items.module';
-import { QueryModule } from './features/home/sections/query/query.module';
-import { ComponentsLibraryModule } from './features/home/sections/components-library/components-library.module';
-import { TdEditorModule } from './features/td-editor/td-editor.module';
-import { MyNodeModule } from './features/home/sections/my-node/my-node.module'
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,15 +26,7 @@ import { MyNodeModule } from './features/home/sections/my-node/my-node.module'
     AppRoutingModule,
     CoreModule,
     HttpClientModule,
-    PrimeNgModule,
-    ItemDetailModule,
-    FontAwesomeModule,
     SharedModule,
-    ItemsModule,
-    QueryModule,
-    ComponentsLibraryModule,
-    TdEditorModule,
-    MyNodeModule,
   ],
   providers: [
     { provide: 'BASE_URL', useValue: environment.baseurl },
