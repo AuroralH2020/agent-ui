@@ -1,7 +1,7 @@
 //------- SERVER -------//
 
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
-import { itemTypes, unitDataTypes } from 'src/app/data'
+import { itemTypes, propDataTypes } from 'src/app/data'
 
 export interface Items {
   head: Head
@@ -25,18 +25,6 @@ export interface ResultsProps {
   bindings: PropServer[]
 }
 
-// export interface ItemServer {
-//   oid?: Data
-//   itemname?: Data
-//   itemtype?: Data
-//   itemdesc?: Data
-//   pid?: Data
-//   propname?: Data
-//   proptype?: Data
-//   propdesc?: Data
-//   datatype?: Data
-//   dataunits?: Data
-// }
 export interface ItemServer {
   oid?: Data
   name?: Data
@@ -82,8 +70,8 @@ export interface PropertyUI {
   type?: string
   name?: string
   desc?: string
-  datatype?: string
-  dataunits?: PropUnitDataType
+  datatype?: PropUnitDataType
+  dataunits?: string
 }
 
 export interface ItemType {
@@ -133,17 +121,17 @@ export class ItemConvert {
       name: item.name?.value,
       type: ItemConvert.toPropType(item.type?.value),
       desc: item.desc?.value,
-      datatype: item.datatype?.value,
-      dataunits: ItemConvert.toPropUnitType(item.units?.value),
+      datatype: ItemConvert.toPropDataType(item.datatype?.value),
+      dataunits: item.units?.value,
     }
   }
 
-  public static toItemType(value?: string): ItemType {
-    const fallback = itemTypes.at(0)!
+  public static toItemType(value?: string): ItemType {    
+    const fallback = {...itemTypes.at(0)!}
     if (!value) {
       return fallback
     }
-    const type = value.split('#').at(1) ?? value
+    const type = value.split('#').at(1)?.trim() ?? value
     fallback.title = type
     return itemTypes.find((element) => element.title === type) ?? fallback
   }
@@ -155,14 +143,15 @@ export class ItemConvert {
     return value.split('#').at(1) ?? value
   }
 
-  public static toPropUnitType(value?: string): PropUnitDataType | undefined {
+  public static toPropDataType(value?: string): PropUnitDataType | undefined {
     if (!value) {
       return undefined
     }
+    console.log(`Prop data type is: ${value}`)
     const fallback = {
       name: value,
       symbol: undefined
     }
-    return unitDataTypes.find((element) => element.name === value) ?? fallback
+    return propDataTypes.find((element) => element.name === value) ?? fallback
   }
 }

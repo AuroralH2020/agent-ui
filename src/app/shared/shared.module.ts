@@ -27,6 +27,9 @@ import { LongIdComponent } from './components/display/long-id/long-id.component'
 import { CopyToClipboardDirective } from './directives/copy-to-clipboard/copy-to-clipboard.directive';
 import { TdUploadComponent } from './components/inputs/td-upload/td-upload.component';
 import { JsonldEditorComponent } from './components/inputs/jsonld-editor/jsonld-editor.component';
+import { ItemsTableComponent } from './components/display/items-table/item-table.component'
+import { PropsPreviewComponent } from './components/display/items-table/props-preview/props-preview.component'
+import { PropsTableComponent } from './components/display/props-table/props-table.component'
 
 @NgModule({
   declarations: [
@@ -54,7 +57,9 @@ import { JsonldEditorComponent } from './components/inputs/jsonld-editor/jsonld-
     LongIdComponent,
     TdUploadComponent,
     JsonldEditorComponent,
-
+    ItemsTableComponent,
+    PropsPreviewComponent,
+    PropsTableComponent,
   ],
   imports: [
     CommonModule,
@@ -96,6 +101,9 @@ import { JsonldEditorComponent } from './components/inputs/jsonld-editor/jsonld-
     LongIdComponent,
     TdUploadComponent,
     JsonldEditorComponent,
+    ItemsTableComponent,
+    PropsPreviewComponent,
+    PropsTableComponent,
   ],
 })
 export class SharedModule {}

@@ -25,24 +25,25 @@ export class NodeItemComponent implements OnInit {
   ref: DynamicDialogRef | undefined
 
   constructor(
-    private _activatedRoute: ActivatedRoute,
-    private _router: Router,
     private _nodeService: NodesService,
     private _itemsService: ItemsService,
     private _location: Location,
     private _confirmationService: ConfirmationService,
     private _dialogService: DialogService,
+    private _activatedRoute: ActivatedRoute,
+    private _router: Router,
   ) {}
 
   ngOnInit(): void {
-    this._activatedRoute.paramMap.pipe(map(() => window.history.state)).subscribe((res) => {
-      const oid = res.item.oid
-      const item = this._itemsService.myItems.find((element) => element.oid === oid)
-      if (!item) {
-        this._router.navigate(['/'])
-      }
-      this.item = item!
-    })
+    const oid = this._activatedRoute.snapshot.paramMap.get('oid')
+    if (!oid) {
+      this._router.navigate(['/'])
+    }
+    const item = this._itemsService.myItems.find((element) => element.oid === oid)
+    if (!item) {
+      this._router.navigate(['/'])
+    }
+    this.item = item!
   }
 
   get organisation(): string {
@@ -52,8 +53,7 @@ export class NodeItemComponent implements OnInit {
   showTD(edit: boolean) {
     this.ref = this._dialogService.open(TdEditorComponent, {
       header: `${this.item.name ?? 'Item'}'s Thing Description`,
-      width: '900px',
-      height: 'calc(100vh - 80px)',
+      width: '1200px',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
       maximizable: false,

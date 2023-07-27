@@ -28,17 +28,21 @@ export class MyOrgItemComponent {
   ) {}
 
   ngOnInit(): void {
-    this._activatedRoute.paramMap.pipe(map(() => window.history.state)).subscribe((res) => {
-      this.item = res.item
-      if (!res.item) this._router.navigate(['/'])
-    })
+    const oid = this._activatedRoute.snapshot.paramMap.get('oid')
+    if (!oid) {
+      this._router.navigate(['/'])
+    }
+    const item = this._itemsService.myOrgItems.find((element) => element.oid === oid)
+    if (!item) {
+      this._router.navigate(['/'])
+    }
+    this.item = item!
   }
 
   showTD() {
     this.ref = this._dialogService.open(TdEditorComponent, {
       header: `${this.item.name ?? 'Item'}'s Thing Description`,
-      width: '900px',
-      height: 'calc(100vh - 80px)',
+      width: '1200px',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
       maximizable: false,
@@ -46,14 +50,6 @@ export class MyOrgItemComponent {
         edit: false,
         item: this.item,
       },
-    })
-    this.ref.onClose.pipe(untilDestroyed(this)).subscribe((updated) => {
-      if (updated) {
-        const item = this._itemsService.myItems.find((item) => item.oid === this.item.oid)
-        if (item) {
-          this.item = item
-        }
-      }
     })
   }
 

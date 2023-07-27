@@ -19,25 +19,27 @@ const homeNav: HomeNav[] = [
   {
     name: 'Items',
     path: '/home/items/',
-    icon: 'list',
+    icon: 'cube',
     children: [
       {
-        name: 'This Node',
+        name: 'My Node',
         path: 'my-node',
       },
       {
         name: 'My Org',
         path: 'my-org',
-      },
-      {
-        name: 'Partnership',
-        path: 'partnership',
-      },
-      {
-        name: 'Community',
-        path: 'community',
       }
     ]
+  },
+  {
+    name: 'Partnerships',
+    path: '/home/partnership/',
+    icon: 'handshake',
+  },
+  {
+    name: 'Communities',
+    path: '/home/community/',
+    icon: 'users',
   },
   {
     name: 'Query',
@@ -45,7 +47,7 @@ const homeNav: HomeNav[] = [
     icon: 'database',
     children: [
       {
-        name: 'This Node',
+        name: 'My Node',
         path: 'my-node',
       },
       {

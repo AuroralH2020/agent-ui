@@ -1,16 +1,16 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Community } from '@core/models/collaboration.model';
-import { ItemUI, ItemConvert } from '@core/models/item.model';
+import { ItemUI } from '@core/models/item.model';
 import { CollaborationService } from '@core/services/collaboration/collaboration.service';
 import { ItemsService } from '@core/services/item/item.service';
 import { NodesService } from '@core/services/nodes/nodes.service';
 
 @Component({
-  selector: 'app-community-items',
-  templateUrl: './community-items.component.html',
-  styleUrls: ['./community-items.component.scss'],
+  selector: 'app-community',
+  templateUrl: './community.component.html',
+  styleUrls: ['./community.component.scss']
 })
-export class CommunityItemsComponent implements OnInit {
+export class CommunityComponent implements OnInit {
   loading: boolean = false
 
   communityItemsUI: ItemUI[] = []

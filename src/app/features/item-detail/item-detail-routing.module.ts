@@ -12,19 +12,19 @@ const routes: Routes = [
     component: ItemDetailComponent,
     children: [
       {
-        path: 'node',
+        path: 'node/:oid',
         component: NodeItemComponent,
       },
       {
-        path: 'myorg',
+        path: 'myorg/:oid',
         component: MyOrgItemComponent,
       },
       {
-        path: 'community',
+        path: 'community/:oid',
         component: CommunityItemComponent,
       },
       {
-        path: 'partnership',
+        path: 'partnership/:oid',
         component: PartnershipItemComponent,
       },
     ],

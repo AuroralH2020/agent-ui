@@ -15,7 +15,9 @@ export class ItemPictogramComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.item.type)
+  }
 
   get pictogramColor(): string {
     return this.item.type.color

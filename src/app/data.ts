@@ -291,7 +291,7 @@ export const itemTypes: ItemType[] = [
   },
 ]
 
-export const unitDataTypes: PropUnitDataType[] = [
+export const propDataTypes: PropUnitDataType[] = [
   {
     name: 'number',
     symbol: '123',
@@ -310,10 +310,10 @@ export const unitDataTypes: PropUnitDataType[] = [
   },
   {
     name: 'object',
-    symbol: '{}',
+    symbol: '{ }',
   },
   {
     name: 'array',
-    symbol: '[]',
+    symbol: '[ ]',
   },
 ]

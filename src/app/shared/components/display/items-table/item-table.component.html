@@ -35,17 +35,18 @@
           </div>
           <div class="w-full flex gap-4">
             <div class="w-full fade-bottom">
+              <div class="text-text-300 font-medium text-sm pb-4 ml-6">{{ itemsCount }}</div>
               <p-table
                 #dt
                 [value]="itemsUI"
-                selectionMode="single"
+                [selectionMode]="itemsUI.length > 0 ? 'single' : null"
                 dataKey="oid"
                 [filterDelay]="0"
-                class="selectable-table"
+                [class]="itemsUI.length > 0 ? 'selectable-table' : ''"
                 styleClass="p-datatable-sm"
                 [scrollable]="true"
                 scrollDirection="both"
-                scrollHeight="calc(100vh - 312px)"
+                scrollHeight="calc(100vh - 346px)"
               >
                 <ng-template pTemplate="header">
                   <tr>
@@ -57,7 +58,7 @@
                   </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-item>
-                  <tr [routerLink]="linkToDetail" [state]="combineState(item)">
+                  <tr [routerLink]="[linkToDetail, item.oid]" [state]="combineState(item)">
                     <td style="width: 30%">
                       <div class="shrink-0">
                         <div class="flex items-center gap-4">
@@ -103,8 +104,8 @@
                 </ng-template>
                 <ng-template pTemplate="emptymessage" let-columns>
                   <tr>
-                    <td>
-                      <div class="flex flex-col justify-start w-36 text-center">
+                    <td colspan="5">
+                      <div class="flex flex-col w-full h-96 justify-center text-center">
                         <app-sad-face></app-sad-face>
                         No items found
                       </div>

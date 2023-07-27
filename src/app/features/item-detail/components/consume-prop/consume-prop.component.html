@@ -1,4 +1,4 @@
-<div>
+<div [pTooltip]="oid ? undefined : disabledTooltip" tooltipPosition="bottom">
   <button
     pButton
     pRipple
@@ -17,7 +17,9 @@
     [style]="{ height: 'calc(100vh - 40px)', width: '100%' }"
     [transitionOptions]="'300ms ease-out'"
   >
-    <ng-template pTemplate="header"> <div class="text-text-300 font-medium text-base">Consume data from:</div> </ng-template>
+    <ng-template pTemplate="header">
+      <div class="text-text-300 font-medium text-base">Consume data from:</div>
+    </ng-template>
     <ng-template pTemplate="content">
       <div class="whitespace-normal h-full justify-center">
         <app-consume-prop-sheet [oid]="oid" [item]="item" [prop]="prop"> </app-consume-prop-sheet>

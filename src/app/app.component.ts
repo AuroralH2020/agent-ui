@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { CollaborationService } from '@core/services/collaboration/collaboration.service'
 import { ItemsService } from '@core/services/item/item.service'
 import { NodesService } from '@core/services/nodes/nodes.service'
+import { delay } from './utils'
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,7 @@ import { NodesService } from '@core/services/nodes/nodes.service'
 })
 export class AppComponent implements OnInit {
   loading: boolean = false
+  showInfo: boolean = false
 
   constructor(
     private _nodesService: NodesService,
@@ -21,6 +23,12 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.initApp()
+    this.showInfoAfterDelay()
+  }
+
+  async showInfoAfterDelay() {
+    await delay(5000)
+    this.showInfo = true
   }
 
   async initApp() {

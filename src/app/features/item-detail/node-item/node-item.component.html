@@ -1,14 +1,5 @@
 <app-detail [item]="item" back="My Node items" [organisation]="organisation">
-  <ng-template #propsHeaderRef>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Data Type</th>
-      <th>Data Units</th>
-      <th></th>
-    </tr>
-  </ng-template>
-  <ng-template #infoBodyRef>
+  <ng-template #itemActions>
     <div class="mt-8 flex flex-col">
       <p-button label="Show TD" (click)="showTD(false)" icon="pi pi-code" styleClass="p-button-text"></p-button>
       <p-button label="Edit TD" (click)="showTD(true)" icon="pi pi-pencil" styleClass="p-button-text"></p-button>
@@ -24,45 +15,12 @@
       ></p-button>
     </div>
   </ng-template>
-  <ng-template #propsBodyRef let-prop>
-    <tr>
-      <td style="width: 20%">
-        <div *ngIf="prop.name">
-          {{ prop.name }}
-        </div>
-        <div *ngIf="!prop.name">
-          <i class="pi pi-minus text-text-300" style="font-size: 0.8rem"></i>
-        </div>
-      </td>
-      <td style="width: 20%">
-        <div *ngIf="prop.type">
-          {{ prop.type }}
-        </div>
-        <div *ngIf="!prop.type">
-          <i class="pi pi-minus text-text-300" style="font-size: 0.8rem"></i>
-        </div>
-      </td>
-      <td style="width: 20%">
-        <div *ngIf="prop.datatype">
-          {{ prop.datatype }}
-        </div>
-        <div *ngIf="!prop.datatype">
-          <i class="pi pi-minus text-text-300" style="font-size: 0.8rem"></i>
-        </div>
-      </td>
-      <td style="width: 20%">
-        <div *ngIf="prop.dataunits" class="flex items-center gap-2">
-          <div *ngIf="prop.dataunits.symbol" class="text-text-300">{{ prop.dataunits.symbol }}</div>
-          <div>{{ prop.dataunits.name }}</div>
-        </div>
-        <div *ngIf="!prop.dataunits">
-          <i class="pi pi-minus text-text-300" style="font-size: 0.8rem"></i>
-        </div>
-      </td>
-      <td style="width: 20%">
+  <ng-template #propsTable>
+    <app-props-table [props]="item.properties">
+      <ng-template #propActions let-prop>
         <app-consume-prop [oid]="item.oid" [item]="item" [prop]="prop"></app-consume-prop>
-      </td>
-    </tr>
+      </ng-template>
+    </app-props-table>
   </ng-template>
 </app-detail>
 <p-confirmDialog #cd [style]="{ width: '600px' }">

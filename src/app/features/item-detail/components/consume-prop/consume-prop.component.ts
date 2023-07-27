@@ -10,6 +10,7 @@ export class ConsumePropComponent implements OnInit {
   @Input() oid?: string
   @Input() item!: ItemUI
   @Input() prop!: PropertyUI
+  @Input() disabledTooltip?: string
 
   showDetail: boolean = false
 

@@ -89,12 +89,12 @@ export class MyNodeComponent implements OnInit {
     return this._itemsService.myOrgItems
   }
 
-  get partnerships(): PartnerUI[] | undefined {
-    return this._collaborationService.partnerships
+  get partnerships(): PartnerUI[] {
+    return this._collaborationService.partnerships ?? []
   }
 
-  get communities(): Community[] | undefined {
-    return this._collaborationService.communities
+  get communities(): Community[] {
+    return this._collaborationService.communities ?? []
   }
 
   get lastConfigurationUpdate(): Date {

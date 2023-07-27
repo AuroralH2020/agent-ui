@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core'
-import { ContractServer, PartnerUI } from '@core/models/collaboration.model'
-import { ItemUI, ItemConvert } from '@core/models/item.model'
-import { CollaborationService } from '@core/services/collaboration/collaboration.service'
-import { ItemsService } from '@core/services/item/item.service'
-import { NodesService } from '@core/services/nodes/nodes.service'
+import { Component, OnInit } from '@angular/core';
+import { ContractServer, PartnerUI } from '@core/models/collaboration.model';
+import { ItemUI } from '@core/models/item.model';
+import { CollaborationService } from '@core/services/collaboration/collaboration.service';
+import { ItemsService } from '@core/services/item/item.service';
+import { NodesService } from '@core/services/nodes/nodes.service';
 
 @Component({
-  selector: 'app-partnership-items',
-  templateUrl: './partnership-items.component.html',
-  styleUrls: ['./partnership-items.component.scss'],
+  selector: 'app-partnership',
+  templateUrl: './partnership.component.html',
+  styleUrls: ['./partnership.component.scss']
 })
-export class PartnershipItemsComponent implements OnInit {
+export class PartnershipComponent implements OnInit {
   loading: boolean = false
 
   partnerItemsUI: ItemUI[] = []

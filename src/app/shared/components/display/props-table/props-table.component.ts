@@ -1,5 +1,6 @@
 import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
 import { PropertyUI } from '@core/models/item.model';
+import { inflect } from 'src/app/utils';
 
 @Component({
   selector: 'app-props-table',
@@ -8,8 +9,12 @@ import { PropertyUI } from '@core/models/item.model';
 })
 export class PropsTableComponent {
 
-  @ContentChild('actions') actions: TemplateRef<any> | undefined
+  @ContentChild('propActions') propActions: TemplateRef<any> | undefined
 
-  @Input() props: PropertyUI[] = []
+  @Input() props?: PropertyUI[]
 
+  get propsCount(): string {
+    const count = this.props?.length ?? 0
+    return inflect(count, '0 properties', '1 property', `${count} properties`)
+  }
 }

@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 
 import { SharedModule } from '@shared/shared.module'
-import { PrimeNgModule } from 'src/app/prime-ng/prime-ng.module'
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 import { NodeItemComponent } from './node-item/node-item.component'
 import { CommunityItemComponent } from './community-item/community-item.component'
@@ -16,7 +14,6 @@ import { ConsumePropSheetComponent } from './components/consume-prop/consume-pro
 import { MyOrgItemComponent } from './my-org-item/my-org-item.component'
 import { RequestBuilderComponent } from './components/consume-prop/consume-prop-sheet/request-builder/request-builder.component'
 import { TdEditorComponent } from './components/td-editor/td-editor.component';
-import { PropsTableComponent } from './components/props-table/props-table.component'
 
 @NgModule({
   declarations: [
@@ -30,7 +27,6 @@ import { PropsTableComponent } from './components/props-table/props-table.compon
     MyOrgItemComponent,
     RequestBuilderComponent,
     TdEditorComponent,
-    PropsTableComponent,
   ],
   imports: [CommonModule, SharedModule, ItemDetailRoutingModule],
 })

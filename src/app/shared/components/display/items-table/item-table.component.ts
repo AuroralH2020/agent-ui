@@ -1,14 +1,15 @@
-import { Component, ContentChild, Input, TemplateRef, ViewChild } from '@angular/core'
+import { Component, ContentChild, Input, OnInit, TemplateRef, ViewChild } from '@angular/core'
 import { ItemUI } from '@core/models/item.model'
 import { ItemsService } from '@core/services/item/item.service'
 import { Table } from 'primeng/table'
+import { inflect } from 'src/app/utils'
 
 @Component({
-  selector: 'app-item-table',
+  selector: 'app-items-table',
   templateUrl: './item-table.component.html',
   styleUrls: ['./item-table.component.scss'],
 })
-export class ItemTableComponent {
+export class ItemsTableComponent implements OnInit {
   @ViewChild('dt') dt!: Table
 
   filterVisible: boolean = false
@@ -26,6 +27,8 @@ export class ItemTableComponent {
   @Input() state: any
 
   constructor(private _itemsService: ItemsService) {}
+
+  ngOnInit(): void {}
 
   search(event: Event) {
     const searchValue = (event.target as HTMLInputElement).value
@@ -46,5 +49,10 @@ export class ItemTableComponent {
 
   isNew(item: ItemUI): boolean {
     return this._itemsService.isNew(item)
+  }
+
+  get itemsCount(): string {
+    const count = this.itemsUI.length
+    return inflect(count, '0 items', '1 item', `${count} items`)
   }
 }

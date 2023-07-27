@@ -6122,8 +6122,10 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
   font-size: 1.5rem;
 }
 .p-avatar {
-  background-color: #dee2e6;
+  background-color: #e3e3e3;
   border-radius: 8px;
+  font-weight: bold;
+  color: #666666;
 }
 .p-avatar.p-avatar-lg {
   width: 3rem;

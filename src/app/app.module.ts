@@ -17,6 +17,8 @@ import { far } from '@fortawesome/free-regular-svg-icons'
 import { SharedModule } from '@shared/shared.module'
 import { RouteReuseStrategy } from '@angular/router'
 import { CacheRouteReuseStrategy } from '@core/route-strategy/cache-route-reuse.strategy';
+import { PartnershipModule } from './features/partnership/partnership.module';
+import { CommunityModule } from './features/community/community.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,6 +29,8 @@ import { CacheRouteReuseStrategy } from '@core/route-strategy/cache-route-reuse.
     CoreModule,
     HttpClientModule,
     SharedModule,
+    PartnershipModule,
+    CommunityModule,
   ],
   providers: [
     { provide: 'BASE_URL', useValue: environment.baseurl },

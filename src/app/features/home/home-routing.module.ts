@@ -21,6 +21,14 @@ const routes: Routes = [
         loadChildren: () => import('../items/items.module').then((m) => m.ItemsModule),
       },
       {
+        path: 'partnership',
+        loadChildren: () => import('../partnership/partnership.module').then((m) => m.PartnershipModule),
+      },
+      {
+        path: 'community',
+        loadChildren: () => import('../community/community.module').then((m) => m.CommunityModule),
+      },
+      {
         path: 'query',
         loadChildren: () => import('../query/query.module').then((m) => m.QueryModule),
       },

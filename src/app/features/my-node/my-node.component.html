@@ -1,7 +1,7 @@
 <div class="w-full h-full text-text-500 text-sm font-medium card px-4">
   <div class="w-full h-full flex flex-col">
     <div class="grow">
-      <div class="w-full h-full flex gap-4">
+      <div class="h-full flex gap-4">
         <div class="mt-4 flex flex-col h-full" style="width: 400px">
           <div class="flex gap-8">
             <div class="w-40 flex flex-col items-center">
@@ -36,33 +36,30 @@
                   <div>{{ myNode.organisation }}</div>
                 </div>
               </div>
+              <div class="mt-10 flex flex-col gap-2">
+                <div class="flex items-center gap-4">
+                  <div class="item-label w-36">Registered items:</div>
+                  <div>{{ myItems.length }}</div>
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="item-label w-36">Prtnerships:</div>
+                  <div>{{ partnerships.length }}</div>
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="item-label w-36">Communities:</div>
+                  <div>{{ communities.length }}</div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="mt-10 mb-8 section grow">
-            <div class="pt-4 pb-8 px-4 h-full">
-              <div class="item-label pb-4">Statistics</div>
-              <div class="flex items-center gap-4">
-                <p-badge [value]="myItems.length.toString()" severity="info" size="large"></p-badge>
-                <div>node items</div>
-              </div>
-              <div class="mt-4 flex items-center gap-4">
-                <p-badge [value]="myOrgItems.length.toString()" severity="info" size="large"></p-badge>
-                <div>organisation items</div>
-              </div>
-              <div class="mt-4 flex items-center gap-4">
-                <p-badge [value]="(partnerships?.length ?? []).toString()" severity="info" size="large"></p-badge>
-                <div>partnerships</div>
-              </div>
-              <div class="mt-4 flex items-center gap-4">
-                <p-badge [value]="(communities?.length ?? []).toString()" severity="info" size="large"></p-badge>
-                <div>communities</div>
-              </div>
-            </div>
+          <div class="grow">
           </div>
         </div>
-        <!-- <div class="section grow">
-          <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
-        </div> -->
+        <div class="w-96 my-4">
+          <!-- <div class="section">
+            <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
+          </div> -->
+        </div>
       </div>
     </div>
     <p-divider></p-divider>
