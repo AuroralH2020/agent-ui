@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { ItemConvert, ItemUI, Items, RegisterItem } from '@core/models/item.model'
 import { BehaviorSubject, firstValueFrom, take } from 'rxjs'
-import { itemsQuery } from 'src/app/queries/node-queries'
+import { queryItems, queryProps } from 'src/app/queries/node-queries'
 
 const _itemsRemoteQueryUrl = '/api/discovery/remote/semantic'
 const _itemsLocalQueryUrl = '/api/discovery/local/semantic'
@@ -29,17 +29,27 @@ export class ItemsService {
 
   public async initItems(orgAgids: string[]) {
     await this._initMyItems()
-    try {
-      await Promise.all([await this._initMyItems(), await this._initMyOrgItems(orgAgids)])
-    } catch(error: any) {
-      await Promise.all([await this._initMyItems(), await this._initMyOrgItems(orgAgids)])
-    }
+    // try {
+    //   await Promise.all([await this._initMyItems(), await this._initMyOrgItems(orgAgids)])
+    // } catch (error: any) {
+    //   await Promise.all([await this._initMyItems(), await this._initMyOrgItems(orgAgids)])
+    // }
   }
 
   private async _initMyItems(): Promise<void> {
+    const itemsUI = await this.getMyItems()
+    this.updateMyItems(itemsUI)
+  }
+
+  private async _initMyOrgItems(orgAgids: string[]): Promise<void> {
+    const itemsUI = await this.getRemoteItems(orgAgids)
+    this.updateMyOrgItems(itemsUI)
+  }
+
+  async getMyItems(): Promise<ItemUI[]> {
     const itemsServer = await firstValueFrom(
       this._http
-        .post<Items>(_itemsLocalQueryUrl, itemsQuery, {
+        .post<Items>(_itemsLocalQueryUrl, queryItems, {
           headers: {
             accept: 'application/json',
             'Content-Type': 'text/plain',
@@ -47,20 +57,25 @@ export class ItemsService {
         })
         .pipe(take(1))
     )
-    this.updateMyItems(ItemConvert.toItemsUI(itemsServer))
+    const propsServer = await firstValueFrom(
+      this._http
+        .post<Items>(_itemsLocalQueryUrl, queryProps, {
+          headers: {
+            accept: 'application/json',
+            'Content-Type': 'text/plain',
+          },
+        })
+        .pipe(take(1))
+    )
+    return ItemConvert.toItemsUI(itemsServer, propsServer)
   }
 
-  private async _initMyOrgItems(orgAgids: string[]): Promise<void> {
-    const itemsServer = await this.getItems(orgAgids)
-    this.updateMyOrgItems(ItemConvert.toItemsUI(itemsServer))
-  }
-
-  async getItems(agids: string[]): Promise<Items> {
+  async getRemoteItems(agids: string[]): Promise<ItemUI[]> {
     let params = new HttpParams()
     params = params.append('agids', agids.join(','))
-    return await firstValueFrom(
+    const itemsServer = await firstValueFrom(
       this._http
-        .post<Items>(_itemsRemoteQueryUrl, itemsQuery, {
+        .post<Items>(_itemsRemoteQueryUrl, queryItems, {
           params,
           headers: {
             accept: 'application/json',
@@ -69,6 +84,18 @@ export class ItemsService {
         })
         .pipe(take(1))
     )
+    const propsServer = await firstValueFrom(
+      this._http
+        .post<Items>(_itemsRemoteQueryUrl, queryProps, {
+          params,
+          headers: {
+            accept: 'application/json',
+            'Content-Type': 'text/plain',
+          },
+        })
+        .pipe(take(1))
+    )
+    return ItemConvert.toItemsUI(itemsServer, propsServer)
   }
 
   async getDataFromProperty(

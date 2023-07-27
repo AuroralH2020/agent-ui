@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core'
 import { ItemUI } from '@core/models/item.model'
-import { valueBasedOnItemType } from 'src/app/utils'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 import { Size } from '../pictogram/pictogram.component'
+import tinycolor from 'tinycolor2'
 
 @Component({
   selector: 'app-item-pictogram',
@@ -18,23 +18,16 @@ export class ItemPictogramComponent implements OnInit {
   ngOnInit(): void {}
 
   get pictogramColor(): string {
-    return valueBasedOnItemType(this.item, 'rgb(0, 182, 235)', 'rgb(229, 179, 142)', 'rgb(150, 150, 150)')
-  }
-
-  get padding(): object {
-    return valueBasedOnItemType(this.item, { 'padding-left': '2px', 'padding-bottom': '1px' }, {}, {})
+    return this.item.type.color
   }
 
   get contentColor(): string {
-    return valueBasedOnItemType(
-      this.item,
-      'rgba(0, 182, 235, 0.2)',
-      'rgba(229, 179, 142, 0.2)',
-      'rgba(150, 150, 150, 0.2)'
-    )
+    var color = tinycolor(this.pictogramColor)
+    color = color.setAlpha(0.2)
+    return color.toHex()
   }
 
   get itemIcon(): IconProp {
-    return valueBasedOnItemType(this.item, 'rss', 'cloud', 'circle')
+    return this.item.type.icon
   }
 }

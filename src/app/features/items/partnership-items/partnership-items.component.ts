@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ContractServer, PartnerUI } from '@core/models/collaboration.model';
-import { ItemUI, ItemConvert } from '@core/models/item.model';
-import { CollaborationService } from '@core/services/collaboration/collaboration.service';
-import { ItemsService } from '@core/services/item/item.service';
-import { NodesService } from '@core/services/nodes/nodes.service';
+import { Component, OnInit } from '@angular/core'
+import { ContractServer, PartnerUI } from '@core/models/collaboration.model'
+import { ItemUI, ItemConvert } from '@core/models/item.model'
+import { CollaborationService } from '@core/services/collaboration/collaboration.service'
+import { ItemsService } from '@core/services/item/item.service'
+import { NodesService } from '@core/services/nodes/nodes.service'
 
 @Component({
   selector: 'app-partnership-items',
@@ -25,7 +25,7 @@ export class PartnershipItemsComponent implements OnInit {
   constructor(
     private _nodesService: NodesService,
     private _itemsService: ItemsService,
-    private _collaborationService: CollaborationService,
+    private _collaborationService: CollaborationService
   ) {}
 
   ngOnInit(): void {
@@ -34,7 +34,7 @@ export class PartnershipItemsComponent implements OnInit {
   }
 
   search(event: Event) {
-    const searchValue = (event.target as HTMLInputElement).value.toLowerCase();
+    const searchValue = (event.target as HTMLInputElement).value.toLowerCase()
     this.displayedPartners = this.partners.filter((element) => element.name.toLowerCase().includes(searchValue))
   }
 
@@ -59,8 +59,7 @@ export class PartnershipItemsComponent implements OnInit {
       this.partnerItemsUI = []
       return
     }
-    const itemsServer = await this._itemsService.getItems(agids)
-    this.partnerItemsUI = ItemConvert.toItemsUI(itemsServer)
+    this.partnerItemsUI = await this._itemsService.getRemoteItems(agids)
   }
 
   private async _getContractInfo(): Promise<void> {

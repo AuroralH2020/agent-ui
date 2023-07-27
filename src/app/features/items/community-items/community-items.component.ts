@@ -53,8 +53,7 @@ export class CommunityItemsComponent implements OnInit {
         this.loading = false
         return
       }
-      const itemsServer = await this._itemsService.getItems(agids)
-      this.communityItemsUI = ItemConvert.toItemsUI(itemsServer)
+      this.communityItemsUI = await this._itemsService.getRemoteItems(agids)
       this.loading = false
     }
   }

@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core'
 import { ItemUI } from '@core/models/item.model'
-import { valueBasedOnItemType } from 'src/app/utils'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 
 @Component({
@@ -13,13 +12,14 @@ export class ItemIconComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   get iconColor(): string {
-    return valueBasedOnItemType(this.item, 'rgb(0, 182, 235)', 'rgb(229, 179, 142)', 'rgb(150, 150, 150)')
+    return this.item.type.color
   }
 
   get icon(): IconProp {
-    return valueBasedOnItemType(this.item, 'rss', 'cloud', 'circle')
+    return this.item.type.icon
   }
 }

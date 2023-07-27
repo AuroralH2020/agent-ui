@@ -1,14 +1,30 @@
-export const itemsQuery = `
+// Useful link
+// https://medium.com/wallscope/constructing-sparql-queries-ca63b8b9ac02
+
+// Get all devices info
+export const queryItems = `
 PREFIX td: <https://www.w3.org/2019/wot/td#>
-    SELECT ?oid ?itemname ?itemtype ?itemdesc ?pid ?propname ?propdesc ?datatype ?dataunits WHERE { 
-        OPTIONAL { ?td td:hasPropertyAffordance ?property . }
-        ?td td:title ?itemname .
-        OPTIONAL { ?td td:type ?itemtype . }
-        OPTIONAL { ?td td:description ?itemdesc . }
-        ?property td:title ?propname .
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+     SELECT distinct ?oid ?name ?adapterId ?type ?desc WHERE { 
+        ?td td:title ?name . 
+        ?td td:adapterId ?adapterId .
+        OPTIONAL { ?td td:description ?desc . }
+        OPTIONAL { ?td rdf:type ?type . }
+        FILTER(?type != <https://www.w3.org/2019/wot/td#Thing>)
+        BIND ( replace(str(?td), 'https://oeg.fi.upm.es/wothive/', '', 'i') as ?oid)
+    }`
+
+// Get all devices properties
+export const queryProps = `
+PREFIX td: <https://www.w3.org/2019/wot/td#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    SELECT ?oid ?name ?pid ?type ?datatype ?units ?desc WHERE { 
+        ?td td:hasPropertyAffordance ?property .
+        ?property td:title ?name .
         ?property td:name ?pid .
         OPTIONAL { ?property td:type ?datatype . }
-        OPTIONAL { ?property td:unit ?dataunits . }
-        OPTIONAL { ?property td:description ?propdesc . }
+        OPTIONAL { ?property td:measures ?units . }
+        OPTIONAL { ?property rdf:type ?type . }
+        OPTIONAL { ?property td:description ?desc . }
         BIND ( replace(str(?td), 'https://oeg.fi.upm.es/wothive/', '', 'i') as ?oid)
-     }`
+    }`

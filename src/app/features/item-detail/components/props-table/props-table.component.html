@@ -1,0 +1,71 @@
+<div class="w-full h-full fade-bottom">
+  <p-table
+    [value]="props"
+    dataKey="pid"
+    [filterDelay]="0"
+    [scrollable]="true"
+    [resizableColumns]="true"
+    [autoLayout]="true"
+    scrollHeight="100%"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Data Type</th>
+        <th>Data Units</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-prop>
+      <tr>
+        <td style="width: 20%">
+          <div *ngIf="prop.name">
+            {{ prop.name }}
+          </div>
+          <div *ngIf="!prop.name">
+            <i class="pi pi-minus text-text-300" style="font-size: 0.8rem"></i>
+          </div>
+        </td>
+        <td style="width: 20%">
+          <div *ngIf="prop.type">
+            {{ prop.type }}
+          </div>
+          <div *ngIf="!prop.type">
+            <i class="pi pi-minus text-text-300" style="font-size: 0.8rem"></i>
+          </div>
+        </td>
+        <td style="width: 20%">
+          <div *ngIf="prop.datatype">
+            {{ prop.datatype }}
+          </div>
+          <div *ngIf="!prop.datatype">
+            <i class="pi pi-minus text-text-300" style="font-size: 0.8rem"></i>
+          </div>
+        </td>
+        <td style="width: 20%">
+          <div *ngIf="prop.dataunits" class="flex items-center gap-2">
+            <div *ngIf="prop.dataunits.symbol" class="text-text-300">{{ prop.dataunits.symbol }}</div>
+            <div>{{ prop.dataunits.name }}</div>
+          </div>
+          <div *ngIf="!prop.dataunits">
+            <i class="pi pi-minus text-text-300" style="font-size: 0.8rem"></i>
+          </div>
+        </td>
+        <td style="width: 20%">
+          <ng-template
+            *ngIf="actions"
+            [ngTemplateOutlet]="actions"
+            [ngTemplateOutletContext]="{ $implicit: prop }"
+          ></ng-template>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage" let-columns>
+      <div class="flex flex-col px-4 py-2 justify-start w-36 text-center">
+        <app-sad-face></app-sad-face>
+        No properties found
+      </div>
+    </ng-template>
+  </p-table>
+</div>

@@ -7,13 +7,12 @@ import { ClipboardModule } from '@angular/cdk/clipboard'
 import { PrimeNgModule } from '../prime-ng/prime-ng.module'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 
-import { HyperlinkComponent } from './components/misc/hyperlink/hyperlink.component'
-import { LogoComponent } from './components/misc/logo/logo.component'
-import { AvatarComponent } from './components/misc/avatar/avatar.component'
-import { SadFaceComponent } from './components/misc/sad-face/sad-face.component'
+import { LogoComponent } from './components/logo/logo.component'
+import { AvatarComponent } from './components/avatar/avatar.component'
+import { SadFaceComponent } from './components/sad-face/sad-face.component'
 import { CheckboxGroupComponent } from './components/inputs/checkbox-group/checkbox-group.component'
-import { ItemIconComponent } from './components/misc/item-icon/item-icon.component'
-import { SpinnerComponent } from './components/misc/spinner/spinner.component'
+import { ItemIconComponent } from './components/item-icon/item-icon.component'
+import { SpinnerComponent } from './components/spinner/spinner.component'
 import { MenuComponent } from './components/menu/menu/menu.component'
 import { MenuLabelComponent } from './components/menu/menu-label/menu-label.component'
 import { MenuContentComponent } from './components/menu/menu-content/menu-content.component'
@@ -35,7 +34,6 @@ import { JsonldEditorComponent } from './components/inputs/jsonld-editor/jsonld-
     CopyToClipboardDirective,
     // Pipes
     // Components
-    HyperlinkComponent,
     LogoComponent,
     AvatarComponent,
     PictogramComponent,
@@ -78,7 +76,6 @@ import { JsonldEditorComponent } from './components/inputs/jsonld-editor/jsonld-
     CopyToClipboardDirective,
     // Pipes
     // Components
-    HyperlinkComponent,
     LogoComponent,
     AvatarComponent,
     PictogramComponent,

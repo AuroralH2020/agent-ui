@@ -15,7 +15,8 @@ import { ConsumePropComponent } from './components/consume-prop/consume-prop.com
 import { ConsumePropSheetComponent } from './components/consume-prop/consume-prop-sheet/consume-prop-sheet.component'
 import { MyOrgItemComponent } from './my-org-item/my-org-item.component'
 import { RequestBuilderComponent } from './components/consume-prop/consume-prop-sheet/request-builder/request-builder.component'
-import { TdEditorComponent } from './components/td-editor/td-editor.component'
+import { TdEditorComponent } from './components/td-editor/td-editor.component';
+import { PropsTableComponent } from './components/props-table/props-table.component'
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { TdEditorComponent } from './components/td-editor/td-editor.component'
     MyOrgItemComponent,
     RequestBuilderComponent,
     TdEditorComponent,
+    PropsTableComponent,
   ],
   imports: [CommonModule, SharedModule, ItemDetailRoutingModule],
 })
