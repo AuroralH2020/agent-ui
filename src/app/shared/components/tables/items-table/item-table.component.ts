@@ -93,9 +93,11 @@ export class ItemsTableComponent implements OnInit {
   }
 
   private _filter() {
-    this.dt.value = this.itemsUI.filter((item) =>
-      this.selectedTypesFilter.some((type) => type.value.id === item.type.id)
-    )
+    if (this.dt && this.dt.value) {
+      this.dt.value = this.itemsUI.filter((item) =>
+        this.selectedTypesFilter.some((type) => type.value.id === item.type.id)
+      )
+    }
   }
 
   get itemsCount(): string {
