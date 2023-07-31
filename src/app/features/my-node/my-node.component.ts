@@ -1,19 +1,25 @@
 import { Component, OnInit } from '@angular/core'
 import { Community, PartnerUI } from '@core/models/collaboration.model'
-import { ItemUI } from '@core/models/item.model'
+import { ItemType, ItemUI } from '@core/models/item.model'
 import { MyNode } from '@core/models/node.model'
 import { CollaborationService } from '@core/services/collaboration/collaboration.service'
 import { ItemsService } from '@core/services/item/item.service'
 import { NodesService } from '@core/services/nodes/nodes.service'
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy'
 
+interface _TypeStatItem {
+  value: number
+  type: ItemType
+}
+
+@UntilDestroy()
 @Component({
   selector: 'app-my-node',
   templateUrl: './my-node.component.html',
   styleUrls: ['./my-node.component.scss'],
 })
 export class MyNodeComponent implements OnInit {
-  basicData: any
-  basicOptions: any
+  typeStats: _TypeStatItem[] = []
 
   constructor(
     private _nodeService: NodesService,
@@ -22,58 +28,24 @@ export class MyNodeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const documentStyle = getComputedStyle(document.documentElement)
-    const textColor = documentStyle.getPropertyValue('--text-color')
-    const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary')
-    const surfaceBorder = documentStyle.getPropertyValue('--surface-border')
+    this._loadTypeStats()
+    this._itemsService.myItems$.pipe(untilDestroyed(this)).subscribe((value) => {
+      this._loadTypeStats()
+    })
+  }
 
-    this.basicData = {
-      labels: ['Q1', 'Q2', 'Q3', 'Q4'],
-      datasets: [
-        {
-          label: 'Sales',
-          data: [540, 325, 702, 620],
-          backgroundColor: [
-            'rgba(255, 159, 64, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-          ],
-          borderColor: ['rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)'],
-          borderWidth: 1,
-        },
-      ],
-    }
-
-    this.basicOptions = {
-      plugins: {
-        legend: {
-          labels: {
-            color: textColor,
-          },
-        },
-      },
-      scales: {
-        y: {
-          beginAtZero: true,
-          ticks: {
-            color: textColorSecondary,
-          },
-          grid: {
-            color: surfaceBorder,
-            drawBorder: false,
-          },
-        },
-        x: {
-          ticks: {
-            color: textColorSecondary,
-          },
-          grid: {
-            color: surfaceBorder,
-            drawBorder: false,
-          },
-        },
-      },
+  private _loadTypeStats() {
+    this.typeStats = []
+    for (const item of this._itemsService.myItems) {
+      const candidate = this.typeStats.find((element) => element.type.id === item.type.id)
+      if (candidate) {
+        candidate.value++
+      } else {
+        this.typeStats.push({
+          value: 1,
+          type: item.type,
+        })
+      }
     }
   }
 

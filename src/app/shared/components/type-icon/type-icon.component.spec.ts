@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ItemIconComponent } from './item-icon.component';
+import { TypeIconComponent } from './type-icon.component';
 
 describe('ItemIconComponent', () => {
-  let component: ItemIconComponent;
-  let fixture: ComponentFixture<ItemIconComponent>;
+  let component: TypeIconComponent;
+  let fixture: ComponentFixture<TypeIconComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ItemIconComponent ]
+      declarations: [ TypeIconComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ItemIconComponent);
+    fixture = TestBed.createComponent(TypeIconComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -12,8 +12,6 @@ import {
 } from '@angular/core'
 import { ItemUI } from '@core/models/item.model'
 import { Location } from '@angular/common'
-import { ActivatedRoute, Router } from '@angular/router'
-import { ItemsService } from '@core/services/item/item.service'
 
 @Component({
   selector: 'app-detail',

@@ -9,20 +9,10 @@ import { delay, inflect } from 'src/app/utils'
   styleUrls: ['./props-preview.component.scss'],
 })
 export class PropsPreviewComponent {
-  @ViewChild('op') op!: OverlayPanel
-
   @Input() properties: PropertyUI[] = []
 
   inflectPropNum(num: number) {
     return inflect(num, 'No properties', `property`, `properties`)
-  }
-
-  showOp(event: Event) {
-    this.op.show(event)
-  }
-
-  hideOp() {
-    this.op.hide()
   }
 
   get length(): number {

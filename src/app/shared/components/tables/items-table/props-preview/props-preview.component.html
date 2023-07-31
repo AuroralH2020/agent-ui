@@ -1,0 +1,26 @@
+<app-tooltip>
+  <div class="w-fit h-8 flex items-center justify-center gap-2">
+    <div>
+      <p-badge *ngIf="length > 0" [value]="length.toString()" severity="info"></p-badge>
+    </div>
+    <div class="text-sm font-medium text-text-500">
+      {{ inflectPropNum(length) }}
+    </div>
+  </div>
+  <ng-template #overlay>
+    <div *ngIf="length <= 0" class="text-sm text-text-300">This item has no properties</div>
+    <div *ngIf="length > 0">
+      <div class="item-label pb-2">{{ inflectPropNum(length) }}:</div>
+      <ul class="list-disc pl-4">
+        <li *ngFor="let prop of displayProperties">
+          <div class="pb-1">
+            {{ prop.name }}
+          </div>
+        </li>
+      </ul>
+      <div *ngIf="moreThen5">
+        <div class="text-text-300 mt-1">+ {{ this.properties.length - 5 }} more</div>
+      </div>
+    </div>
+  </ng-template>
+</app-tooltip>

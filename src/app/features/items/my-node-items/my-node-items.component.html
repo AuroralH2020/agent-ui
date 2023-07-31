@@ -1,18 +1,14 @@
 <div class="section w-full h-full">
   <div class="pt-1 px-1">
-    <app-items-table [itemsUI]="(itemsUI$ | async)!" linkToDetail="/item-detail/node">
+    <app-items-table
+      [itemsUI]="(itemsUI$ | async)!"
+      linkToDetail="/item-detail/node"
+      [initialTypeFilter]="initialTypeFilter"
+    >
       <ng-template #header>
         <div class="flex items-center gap-4">
           <app-node-pictogram></app-node-pictogram>
-          <div>
-            <p-menu #menu [model]="addItemMenuOptions" [popup]="true" appendTo="body"></p-menu>
-            <p-button
-              label="New item"
-              icon="pi pi-plus"
-              styleClass="p-button-outlined"
-              (click)="toogleMenu($event)"
-            ></p-button>
-          </div>
+          <app-register-item-button></app-register-item-button>
         </div>
       </ng-template>
       <ng-template #actions let-item>

@@ -11,7 +11,7 @@ import { LogoComponent } from './components/logo/logo.component'
 import { AvatarComponent } from './components/avatar/avatar.component'
 import { SadFaceComponent } from './components/sad-face/sad-face.component'
 import { CheckboxGroupComponent } from './components/inputs/checkbox-group/checkbox-group.component'
-import { ItemIconComponent } from './components/item-icon/item-icon.component'
+import { TypeIconComponent } from './components/type-icon/type-icon.component'
 import { SpinnerComponent } from './components/spinner/spinner.component'
 import { MenuComponent } from './components/menu/menu/menu.component'
 import { MenuLabelComponent } from './components/menu/menu-label/menu-label.component'
@@ -27,9 +27,11 @@ import { LongIdComponent } from './components/display/long-id/long-id.component'
 import { CopyToClipboardDirective } from './directives/copy-to-clipboard/copy-to-clipboard.directive';
 import { TdUploadComponent } from './components/inputs/td-upload/td-upload.component';
 import { JsonldEditorComponent } from './components/inputs/jsonld-editor/jsonld-editor.component';
-import { ItemsTableComponent } from './components/display/items-table/item-table.component'
-import { PropsPreviewComponent } from './components/display/items-table/props-preview/props-preview.component'
-import { PropsTableComponent } from './components/display/props-table/props-table.component'
+import { ItemsTableComponent } from './components/tables/items-table/item-table.component'
+import { PropsPreviewComponent } from './components/tables/items-table/props-preview/props-preview.component'
+import { PropsTableComponent } from './components/tables/props-table/props-table.component';
+import { TooltipComponent } from './components/display/tooltip/tooltip.component';
+import { RegisterItemButtonComponent } from './components/buttons/register-item-button/register-item-button.component'
 
 @NgModule({
   declarations: [
@@ -42,7 +44,7 @@ import { PropsTableComponent } from './components/display/props-table/props-tabl
     PictogramComponent,
     SadFaceComponent,
     CheckboxGroupComponent,
-    ItemIconComponent,
+    TypeIconComponent,
     SpinnerComponent,
     MenuComponent,
     MenuLabelComponent,
@@ -60,6 +62,8 @@ import { PropsTableComponent } from './components/display/props-table/props-tabl
     ItemsTableComponent,
     PropsPreviewComponent,
     PropsTableComponent,
+    TooltipComponent,
+    RegisterItemButtonComponent,
   ],
   imports: [
     CommonModule,
@@ -86,7 +90,7 @@ import { PropsTableComponent } from './components/display/props-table/props-tabl
     PictogramComponent,
     SadFaceComponent,
     CheckboxGroupComponent,
-    ItemIconComponent,
+    TypeIconComponent,
     SpinnerComponent,
     MenuComponent,
     MenuLabelComponent,
@@ -104,6 +108,8 @@ import { PropsTableComponent } from './components/display/props-table/props-tabl
     ItemsTableComponent,
     PropsPreviewComponent,
     PropsTableComponent,
+    TooltipComponent,
+    RegisterItemButtonComponent,
   ],
 })
 export class SharedModule {}

@@ -11,7 +11,7 @@
               <div [ngClass]="[infoFixed ? 'lg:fixed lg:top-20' : '']" [style.width]="dynamicWidth + 'px'">
                 <div>
                   <div class="pb-2">
-                    <app-item-icon [item]="item"></app-item-icon>
+                    <app-type-icon [type]="item.type"></app-type-icon>
                   </div>
                   <div class="text-text-500 text-md font-medium">{{ item.name }}</div>
                 </div>

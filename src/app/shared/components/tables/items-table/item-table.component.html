@@ -27,11 +27,21 @@
               </span>
             </div>
             <p-button
+              *ngIf="!filterActive"
               label="Filter"
               styleClass="p-button-outlined"
               icon="pi pi-sliders-h"
               (click)="filterVisible = true"
             ></p-button>
+            <div *ngIf="filterActive" class="flex gap-4">
+              <p-button label="Change filter" icon="pi pi-sliders-h" (click)="filterVisible = true"></p-button>
+              <p-button
+                label="Clear filter"
+                styleClass="p-button-outlined"
+                icon="pi pi-times"
+                (click)="clearFilter($event)"
+              ></p-button>
+            </div>
           </div>
           <div class="w-full flex gap-4">
             <div class="w-full fade-bottom">
@@ -104,7 +114,7 @@
                 </ng-template>
                 <ng-template pTemplate="emptymessage" let-columns>
                   <tr>
-                    <td colspan="5">
+                    <td colspan="4">
                       <div class="flex flex-col w-full h-96 justify-center text-center">
                         <app-sad-face></app-sad-face>
                         No items found
@@ -121,57 +131,38 @@
     </div>
   </div>
 </div>
-<p-sidebar [(visible)]="filterVisible" position="right" [baseZIndex]="100000">
-  <div>
+<p-sidebar #sb [(visible)]="filterVisible" position="right" [baseZIndex]="100000" [style]="{ width: 'fit-content' }">
+  <div class="w-80">
     <div class="item-label">Filter by type:</div>
     <div class="mt-4">
-      <div class="flex flex-col gap-4 pb-4">
-        <div class="flex align-items-center">
-          <p-radioButton
-            name="type-filter"
-            value="All"
-            [(ngModel)]="selectedFilter"
-            (onClick)="filter()"
-            inputId="all"
-          ></p-radioButton>
-          <label for="all" class="ml-2 cursor-pointer w-24"> All </label>
-        </div>
-
-        <div class="flex align-items-center">
-          <p-radioButton
-            name="type-filter"
-            value="Device"
-            [(ngModel)]="selectedFilter"
-            (onClick)="filter()"
-            inputId="devices"
-          ></p-radioButton>
-          <label for="devices" class="ml-2 cursor-pointer"
-            ><div class="flex items-center gap-2">
-              <div class="w-5">
-                <fa-icon [ngStyle]="{ color: '#4D8A8C' }" icon="satellite-dish"></fa-icon>
-              </div>
-              <div class="leading-none">Devices</div>
-            </div></label
-          >
-        </div>
-
-        <div class="flex align-items-center">
-          <p-radioButton
-            name="type-filter"
-            value="Service"
-            [(ngModel)]="selectedFilter"
-            (onClick)="filter()"
-            inputId="services"
-          ></p-radioButton>
-          <label for="services" class="ml-2 cursor-pointer"
-            ><div class="flex items-center gap-2">
-              <div class="w-5">
-                <fa-icon [ngStyle]="{ color: '#E5B38E' }" icon="cloud"></fa-icon>
-              </div>
-              <div class="leading-none">Services</div>
-            </div></label
-          >
-        </div>
+      <div class="fade-bottom">
+        <app-checkbox-group
+          [items]="typesFilter"
+          [(selectedItems)]="selectedTypesFilter"
+          [search]="searchTypesFilter"
+          height="calc(100vh - 376px)"
+        >
+          <ng-template #labelRef let-type let-selected="selected">
+            <div class="px-4">
+              <app-type-icon [type]="type.value"></app-type-icon>
+            </div>
+          </ng-template>
+        </app-checkbox-group>
+      </div>
+      <div class="w-full flex flex-col items-center mt-10 gap-4 justify-center">
+        <button
+          pButton
+          label="Apply filter"
+          icon="pi pi-sliders-h"
+          (click)="filter($event)"
+          style="width: 200px"
+        ></button>
+        <p-button
+          label="Clear filter"
+          icon="pi pi-times"
+          styleClass="p-button-outlined"
+          (click)="clearFilter($event)"
+        ></p-button>
       </div>
     </div>
   </div>

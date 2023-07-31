@@ -147,7 +147,6 @@ export class ItemConvert {
     if (!value) {
       return undefined
     }
-    console.log(`Prop data type is: ${value}`)
     const fallback = {
       name: value,
       symbol: undefined

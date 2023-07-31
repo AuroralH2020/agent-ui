@@ -139,6 +139,10 @@ button, [type='button'], [type='reset'], [type='submit'] {
   background-color: none;
 }
 
+.link {
+  @apply hover:underline text-primary-500 font-bold cursor-pointer
+}
+
 .selectable-table {
   th {
     @apply cursor-default

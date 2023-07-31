@@ -1,82 +1,135 @@
-<div class="w-full h-full text-text-500 text-sm font-medium card px-4">
-  <div class="w-full h-full flex flex-col">
-    <div class="grow">
-      <div class="h-full flex gap-4">
-        <div class="mt-4 flex flex-col h-full" style="width: 400px">
-          <div class="flex gap-8">
-            <div class="w-40 flex flex-col items-center">
-              <fa-icon class="text-primary-500" style="font-size: 4rem" icon="circle-nodes"></fa-icon>
-              <div class="mt-2">
-                <p-tag value="Node is online" severity="success"></p-tag>
-              </div>
-            </div>
-            <div>
-              <div class="mt-2">
-                <div class="item-label">Agid:</div>
-                <div>
-                  {{ myNode.agid }}
-                  <span
-                    class="justify-center cursor-pointer text-primary-500"
-                    appCopyToClipboard
-                    [textToCopy]="myNode.agid"
-                    copyMessage="Agid copied to clipboard"
-                  >
-                    <i class="pi pi-copy" style="font-size: 1.25rem"></i>
-                  </span>
-                </div>
-              </div>
-              <div class="mt-4">
-                <div class="item-label pb-1">Owner:</div>
-                <div class="flex items-center gap-4">
-                  <p-avatar
-                    [label]="myNode.organisation.charAt(0).toUpperCase()"
-                    shape="circle"
-                    size="large"
-                  ></p-avatar>
-                  <div>{{ myNode.organisation }}</div>
-                </div>
-              </div>
-              <div class="mt-10 flex flex-col gap-2">
-                <div class="flex items-center gap-4">
-                  <div class="item-label w-36">Registered items:</div>
-                  <div>{{ myItems.length }}</div>
-                </div>
-                <div class="flex items-center gap-4">
-                  <div class="item-label w-36">Prtnerships:</div>
-                  <div>{{ partnerships.length }}</div>
-                </div>
-                <div class="flex items-center gap-4">
-                  <div class="item-label w-36">Communities:</div>
-                  <div>{{ communities.length }}</div>
-                </div>
-              </div>
-            </div>
+<div class="w-full h-full flex flex-col text-text-500 text-sm font-medium card px-4">
+  <div class="grow w-full">
+    <div class="mt-4 h-full w-full">
+      <div class="flex gap-24 w-full h-full">
+        <div class="w-96 flex flex-col pl-10">
+          <fa-icon class="text-primary-500" style="font-size: 4rem" icon="circle-nodes"></fa-icon>
+          <div class="mt-2">
+            <p-tag value="Node is online" severity="success"></p-tag>
           </div>
-          <div class="grow">
+          <div>
+            <div class="mt-10">
+              <div class="item-label">Agid:</div>
+              <div>
+                {{ myNode.agid }}
+                <span
+                  class="justify-center cursor-pointer text-primary-500"
+                  appCopyToClipboard
+                  [textToCopy]="myNode.agid"
+                  copyMessage="Agid copied to clipboard"
+                >
+                  <i class="pi pi-copy" style="font-size: 1.25rem"></i>
+                </span>
+              </div>
+            </div>
+            <div class="mt-4">
+              <div class="item-label pb-1">Owner:</div>
+              <div class="flex items-center gap-4">
+                <p-avatar [label]="myNode.organisation.charAt(0).toUpperCase()" shape="circle" size="large"></p-avatar>
+                <div>{{ myNode.organisation }}</div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="w-96 my-4">
-          <!-- <div class="section">
-            <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
-          </div> -->
+        <div class="mt-2 pl-1 flex flex-col gap-2 h-full">
+          <div class="stat-item-b" routerLink="/home/items/my-node/">
+            <p-badge [value]="myItems.length.toString()" size="large"></p-badge>
+            <div class="w-56 mt-1">
+              <div class="flex items-center gap-2">
+                <div>
+                  <fa-icon style="font-size: 1rem" icon="cube"></fa-icon>
+                </div>
+                <div>Items</div>
+              </div>
+              <div class="text-text-300">The number of items registered under this node</div>
+              <div class="link">show</div>
+            </div>
+          </div>
+          <div class="stat-item-b" routerLink="/home/partnership/">
+            <p-badge [value]="partnerships.length.toString()" size="large"></p-badge>
+            <div class="w-56 mt-1">
+              <div class="flex items-center gap-2">
+                <div>
+                  <fa-icon style="font-size: 1rem" icon="handshake"></fa-icon>
+                </div>
+                <div>Prtnerships</div>
+              </div>
+              <div class="text-text-300">The number of partnerships this node is a part of</div>
+              <div class="link">show</div>
+            </div>
+          </div>
+          <div class="stat-item" routerLink="/home/community/">
+            <p-badge [value]="communities.length.toString()" size="large"></p-badge>
+            <div class="w-56 mt-1">
+              <div class="flex items-center gap-2">
+                <div>
+                  <fa-icon style="font-size: 1rem" icon="users"></fa-icon>
+                </div>
+                <div>Communities</div>
+              </div>
+              <div class="text-text-300">The number of communities this node is a part of</div>
+              <div class="link">show</div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="typeStats.length <= 0" class="text-center">
+          <app-sad-face></app-sad-face>
+          No items registered
+          <div class="mt-4">
+            <app-register-item-button></app-register-item-button>
+          </div>
+        </div>
+        <div *ngIf="typeStats.length > 0" class="w-full mt-2 ml-8">
+          <div class="section w-96">
+            <div class="fade-bottom">
+              <p-table
+                [value]="typeStats"
+                styleClass="p-datatable-sm"
+                [scrollable]="true"
+                scrollDirection="both"
+                scrollHeight="calc(100vh - 356px)"
+                [class]="typeStats.length > 0 ? 'selectable-table' : ''"
+              >
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th>Items (@types)</th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-item>
+                  <tr routerLink="/home/items/my-node" [state]="{ typeFilter: [item.type] }">
+                    <td>
+                      <div class="flex items-center gap-4">
+                        <p-badge [value]="item.value.toString()"></p-badge>
+                        <div class="pt-1">
+                          <app-type-icon [type]="item.type"></app-type-icon>
+                        </div>
+                        <div class="grow"></div>
+                        <p-button label="show" styleClass="p-button-link"></p-button>
+                      </div>
+                    </td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <p-divider></p-divider>
-    <div class="mt-4 text-xs text-text-200 w-full pb-6">
-      <div class="w-fit">
-        <div class="flex items-center gap-2">
-          <div>{{ lastConfigurationUpdate | date }}</div>
-          <div>last configuration update</div>
-        </div>
-        <div class="mt-2 flex items-center gap-2">
-          <div>{{ lastPartnersUpdate | date }}</div>
-          <div>last partners update</div>
-        </div>
-        <div class="mt-2 flex items-center gap-2">
-          <div>{{ lastPrivacyUpdate | date }}</div>
-          <div>last privacy update</div>
-        </div>
+  </div>
+  <p-divider></p-divider>
+  <div class="text-xs text-text-200 w-full pb-4">
+    <div class="w-fit">
+      <div class="flex items-center gap-2">
+        <div>{{ lastConfigurationUpdate | date }}</div>
+        <div>last configuration update</div>
+      </div>
+      <div class="mt-2 flex items-center gap-2">
+        <div>{{ lastPartnersUpdate | date }}</div>
+        <div>last partners update</div>
+      </div>
+      <div class="mt-2 flex items-center gap-2">
+        <div>{{ lastPrivacyUpdate | date }}</div>
+        <div>last privacy update</div>
       </div>
     </div>
   </div>
