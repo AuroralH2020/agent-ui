@@ -31,11 +31,11 @@ export class ItemsService {
 
   public async initItems(orgAgids: string[]) {
     await this._initMyItems()
-    // try {
-    //   await Promise.all([await this._initMyItems(), await this._initMyOrgItems(orgAgids)])
-    // } catch (error: any) {
-    //   await Promise.all([await this._initMyItems(), await this._initMyOrgItems(orgAgids)])
-    // }
+    try {
+      await Promise.all([await this._initMyItems(), await this._initMyOrgItems(orgAgids)])
+    } catch (error: any) {
+      await Promise.all([await this._initMyItems(), await this._initMyOrgItems(orgAgids)])
+    }
   }
 
   private async _initMyItems(): Promise<void> {
