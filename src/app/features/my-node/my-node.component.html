@@ -2,22 +2,20 @@
   <div class="grow w-full">
     <div class="mt-4 h-full w-full">
       <div class="flex gap-24 w-full h-full">
-        <div class="w-96 flex flex-col pl-10">
-          <fa-icon class="text-primary-500" style="font-size: 4rem" icon="circle-nodes"></fa-icon>
-          <div class="mt-2">
-            <p-tag value="Node is online" severity="success"></p-tag>
+        <div class="flex flex-col pl-10">
+          <div class="w-24 flex flex-col items-center">
+            <fa-icon class="text-primary-500" style="font-size: 4rem" icon="circle-nodes"></fa-icon>
+            <div class="mt-2">
+              <p-tag value="Node is online" severity="success"></p-tag>
+            </div>
           </div>
           <div>
             <div class="mt-10">
               <div class="item-label">Agid:</div>
               <div>
                 {{ myNode.agid }}
-                <span
-                  class="justify-center cursor-pointer text-primary-500"
-                  appCopyToClipboard
-                  [textToCopy]="myNode.agid"
-                  copyMessage="Agid copied to clipboard"
-                >
+                <span class="justify-center cursor-pointer text-primary-500" appCopyToClipboard
+                  [textToCopy]="myNode.agid" copyMessage="Agid copied to clipboard">
                   <i class="pi pi-copy" style="font-size: 1.25rem"></i>
                 </span>
               </div>
@@ -82,14 +80,8 @@
         <div *ngIf="typeStats.length > 0" class="w-full mt-2 ml-8">
           <div class="section w-96">
             <div class="fade-bottom">
-              <p-table
-                [value]="typeStats"
-                styleClass="p-datatable-sm"
-                [scrollable]="true"
-                scrollDirection="both"
-                scrollHeight="calc(100vh - 356px)"
-                [class]="typeStats.length > 0 ? 'selectable-table' : ''"
-              >
+              <p-table [value]="typeStats" styleClass="p-datatable-sm" [scrollable]="true" scrollDirection="both"
+                scrollHeight="calc(100vh - 356px)" [class]="typeStats.length > 0 ? 'selectable-table' : ''">
                 <ng-template pTemplate="header">
                   <tr>
                     <th>Items (@types)</th>

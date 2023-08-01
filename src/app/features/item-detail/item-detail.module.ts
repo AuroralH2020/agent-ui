@@ -14,6 +14,7 @@ import { ConsumePropSheetComponent } from './components/consume-prop/consume-pro
 import { MyOrgItemComponent } from './my-org-item/my-org-item.component'
 import { RequestBuilderComponent } from './components/consume-prop/consume-prop-sheet/request-builder/request-builder.component'
 import { TdEditorComponent } from './components/td-editor/td-editor.component';
+import { ShowTdButtonComponent } from './components/show-td-button/show-td-button.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { TdEditorComponent } from './components/td-editor/td-editor.component';
     MyOrgItemComponent,
     RequestBuilderComponent,
     TdEditorComponent,
+    ShowTdButtonComponent,
   ],
   imports: [CommonModule, SharedModule, ItemDetailRoutingModule],
 })

@@ -40,25 +40,14 @@ export class ItemsTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // setTimeout(() => {
-    //   this.selectedTypesFilter = this.initialTypeFilter
-    //     ? this.initialTypeFilter.map((element) => {
-    //         return {
-    //           key: element.id,
-    //           value: element,
-    //         }
-    //       })
-    //     : this.typesFilter
-    //   this._filter()
-    // })
     this.selectedTypesFilter = this.initialTypeFilter
       ? this.initialTypeFilter.map((element) => {
-          return {
-            key: element.id,
-            value: element,
-          }
-        })
-      : this.typesFilter
+        return {
+          key: element.id,
+          value: element,
+        }
+      })
+      : []
     setTimeout(() => {
       this._filter()
     })
@@ -76,7 +65,7 @@ export class ItemsTableComponent implements OnInit {
 
   clearFilter(event: Event) {
     this.dt.value = this.itemsUI
-    this.selectedTypesFilter = this.typesFilter
+    this.selectedTypesFilter = []
     this.sb.close(event)
   }
 
@@ -94,9 +83,13 @@ export class ItemsTableComponent implements OnInit {
 
   private _filter() {
     if (this.dt && this.dt.value) {
-      this.dt.value = this.itemsUI.filter((item) =>
-        this.selectedTypesFilter.some((type) => type.value.id === item.type.id)
-      )
+      if (this.selectedTypesFilter.length === 0) {
+        this.dt.value = this.itemsUI
+      } else {
+        this.dt.value = this.itemsUI.filter((item) =>
+          this.selectedTypesFilter.some((type) => type.value.id === item.type.id)
+        )
+      }
     }
   }
 
@@ -106,6 +99,6 @@ export class ItemsTableComponent implements OnInit {
   }
 
   get filterActive(): boolean {
-    return this.selectedTypesFilter.length !== itemTypes.length
+    return this.selectedTypesFilter.length > 0
   }
 }

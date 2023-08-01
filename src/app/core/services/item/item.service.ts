@@ -16,6 +16,8 @@ const _itemsUpdate = '/api/registration'
 const _itemLocalTd = '/api/discovery/local/td'
 const _itemRemoteTd = '/api/discovery/remote/td'
 
+const _itemAgid = '/api/discovery/remote/agid'
+
 @Injectable({
   providedIn: 'root',
 })
@@ -29,11 +31,11 @@ export class ItemsService {
 
   public async initItems(orgAgids: string[]) {
     await this._initMyItems()
-    try {
-      await Promise.all([await this._initMyItems(), await this._initMyOrgItems(orgAgids)])
-    } catch (error: any) {
-      await Promise.all([await this._initMyItems(), await this._initMyOrgItems(orgAgids)])
-    }
+    // try {
+    //   await Promise.all([await this._initMyItems(), await this._initMyOrgItems(orgAgids)])
+    // } catch (error: any) {
+    //   await Promise.all([await this._initMyItems(), await this._initMyOrgItems(orgAgids)])
+    // }
   }
 
   private async _initMyItems(): Promise<void> {
@@ -137,6 +139,19 @@ export class ItemsService {
       this._http
         .get<Object>(_itemRemoteTd + `/${agid}`, {
           params,
+          headers: {
+            accept: 'application/json',
+            'Content-Type': 'application/json; charset=utf-8',
+          },
+        })
+        .pipe(take(1))
+    )
+  }
+
+  async getItemsAgid(oid: string): Promise<string> {
+    return await firstValueFrom(
+      this._http
+        .get<string>(_itemAgid + `/${oid}`, {
           headers: {
             accept: 'application/json',
             'Content-Type': 'application/json; charset=utf-8',

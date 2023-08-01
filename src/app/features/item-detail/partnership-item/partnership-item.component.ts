@@ -16,7 +16,7 @@ export class PartnershipItemComponent implements OnInit {
   selectedPartner!: PartnerUI
   contractInfo!: ContractServer
 
-  constructor(private _activatedRoute: ActivatedRoute, private _router: Router) {}
+  constructor(private _activatedRoute: ActivatedRoute, private _router: Router) { }
 
   ngOnInit(): void {
     this._activatedRoute.paramMap

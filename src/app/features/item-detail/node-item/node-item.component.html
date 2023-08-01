@@ -1,18 +1,13 @@
 <app-detail [item]="item" back="My Node items" [organisation]="organisation">
   <ng-template #itemActions>
     <div class="mt-8 flex flex-col">
-      <p-button label="Show TD" (click)="showTD(false)" icon="pi pi-code" styleClass="p-button-text"></p-button>
-      <p-button label="Edit TD" (click)="showTD(true)" icon="pi pi-pencil" styleClass="p-button-text"></p-button>
+      <app-show-td-button [item]="item" [edit]="false" [remote]="false"></app-show-td-button>
+      <app-show-td-button [item]="item" [edit]="true" [remote]="false" (onUpdate)="onUpdate()"></app-show-td-button>
       <div class="px-5">
         <p-divider></p-divider>
       </div>
-      <p-button
-        label="Remove Item"
-        icon="pi pi-trash"
-        styleClass="p-button-text p-button-danger"
-        [loading]="loadingRemove"
-        (click)="removeItem()"
-      ></p-button>
+      <p-button label="Remove Item" icon="pi pi-trash" styleClass="p-button-text p-button-danger"
+        [loading]="loadingRemove" (click)="removeItem()"></p-button>
     </div>
   </ng-template>
   <ng-template #propsTable>
@@ -29,11 +24,7 @@
   </ng-template>
   <ng-template pTemplate="footer">
     <p-button label="Do nothing" (click)="cd.reject()"></p-button>
-    <p-button
-      styleClass="p-button-text p-button-danger"
-      icon="pi pi-trash"
-      label="Remove Item"
-      (click)="cd.accept()"
-    ></p-button>
+    <p-button styleClass="p-button-text p-button-danger" icon="pi pi-trash" label="Remove Item" (click)="cd.accept()">
+    </p-button>
   </ng-template>
 </p-confirmDialog>

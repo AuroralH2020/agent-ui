@@ -16,8 +16,8 @@ export class TdEditorComponent implements OnInit {
     validators: [Validators.required],
   })
   item?: ItemUI
-  agid?: string
   edit: boolean = false
+  remote: boolean = false
 
   loading: boolean = false
   updating: boolean = false
@@ -28,8 +28,8 @@ export class TdEditorComponent implements OnInit {
     private _itemsService: ItemsService
   ) {
     this.item = _config.data?.item
-    this.agid = _config.data?.agid
     this.edit = _config.data?.edit ?? false
+    this.remote = _config.data?.remote ?? false
   }
   ngOnInit(): void {
     this._init()
@@ -39,9 +39,9 @@ export class TdEditorComponent implements OnInit {
     if (this.item) {
       this.loading = true
       try {
-        const agid = this.agid
-        var td
-        if (agid) {
+        var td = null
+        if (this.remote) {
+          const agid = await this._itemsService.getItemsAgid(this.item.oid)
           td = await this._itemsService.getRemoteTD(agid, [this.item.oid])
         } else {
           td = await this._itemsService.getLocalTD(this.item.oid)

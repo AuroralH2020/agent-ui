@@ -34,9 +34,9 @@
               (click)="filterVisible = true"
             ></p-button>
             <div *ngIf="filterActive" class="flex gap-4">
-              <p-button label="Change filter" icon="pi pi-sliders-h" (click)="filterVisible = true"></p-button>
+              <p-button label="Filter Active" icon="pi pi-sliders-h" (click)="filterVisible = true"></p-button>
               <p-button
-                label="Clear filter"
+                label="Clear"
                 styleClass="p-button-outlined"
                 icon="pi pi-times"
                 (click)="clearFilter($event)"
@@ -140,7 +140,7 @@
           [items]="typesFilter"
           [(selectedItems)]="selectedTypesFilter"
           [search]="searchTypesFilter"
-          height="calc(100vh - 376px)"
+          height="calc(100vh - 288px)"
         >
           <ng-template #labelRef let-type let-selected="selected">
             <div class="px-4">
@@ -149,16 +149,16 @@
           </ng-template>
         </app-checkbox-group>
       </div>
-      <div class="w-full flex flex-col items-center mt-10 gap-4 justify-center">
+      <div class="w-full flex items-center gap-4 justify-center">
         <button
           pButton
-          label="Apply filter"
+          label="Apply"
           icon="pi pi-sliders-h"
           (click)="filter($event)"
-          style="width: 200px"
+          style="width: 100%"
         ></button>
         <p-button
-          label="Clear filter"
+          label="Clear"
           icon="pi pi-times"
           styleClass="p-button-outlined"
           (click)="clearFilter($event)"

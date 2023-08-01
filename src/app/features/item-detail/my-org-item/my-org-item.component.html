@@ -1,7 +1,7 @@
 <app-detail [item]="item" back="My Org items" [organisation]="organisation">
   <ng-template #itemActions>
-    <div class="mt-8 flex flex-col">
-      <p-button label="Show TD" (click)="showTD()" icon="pi pi-code" styleClass="p-button-text"></p-button>
+    <div class="mt-8">
+      <app-show-td-button [item]="item" [edit]="false" [remote]="true"></app-show-td-button>
     </div>
   </ng-template>
   <ng-template #propsTable>
