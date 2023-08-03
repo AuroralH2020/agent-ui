@@ -1,5 +1,6 @@
 ## Build:
 inside the file ```/src/environments/environment.prod.ts``` specify the base url of the node:
+
 ```javascript:
 export const environment = {
   production: true,
