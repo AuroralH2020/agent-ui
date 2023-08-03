@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core'
-import { FormControl } from '@angular/forms'
+import { FormControl, Validators } from '@angular/forms'
 import { ItemUI, PropertyUI } from '@core/models/item.model'
 import { ItemsService } from '@core/services/item/item.service'
 
@@ -22,7 +22,10 @@ export class RequestBuilderComponent {
   @Input() item!: ItemUI
   @Input() prop!: PropertyUI
 
-  data: any
+  control: FormControl = new FormControl("", {
+    validators: Validators.required,
+    updateOn: "change",
+  });
   loading = false
   showResult = false
 
@@ -30,9 +33,9 @@ export class RequestBuilderComponent {
   requestParams: RequestParam[] = []
   body: FormControl = new FormControl<string>('')
 
-  constructor(private _itemsService: ItemsService) {}
+  constructor(private _itemsService: ItemsService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   addParam() {
     const key = new FormControl<string>('')
@@ -70,16 +73,19 @@ export class RequestBuilderComponent {
     const params = this._parseParams()
     const body = this.body.value
     try {
-      switch(this.requestType) {
+      let data = {}
+      switch (this.requestType) {
         case 'get':
-          this.data = await this._itemsService.getDataFromProperty(this.oid, this.item.oid, this.prop.pid, params)
+          data = await this._itemsService.getDataFromProperty(this.oid, this.item.oid, this.prop.pid, params)
+          this.control.setValue(JSON.stringify(data, null, 2))
           break;
         case 'put':
-          this.data = await this._itemsService.updateProperty(this.oid, this.item.oid, this.prop.pid, params, body)
+          data = await this._itemsService.updateProperty(this.oid, this.item.oid, this.prop.pid, params, body)
+          this.control.setValue(JSON.stringify(data, null, 2))
           break;
       }
     }
-    catch(e) {
+    catch (e) {
       this.loading = false
       this.showResult = false
     }

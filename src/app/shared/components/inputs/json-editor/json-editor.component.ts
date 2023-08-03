@@ -3,18 +3,18 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms'
 import * as ace from 'ace-builds'
 
 @Component({
-  selector: 'app-jsonld-editor',
-  templateUrl: './jsonld-editor.component.html',
-  styleUrls: ['./jsonld-editor.component.scss'],
+  selector: 'app-json-editor',
+  templateUrl: './json-editor.component.html',
+  styleUrls: ['./json-editor.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       multi: true,
-      useExisting: forwardRef(() => JsonldEditorComponent),
+      useExisting: forwardRef(() => JsonEditorComponent),
     },
   ],
 })
-export class JsonldEditorComponent implements AfterViewInit {
+export class JsonEditorComponent implements AfterViewInit {
   @ViewChild('editor') private editor!: ElementRef<HTMLElement>
 
   @Input() fontSize: number = 14

@@ -26,7 +26,7 @@ import { CommunityPictogramComponent } from './components/pictograms/community-p
 import { LongIdComponent } from './components/display/long-id/long-id.component';
 import { CopyToClipboardDirective } from './directives/copy-to-clipboard/copy-to-clipboard.directive';
 import { TdUploadComponent } from './components/inputs/td-upload/td-upload.component';
-import { JsonldEditorComponent } from './components/inputs/jsonld-editor/jsonld-editor.component';
+import { JsonEditorComponent } from './components/inputs/json-editor/json-editor.component';
 import { ItemsTableComponent } from './components/tables/items-table/item-table.component'
 import { PropsPreviewComponent } from './components/tables/items-table/props-preview/props-preview.component'
 import { PropsTableComponent } from './components/tables/props-table/props-table.component';
@@ -58,7 +58,7 @@ import { RegisterItemButtonComponent } from './components/buttons/register-item-
     CommunityPictogramComponent,
     LongIdComponent,
     TdUploadComponent,
-    JsonldEditorComponent,
+    JsonEditorComponent,
     ItemsTableComponent,
     PropsPreviewComponent,
     PropsTableComponent,
@@ -104,7 +104,7 @@ import { RegisterItemButtonComponent } from './components/buttons/register-item-
     CommunityPictogramComponent,
     LongIdComponent,
     TdUploadComponent,
-    JsonldEditorComponent,
+    JsonEditorComponent,
     ItemsTableComponent,
     PropsPreviewComponent,
     PropsTableComponent,
