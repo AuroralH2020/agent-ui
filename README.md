@@ -1,11 +1,17 @@
 ## Build:
-inside the file ```/src/environments/environment.prod.ts``` specify the base url of the node:
+inside the file ```/src/environments/environment.prod.ts``` specify base url of your node:
 
 ```javascript:
 export const environment = {
   production: true,
   baseurl: '', // <- Node Url (e.g.: localhost:81)
 };
+```
+
+and run:
+
+```
+npm run final-build
 ```
 
 ## Generate feature module:
