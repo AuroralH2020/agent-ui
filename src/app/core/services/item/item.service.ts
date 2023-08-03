@@ -22,7 +22,7 @@ const _itemAgid = '/api/discovery/remote/agid'
   providedIn: 'root',
 })
 export class ItemsService {
-  constructor(private _http: HttpClient) {}
+  constructor(private _http: HttpClient) { }
 
   private _myItems: BehaviorSubject<ItemUI[]> = new BehaviorSubject<ItemUI[]>([])
   private _myOrgItems: BehaviorSubject<ItemUI[]> = new BehaviorSubject<ItemUI[]>([])
@@ -30,11 +30,10 @@ export class ItemsService {
   private _newItems: string[] = []
 
   public async initItems(orgAgids: string[]) {
-    await this._initMyItems()
     try {
-      await Promise.all([await this._initMyItems(), await this._initMyOrgItems(orgAgids)])
+      await Promise.all([this._initMyItems(), this._initMyOrgItems(orgAgids)])
     } catch (error: any) {
-      await Promise.all([await this._initMyItems(), await this._initMyOrgItems(orgAgids)])
+      await Promise.all([this._initMyItems(), this._initMyOrgItems(orgAgids)])
     }
   }
 
@@ -49,7 +48,8 @@ export class ItemsService {
   }
 
   async getMyItems(): Promise<ItemUI[]> {
-    const itemsServer = await firstValueFrom(
+
+    const items = await Promise.all([firstValueFrom(
       this._http
         .post<Items>(_itemsLocalQueryUrl, queryItems, {
           headers: {
@@ -58,8 +58,7 @@ export class ItemsService {
           },
         })
         .pipe(take(1))
-    )
-    const propsServer = await firstValueFrom(
+    ), firstValueFrom(
       this._http
         .post<Items>(_itemsLocalQueryUrl, queryProps, {
           headers: {
@@ -68,36 +67,38 @@ export class ItemsService {
           },
         })
         .pipe(take(1))
-    )
-    return ItemConvert.toItemsUI(itemsServer, propsServer)
+    )])
+    return ItemConvert.toItemsUI(items[0], items[1])
   }
 
   async getRemoteItems(agids: string[]): Promise<ItemUI[]> {
     let params = new HttpParams()
     params = params.append('agids', agids.join(','))
-    const itemsServer = await firstValueFrom(
-      this._http
-        .post<Items>(_itemsRemoteQueryUrl, queryItems, {
-          params,
-          headers: {
-            accept: 'application/json',
-            'Content-Type': 'text/plain',
-          },
-        })
-        .pipe(take(1))
-    )
-    const propsServer = await firstValueFrom(
-      this._http
-        .post<Items>(_itemsRemoteQueryUrl, queryProps, {
-          params,
-          headers: {
-            accept: 'application/json',
-            'Content-Type': 'text/plain',
-          },
-        })
-        .pipe(take(1))
-    )
-    return ItemConvert.toItemsUI(itemsServer, propsServer)
+    const res = await Promise.all([
+      firstValueFrom(
+        this._http
+          .post<Items>(_itemsRemoteQueryUrl, queryItems, {
+            params,
+            headers: {
+              accept: 'application/json',
+              'Content-Type': 'text/plain',
+            },
+          })
+          .pipe(take(1))
+      ),
+      firstValueFrom(
+        this._http
+          .post<Items>(_itemsRemoteQueryUrl, queryProps, {
+            params,
+            headers: {
+              accept: 'application/json',
+              'Content-Type': 'text/plain',
+            },
+          })
+          .pipe(take(1))
+      )
+    ])
+    return ItemConvert.toItemsUI(res[0], res[1])
   }
 
   async getDataFromProperty(

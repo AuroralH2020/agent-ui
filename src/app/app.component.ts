@@ -37,8 +37,10 @@ export class AppComponent implements OnInit {
     const myOrgAgids = this._nodesService.myOrgNodes.map((element) => {
       return element.agid;
     })
-    await this._itemsService.initItems(myOrgAgids)
-    await this._collaborationService.initCollaboration()
+    await Promise.all([
+      this._itemsService.initItems(myOrgAgids),
+      this._collaborationService.initCollaboration()
+    ])
     this.loading = false
   }
 }
