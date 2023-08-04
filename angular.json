@@ -67,7 +67,8 @@
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
                 }
-              ]
+              ],
+              "baseHref": "/ui/"
             },
             "development": {
               "buildOptimizer": false,
