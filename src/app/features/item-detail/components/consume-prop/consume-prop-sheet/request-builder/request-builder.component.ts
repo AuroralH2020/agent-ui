@@ -77,11 +77,15 @@ export class RequestBuilderComponent {
       switch (this.requestType) {
         case 'get':
           data = await this._itemsService.getDataFromProperty(this.oid, this.item.oid, this.prop.pid, params)
-          this.control.setValue(JSON.stringify(data, null, 2))
+          setTimeout(() => {
+            this.control.setValue(JSON.stringify(data, null, 2))
+          }, 0)
           break;
         case 'put':
           data = await this._itemsService.updateProperty(this.oid, this.item.oid, this.prop.pid, params, body)
-          this.control.setValue(JSON.stringify(data, null, 2))
+          setTimeout(() => {
+            this.control.setValue(JSON.stringify(data, null, 2))
+          }, 0)
           break;
       }
     }
