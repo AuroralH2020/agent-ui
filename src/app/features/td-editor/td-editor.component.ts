@@ -12,13 +12,17 @@ import { Router } from '@angular/router'
 export class TdEditorComponent {
   ref: DynamicDialogRef | undefined
 
-  constructor(private _dialogService: DialogService, private _router: Router, private _zone: NgZone) {}
+  constructor(private _dialogService: DialogService, private _router: Router, private _zone: NgZone) { }
 
   @HostListener('window:message', ['$event'])
   onMessage(event: MessageEvent) {
+    console.log('here')
+    console.log(event.data)
     const data = event.data
     if (data) {
-      this._handle(data)
+      this._zone.run(() => {
+        this._handle(data)
+      })
     }
   }
 
@@ -29,13 +33,11 @@ export class TdEditorComponent {
       }
     } else {
       if (data && data.name && data.td) {
-        this._zone.run(() => {
-          this.ref = this._dialogService.open(CreateItemComponent, {
-            width: '900px',
-            height: 'calc(100vh - 80px)',
-            header: (data.name ?? 'Item') + "'s Thing Desctiption",
-            data: { td: data.td },
-          })
+        this.ref = this._dialogService.open(CreateItemComponent, {
+          width: '900px',
+          height: 'calc(100vh - 80px)',
+          header: (data.name ?? 'Item') + "'s Thing Desctiption",
+          data: { td: data.td },
         })
       }
     }
