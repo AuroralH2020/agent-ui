@@ -1,7 +1,7 @@
 <div class="w-full h-full flex flex-col text-text-500 text-sm font-medium card px-4">
   <div class="grow w-full">
     <div class="mt-4 h-full w-full">
-      <div class="flex gap-24 w-full h-full">
+      <div class="flex gap-24 w-full h-full items-center justify-center">
         <div class="flex flex-col pl-10">
           <div class="w-24 flex flex-col items-center">
             <fa-icon class="text-primary-500" style="font-size: 4rem" icon="circle-nodes"></fa-icon>
@@ -29,7 +29,7 @@
             </div>
           </div>
         </div>
-        <div class="mt-2 pl-1 flex flex-col gap-2 h-full">
+        <div class="mt-2 pl-1 flex flex-col gap-2">
           <div class="stat-item-b" routerLink="/home/items/my-node/">
             <p-badge [value]="myItems.length.toString()" size="large"></p-badge>
             <div class="w-56 mt-1">
@@ -78,7 +78,7 @@
           </div>
         </div>
         <div *ngIf="typeStats.length > 0" class="w-full mt-2 ml-8">
-          <div class="section w-96">
+          <div class="section" style="width: fit-content;">
             <div class="fade-bottom">
               <p-table [value]="typeStats" styleClass="p-datatable-sm" [scrollable]="true" scrollDirection="both"
                 scrollHeight="calc(100vh - 356px)" [class]="typeStats.length > 0 ? 'selectable-table' : ''">

@@ -34,7 +34,7 @@
               (click)="filterVisible = true"
             ></p-button>
             <div *ngIf="filterActive" class="flex gap-4">
-              <p-button label="Filter Active" icon="pi pi-sliders-h" (click)="filterVisible = true"></p-button>
+              <p-button label="Change Filter" icon="pi pi-sliders-h" (click)="filterVisible = true"></p-button>
               <p-button
                 label="Clear"
                 styleClass="p-button-outlined"
@@ -131,7 +131,8 @@
     </div>
   </div>
 </div>
-<p-sidebar #sb [(visible)]="filterVisible" position="right" [baseZIndex]="100000" [style]="{ width: 'fit-content' }">
+
+<app-sidebar #sb [(visible)]="filterVisible" >
   <div class="w-80">
     <div class="item-label">Filter by type:</div>
     <div class="mt-4">
@@ -166,4 +167,4 @@
       </div>
     </div>
   </div>
-</p-sidebar>
+</app-sidebar>

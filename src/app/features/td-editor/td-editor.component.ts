@@ -16,8 +16,6 @@ export class TdEditorComponent {
 
   @HostListener('window:message', ['$event'])
   onMessage(event: MessageEvent) {
-    console.log('here')
-    console.log(event.data)
     const data = event.data
     if (data) {
       this._zone.run(() => {

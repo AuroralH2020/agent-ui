@@ -23,15 +23,19 @@ import { ItemPictogramComponent } from './components/pictograms/item-pictogram/i
 import { NodePictogramComponent } from './components/pictograms/node-pictogram/node-pictogram.component'
 import { OrgPictogramComponent } from './components/pictograms/org-pictogram/org-pictogram.component'
 import { CommunityPictogramComponent } from './components/pictograms/community-pictogram/community-pictogram.component'
-import { LongIdComponent } from './components/display/long-id/long-id.component';
+import { LongIdComponent } from './components/long-id/long-id.component';
 import { CopyToClipboardDirective } from './directives/copy-to-clipboard/copy-to-clipboard.directive';
 import { TdUploadComponent } from './components/inputs/td-upload/td-upload.component';
 import { JsonEditorComponent } from './components/inputs/json-editor/json-editor.component';
 import { ItemsTableComponent } from './components/tables/items-table/item-table.component'
 import { PropsPreviewComponent } from './components/tables/items-table/props-preview/props-preview.component'
 import { PropsTableComponent } from './components/tables/props-table/props-table.component';
-import { TooltipComponent } from './components/display/tooltip/tooltip.component';
-import { RegisterItemButtonComponent } from './components/buttons/register-item-button/register-item-button.component'
+import { TooltipComponent } from './components/tooltip/tooltip.component';
+import { RegisterItemButtonComponent } from './components/buttons/register-item-button/register-item-button.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { BottomSheetComponent } from './components/bottom-sheet/bottom-sheet.component';
+import { QueryResultComponent } from './components/query-result/query-result.component';
+import { QueryResultDialogComponent } from './components/query-result/query-result-dialog/query-result-dialog.component'
 
 @NgModule({
   declarations: [
@@ -64,6 +68,10 @@ import { RegisterItemButtonComponent } from './components/buttons/register-item-
     PropsTableComponent,
     TooltipComponent,
     RegisterItemButtonComponent,
+    SidebarComponent,
+    BottomSheetComponent,
+    QueryResultComponent,
+    QueryResultDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -110,6 +118,10 @@ import { RegisterItemButtonComponent } from './components/buttons/register-item-
     PropsTableComponent,
     TooltipComponent,
     RegisterItemButtonComponent,
+    SidebarComponent,
+    BottomSheetComponent,
+    QueryResultComponent,
+    QueryResultDialogComponent,
   ],
 })
 export class SharedModule {}

@@ -1,29 +1,15 @@
 <div [pTooltip]="oid ? undefined : disabledTooltip" tooltipPosition="bottom" class="w-fit">
-  <button
-    pButton
-    pRipple
-    type="button"
-    label="Consume"
-    icon="pi pi-database"
-    class="p-button-outlined p-button-sm"
-    [disabled]="!oid"
-    (click)="openDetailDialog()"
-  ></button>
+  <button pButton pRipple type="button" label="Consume" icon="pi pi-database" class="p-button-outlined p-button-sm"
+    [disabled]="!oid" (click)="openDetailDialog()"></button>
 </div>
 <div *ngIf="oid">
-  <p-sidebar
-    [(visible)]="showDetail"
-    position="bottom"
-    [style]="{ height: 'calc(100vh - 40px)', width: '100%' }"
-    [transitionOptions]="'300ms ease-out'"
-  >
-    <ng-template pTemplate="header">
-      <div class="text-text-300 font-medium text-base">Consume data from:</div>
-    </ng-template>
-    <ng-template pTemplate="content">
-      <div class="whitespace-normal h-full justify-center">
-        <app-consume-prop-sheet [oid]="oid" [item]="item" [prop]="prop"> </app-consume-prop-sheet>
+  <app-bottom-sheet #sb [(visible)]="showDetail">
+    <ng-template #header>
+      <div class="text-text-500 text-sm font-bold">
+        {{ prop.name }}
       </div>
     </ng-template>
-  </p-sidebar>
+    <app-consume-prop-sheet [oid]="oid" [item]="item" [prop]="prop">
+    </app-consume-prop-sheet>
+  </app-bottom-sheet>
 </div>

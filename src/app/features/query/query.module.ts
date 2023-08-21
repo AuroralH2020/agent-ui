@@ -12,7 +12,6 @@ import { PartnershipQueryComponent } from './partnership-query/partnership-query
 import { RunQueryComponent } from './components/run-query/run-query.component'
 import { SelectCommunityDialogComponent } from './components/select-community-dialog/select-community-dialog.component'
 import { SelectPartnerDialogComponent } from './components/select-partner-dialog/select-partner-dialog.component';
-import { QueryResultDialogComponent } from './components/query-result-dialog/query-result-dialog.component'
 
 @NgModule({
   declarations: [
@@ -24,7 +23,6 @@ import { QueryResultDialogComponent } from './components/query-result-dialog/que
     RunQueryComponent,
     SelectCommunityDialogComponent,
     SelectPartnerDialogComponent,
-    QueryResultDialogComponent,
   ],
   imports: [
     CommonModule,

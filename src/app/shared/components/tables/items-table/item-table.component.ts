@@ -2,11 +2,11 @@ import { Component, ContentChild, Input, OnInit, TemplateRef, ViewChild } from '
 import { ItemType, ItemUI } from '@core/models/item.model'
 import { ItemsService } from '@core/services/item/item.service'
 import { CheckboxGroupItem } from '@shared/models/checkbox-group.modele'
-import { Sidebar } from 'primeng/sidebar'
 import { Table } from 'primeng/table'
 import { itemTypes } from 'src/app/data'
 import { inflect } from 'src/app/utils'
 import { FilterService } from 'primeng/api'
+import { SidebarComponent } from '@shared/components/sidebar/sidebar.component'
 
 @Component({
   selector: 'app-items-table',
@@ -15,7 +15,7 @@ import { FilterService } from 'primeng/api'
 })
 export class ItemsTableComponent implements OnInit {
   @ViewChild('dt') dt!: Table
-  @ViewChild('sb') sb!: Sidebar
+  @ViewChild('sb') sb!: SidebarComponent
 
   filterVisible: boolean = false
 

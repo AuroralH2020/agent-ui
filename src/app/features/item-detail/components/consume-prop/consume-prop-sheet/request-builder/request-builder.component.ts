@@ -22,12 +22,9 @@ export class RequestBuilderComponent {
   @Input() item!: ItemUI
   @Input() prop!: PropertyUI
 
-  control: FormControl = new FormControl("", {
-    validators: Validators.required,
-    updateOn: "change",
-  });
+  queryResult: any
+
   loading = false
-  showResult = false
 
   addBody: boolean = false
   requestParams: RequestParam[] = []
@@ -68,7 +65,6 @@ export class RequestBuilderComponent {
   }
 
   async consume() {
-    this.showResult = true;
     this.loading = true
     const params = this._parseParams()
     const body = this.body.value
@@ -76,23 +72,15 @@ export class RequestBuilderComponent {
       let data = {}
       switch (this.requestType) {
         case 'get':
-          data = await this._itemsService.getDataFromProperty(this.oid, this.item.oid, this.prop.pid, params)
-          setTimeout(() => {
-            this.control.setValue(JSON.stringify(data, null, 2))
-          }, 0)
+          this.queryResult = await this._itemsService.getDataFromProperty(this.oid, this.item.oid, this.prop.pid, params)
           break;
         case 'put':
-          data = await this._itemsService.updateProperty(this.oid, this.item.oid, this.prop.pid, params, body)
-          setTimeout(() => {
-            this.control.setValue(JSON.stringify(data, null, 2))
-          }, 0)
+          this.queryResult = await this._itemsService.updateProperty(this.oid, this.item.oid, this.prop.pid, params, body)
           break;
       }
     }
-    catch (e) {
+    finally {
       this.loading = false
-      this.showResult = false
     }
-    this.loading = false
   }
 }

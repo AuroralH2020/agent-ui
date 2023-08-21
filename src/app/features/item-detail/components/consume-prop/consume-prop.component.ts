@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, Input, OnInit, ViewChild } from '@angular/core'
 import { ItemUI, PropertyUI } from '@core/models/item.model'
+import { SidebarComponent } from '@shared/components/sidebar/sidebar.component'
 
 @Component({
   selector: 'app-consume-prop',
@@ -11,6 +12,8 @@ export class ConsumePropComponent implements OnInit {
   @Input() item!: ItemUI
   @Input() prop!: PropertyUI
   @Input() disabledTooltip?: string
+
+  @ViewChild('sb') sb!: SidebarComponent
 
   showDetail: boolean = false
 
