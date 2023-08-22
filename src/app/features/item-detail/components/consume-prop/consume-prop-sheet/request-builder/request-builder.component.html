@@ -1,109 +1,129 @@
-<div class="mt-6 relative overflow-x-auto">
-  <div class="flex gap-8 card-loose items-stretch">
-    <div style="height: 100%;">
-      <p-tabView>
-        <p-tabPanel header="Parameters">
-          <div class="w-full section">
-            <div *ngIf="requestParams.length === 0">
-              <div>
-                <div class="pb-4 text-text-300 text-sm font-medium">
-                  Some <span class="font-bold">{{ requestType | uppercase }}</span> requests may require
-                  <span class="font-bold">query parameters</span>. If so you can add them here.
+<div class="h-full flex flex-col gap-4 mt-4">
+  <div class="card-loose flex items-center gap-2">
+    <div class="text-text-300 overflow-x-auto">
+      {{url}}
+    </div>
+    <div class="h-8 w-8 ml-0.5 flex items-center justify-center cursor-pointer text-primary-500" appCopyToClipboard
+      [textToCopy]="url" copyMessage="Request url copied">
+      <i class="pi pi-copy" style="font-size: 1.5rem"></i>
+    </div>
+  </div>
+  <div class="grow">
+    <div class="flex gap-8 card items-stretch h-full overflow-x-auto">
+      <div style="height: 100%; width: 600px;">
+        <p-tabView>
+          <p-tabPanel header="Parameters">
+            <div class="w-full">
+              <div *ngIf="requestParams.length === 0">
+                <div>
+                  <div class="pb-4 text-text-300 text-sm font-medium">
+                    Some <span class="font-bold">{{ requestType | uppercase }}</span> requests may require
+                    <span class="font-bold">query parameters</span>. If so you can add them here.
+                  </div>
+                  <div class="flex gap-4 items-center">
+                    <button pButton pRipple type="button" label="Add Param" icon="pi pi-plus"
+                      class="p-button-outlined p-button-sm" (click)="addParam()"></button>
+                    <div>
+                      <div class="text-sm text-text-300">(Optional)</div>
+                    </div>
+                  </div>
                 </div>
-                <div class="flex gap-4 items-center">
+              </div>
+              <div *ngIf="requestParams.length !== 0" class="section custom-table">
+                <p-table [value]="requestParams" styleClass="p-datatable-sm" [scrollable]="true"
+                  scrollHeight="calc(100vh - 432px)">
+                  <ng-template pTemplate="header">
+                    <tr>
+                      <th>Key</th>
+                      <th></th>
+                      <th>Value</th>
+                      <th></th>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-item>
+                    <tr>
+                      <td style="width: 200px">
+                        <div>
+                          <input #key pInputText class="p-inputtext-sm" [autofocus]="true" [(ngModel)]="item.key"
+                            (keydown.enter)="consume()" />
+                        </div>
+                      </td>
+                      <td style="width: 5px">
+                        <div>:</div>
+                      </td>
+                      <td style="width: 200px">
+                        <div>
+                          <input pInputText class="p-inputtext-sm" [(ngModel)]="item.value"
+                            (keydown.enter)="consume()" />
+                        </div>
+                      </td>
+                      <td style="width: 24px">
+                        <div class="grow">
+                          <p-button icon="pi pi-trash" styleClass="p-button-rounded p-button-danger p-button-text"
+                            (click)="removeParam(item)"></p-button>
+                        </div>
+                      </td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+                <div class="mt-2 ml-2 flex">
                   <button pButton pRipple type="button" label="Add Param" icon="pi pi-plus"
-                    class="p-button-outlined p-button-sm" (click)="addParam()"></button>
-                  <div>
-                    <div class="text-sm text-text-300">(Optional)</div>
+                    class="p-button-text p-button-sm" (click)="addParam()"></button>
+                  <button pButton pRipple type="button" label="Remove All" icon="pi pi-trash"
+                    class="p-button-text p-button-sm p-button-danger" (click)="clearParam()"></button>
+                </div>
+              </div>
+            </div>
+          </p-tabPanel>
+          <p-tabPanel *ngIf="requestType === 'put'" header="Body">
+            <div class="w-full pb-2">
+              <div *ngIf="!addBody">
+                <div>
+                  <div class="pb-4 text-text-300 text-sm font-medium">
+                    Some <span class="font-bold">{{ requestType | uppercase }}</span> requests may require
+                    <span class="font-bold">body</span>. If so you can add it here.
+                  </div>
+                  <div class="flex gap-4 items-center">
+                    <button pButton pRipple type="button" label="Add Body" icon="pi pi-plus"
+                      class="p-button-outlined p-button-sm" (click)="addBody = true"></button>
+                    <div>
+                      <div class="text-sm text-text-300">(Optional)</div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div *ngIf="requestParams.length !== 0">
-              <p-table [value]="requestParams" styleClass="p-datatable-sm" [scrollable]="true"
-                scrollHeight="calc(100vh - 456px)">
-                <ng-template pTemplate="header">
-                  <tr>
-                    <th>Key</th>
-                    <th></th>
-                    <th>Value</th>
-                    <th></th>
-                  </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-item>
-                  <tr>
-                    <td style="width: 40px">
-                      <div>
-                        <input pInputText class="p-inputtext-sm" [autofocus]="true" [formControl]="item.key" />
-                      </div>
-                    </td>
-                    <td style="width: 5px">
-                      <div>:</div>
-                    </td>
-                    <td style="width: 40px">
-                      <div>
-                        <input pInputText class="p-inputtext-sm" [formControl]="item.value" />
-                      </div>
-                    </td>
-                    <td style="width: 24px">
-                      <div class="grow">
-                        <p-button icon="pi pi-trash" styleClass="p-button-rounded p-button-danger p-button-text"
-                          (click)="removeParam(item)"></p-button>
-                      </div>
-                    </td>
-                  </tr>
-                </ng-template>
-              </p-table>
-              <div class="mt-6 ml-6 flex gap-4 pb-3">
-                <button pButton pRipple type="button" label="Add Param" icon="pi pi-plus"
-                  class="p-button-outlined p-button-sm" (click)="addParam()"></button>
-                <button pButton pRipple type="button" label="Remove All" icon="pi pi-trash"
-                  class="p-button-outlined p-button-sm p-button-danger" (click)="clearParam()"></button>
-              </div>
-            </div>
-          </div>
-        </p-tabPanel>
-        <p-tabPanel *ngIf="requestType === 'put'" header="Body">
-          <div class="w-full pb-2">
-            <div *ngIf="!addBody">
-              <div>
-                <div class="pb-4 text-text-300 text-sm font-medium">
-                  Some <span class="font-bold">{{ requestType | uppercase }}</span> requests may require
-                  <span class="font-bold">body</span>. If so you can add it here.
+              <div *ngIf="addBody" class="w-full h-[calc(100vh-364px)] flex flex-col">
+                <div class="grow w-full">
+                  <app-json-editor [formControl]="body" [fontSize]="12">
+                  </app-json-editor>
                 </div>
-                <div class="flex gap-4 items-center">
-                  <button pButton pRipple type="button" label="Add Body" icon="pi pi-plus"
-                    class="p-button-outlined p-button-sm" (click)="addBody = true"></button>
-                  <div>
-                    <div class="text-sm text-text-300">(Optional)</div>
-                  </div>
+                <div class="w-fit mt-2">
+                  <button pButton pRipple type="button" label="Remove Body" icon="pi pi-trash"
+                    class="p-button-text p-button-sm p-button-danger" (click)="addBody = false"></button>
                 </div>
               </div>
             </div>
-            <div *ngIf="addBody">
-              <textarea placeholder="Enter Body" pInputTextarea [autoResize]="false" [spellcheck]="false"
-                [formControl]="body"
-                style="width: 100%; max-width: 100%; height: calc(100vh - 550px); max-height: calc(100vh - 456px)"></textarea>
-            </div>
-          </div>
-        </p-tabPanel>
-      </p-tabView>
-    </div>
-    <div>
-      <div class="h-full flex justify-center items-center">
-        <button pButton pRipple type="button" class="p-button p-button-sm" (click)="consume()">
-          <div class="flex items-center gap-4 text-white font-bold">
-            <i class="pi pi-database"></i>
-            <div>{{requestType === 'get' ? 'Get Data' : 'Update Data'}}</div>
-            <i class="pi pi-arrow-right"></i>
-          </div>
-        </button>
+          </p-tabPanel>
+        </p-tabView>
       </div>
-    </div>
-    <div class="grow">
-      <app-query-result [queryResult]="queryResult  | json" [loading]="loading" noResultDesc="To see the result, please create query and/or get data"
-        [height]="queryResult ? 'calc(100vh - 348px)' : 'calc(100vh - 364px)'">
-      </app-query-result>
+      <div class="w-48 mr-4">
+        <div class="h-full flex flex-col gap-2 justify-center items-center w-full">
+          <button pButton pRipple type="button" class="p-button p-button-sm" (click)="consume()" [disabled]="loading">
+            <div class="flex items-center gap-4 text-white font-bold">
+              <i class="pi pi-database"></i>
+              <div>{{requestType === 'get' ? 'Get Data' : 'Update Data'}}</div>
+              <i class="pi pi-arrow-right"></i>
+            </div>
+          </button>
+          <app-show-td-button [item]="item" [remote]="item.oid !== oid" [allowEditTogle]="false"></app-show-td-button>
+        </div>
+      </div>
+      <div class="grow mt-4">
+        <app-query-result [title]="prop.name" [queryResult]="queryResult  | json" [loading]="loading"
+          noResultDesc="To see the result, please run the query"
+          [height]="queryResult ? 'calc(100vh - 348px)' : 'calc(100vh - 372px)'">
+        </app-query-result>
+      </div>
     </div>
   </div>
 </div>

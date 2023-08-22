@@ -6,7 +6,7 @@
   <app-bottom-sheet #sb [(visible)]="showDetail">
     <ng-template #header>
       <div class="text-text-500 text-sm font-bold">
-        {{ prop.name }}
+        <span class="text-text-300">{{item.name}}:</span> {{ prop.name }}
       </div>
     </ng-template>
     <app-consume-prop-sheet [oid]="oid" [item]="item" [prop]="prop">

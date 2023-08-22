@@ -1,26 +1,30 @@
-import { Component, Input } from '@angular/core'
-import { FormControl, Validators } from '@angular/forms'
+import { AfterViewInit, Component, ElementRef, Inject, Input, QueryList, ViewChildren } from '@angular/core'
+import { FormControl } from '@angular/forms'
 import { ItemUI, PropertyUI } from '@core/models/item.model'
 import { ItemsService } from '@core/services/item/item.service'
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy'
 
 export interface RequestParam {
-  key: FormControl
-  value: FormControl
+  key: string
+  value: string
 }
 
 export type RequestType = 'get' | 'put'
 
+@UntilDestroy()
 @Component({
   selector: 'app-request-builder',
   templateUrl: './request-builder.component.html',
   styleUrls: ['./request-builder.component.scss'],
 })
-export class RequestBuilderComponent {
+export class RequestBuilderComponent implements AfterViewInit {
 
   @Input() requestType: RequestType = 'get'
   @Input() oid!: string
   @Input() item!: ItemUI
   @Input() prop!: PropertyUI
+
+  @ViewChildren('key') keys!: QueryList<ElementRef>;
 
   queryResult: any
 
@@ -30,13 +34,20 @@ export class RequestBuilderComponent {
   requestParams: RequestParam[] = []
   body: FormControl = new FormControl<string>('')
 
-  constructor(private _itemsService: ItemsService) { }
+  constructor(private _itemsService: ItemsService, @Inject('BASE_URL') private _baseUrl: string) { }
 
-  ngOnInit(): void { }
+  ngAfterViewInit() {
+    this.keys.changes.pipe(untilDestroyed(this)).subscribe(children => {
+      const last = children.last
+      if (last && last.nativeElement) {
+        last.nativeElement.focus();
+      }
+    });
+  }
 
   addParam() {
-    const key = new FormControl<string>('')
-    const value = new FormControl<string>('')
+    const key = ''
+    const value = ''
     this.requestParams.push({ key, value })
   }
 
@@ -57,8 +68,8 @@ export class RequestBuilderComponent {
     }
     let retval: Record<string, string> = {}
     this.requestParams.forEach((element) => {
-      const key = element.key.value as string
-      const value = element.value.value as string
+      const key = element.key
+      const value = element.value
       retval[key] = value
     })
     return retval
@@ -82,5 +93,10 @@ export class RequestBuilderComponent {
     finally {
       this.loading = false
     }
+  }
+
+  get url(): string {
+    const params = this.requestParams.map(param => `${param.key}=${param.value}`).join('&')
+    return `${this._baseUrl}/api/properties/${this.oid}/${this.item.oid}/${this.prop.pid}${params.length > 0 ? `?${params}` : ''}`
   }
 }

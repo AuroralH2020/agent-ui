@@ -6,6 +6,7 @@ import { NodesService } from '@core/services/nodes/nodes.service'
 import { Location } from '@angular/common'
 import { ConfirmationService } from 'primeng/api'
 import { UntilDestroy, } from '@ngneat/until-destroy'
+import { SnackBarService } from '@core/services/snack-bar/snack-bar.service'
 
 @UntilDestroy()
 @Component({
@@ -26,6 +27,7 @@ export class NodeItemComponent implements OnInit {
     private _confirmationService: ConfirmationService,
     private _activatedRoute: ActivatedRoute,
     private _router: Router,
+    private _snackBar: SnackBarService,
   ) { }
 
   ngOnInit(): void {
@@ -66,6 +68,7 @@ export class NodeItemComponent implements OnInit {
     try {
       await this._itemsService.removeItems([this.item.oid])
       this._location.back()
+      this._snackBar.showSuccess(`Item ${this.item.name} removed`)
     } finally {
       this.loadingRemove = false
     }

@@ -31,11 +31,15 @@ import { ItemsTableComponent } from './components/tables/items-table/item-table.
 import { PropsPreviewComponent } from './components/tables/items-table/props-preview/props-preview.component'
 import { PropsTableComponent } from './components/tables/props-table/props-table.component';
 import { TooltipComponent } from './components/tooltip/tooltip.component';
-import { RegisterItemButtonComponent } from './components/buttons/register-item-button/register-item-button.component';
+import { NewItemButtonComponent } from './components/buttons/new-item-button/new-item-button.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { BottomSheetComponent } from './components/bottom-sheet/bottom-sheet.component';
 import { QueryResultComponent } from './components/query-result/query-result.component';
-import { QueryResultDialogComponent } from './components/query-result/query-result-dialog/query-result-dialog.component'
+import { QueryResultDialogComponent } from './components/query-result/query-result-dialog/query-result-dialog.component';
+import { PlatformCopyComponent } from './components/platform-copy/platform-copy.component';
+import { CreateItemButtonComponent } from './components/buttons/create-item-button/create-item-button.component';
+import { ShowTdButtonComponent } from './components/buttons/show-td-button/show-td-button.component';
+import { ShowTdDialogComponent } from './components/buttons/show-td-button/show-td-dialog/show-td-dialog.component';
 
 @NgModule({
   declarations: [
@@ -67,11 +71,15 @@ import { QueryResultDialogComponent } from './components/query-result/query-resu
     PropsPreviewComponent,
     PropsTableComponent,
     TooltipComponent,
-    RegisterItemButtonComponent,
+    NewItemButtonComponent,
     SidebarComponent,
     BottomSheetComponent,
     QueryResultComponent,
     QueryResultDialogComponent,
+    PlatformCopyComponent,
+    CreateItemButtonComponent,
+    ShowTdButtonComponent,
+    ShowTdDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -117,11 +125,14 @@ import { QueryResultDialogComponent } from './components/query-result/query-resu
     PropsPreviewComponent,
     PropsTableComponent,
     TooltipComponent,
-    RegisterItemButtonComponent,
+    NewItemButtonComponent,
     SidebarComponent,
     BottomSheetComponent,
     QueryResultComponent,
     QueryResultDialogComponent,
+    PlatformCopyComponent,
+    CreateItemButtonComponent,
+    ShowTdButtonComponent,
   ],
 })
 export class SharedModule {}

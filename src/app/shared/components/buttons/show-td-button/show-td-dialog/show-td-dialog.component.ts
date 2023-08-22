@@ -1,35 +1,37 @@
-import { Component, OnInit } from '@angular/core'
-import { FormControl, Validators } from '@angular/forms'
-import { ItemUI } from '@core/models/item.model'
-import { ItemsService } from '@core/services/item/item.service'
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy'
-import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog'
+import { Component } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { ItemUI } from '@core/models/item.model';
+import { ItemsService } from '@core/services/item/item.service';
+import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
 
-@UntilDestroy()
 @Component({
-  selector: 'app-td-editor',
-  templateUrl: './td-editor.component.html',
-  styleUrls: ['./td-editor.component.scss'],
+  selector: 'app-show-td-dialog',
+  templateUrl: './show-td-dialog.component.html',
+  styleUrls: ['./show-td-dialog.component.scss']
 })
-export class TdEditorComponent implements OnInit {
+export class ShowTdDialogComponent {
   td: FormControl = new FormControl('', {
     validators: [Validators.required],
   })
   item?: ItemUI
   edit: boolean = false
   remote: boolean = false
+  showCopy: boolean = true
+  allowEditTogle: boolean = true
 
   loading: boolean = false
   updating: boolean = false
 
   constructor(
+    _config: DynamicDialogConfig,
     private _dialogRef: DynamicDialogRef,
-    private _config: DynamicDialogConfig,
-    private _itemsService: ItemsService
+    private _itemsService: ItemsService,
   ) {
     this.item = _config.data?.item
     this.edit = _config.data?.edit ?? false
     this.remote = _config.data?.remote ?? false
+    this.showCopy = _config.data?.showCopy ?? true
+    this.allowEditTogle = _config.data?.allowEditTogle ?? true
   }
   ngOnInit(): void {
     this._init()
@@ -63,6 +65,10 @@ export class TdEditorComponent implements OnInit {
         this.updating = false
       }
     }
+  }
+
+  togleEdit() {
+    this.edit = !this.edit
   }
 
   get thingDescription(): string {

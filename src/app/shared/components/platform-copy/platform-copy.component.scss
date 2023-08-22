@@ -1,0 +1,6 @@
+@import 'styles';
+
+.symbol {
+    @apply w-8 h-6 flex items-center justify-center;
+    @apply bg-whitesmoke rounded-tiny
+}

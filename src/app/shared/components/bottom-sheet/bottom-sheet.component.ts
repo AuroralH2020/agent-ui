@@ -27,7 +27,6 @@ export class BottomSheetComponent implements OnChanges {
     if ((this.isOpen && !visible) || (!this.isOpen && visible)) {
       this.isOpen = visible
       const appWrapper = document.getElementById('app-wrapper')
-      console.log(appWrapper?.style)
       if (appWrapper?.style) {
         const scrollbarWidth = (window.innerWidth - document.body.clientWidth) + 'px';
         appWrapper.style.overflow = visible ? 'hidden': ''

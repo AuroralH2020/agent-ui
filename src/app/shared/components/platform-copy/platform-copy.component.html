@@ -1,0 +1,13 @@
+<div class="flex items-center gap-4 text-text-500 leading-none">
+    <div class="text-text-300">{{label ?? 'Copy'}}:</div>
+    <div class="flex items-center gap-1 text-text-500">
+        <div class="symbol">{{mac ? '⌘': 'Ctrl'}}</div>
+        <div class="pb-0.5">+</div>
+        <div class="symbol">C</div>
+    </div>
+    <div class="text-text-300">or</div>
+    <div class="h-4 w-4 flex items-center justify-center cursor-pointer text-primary-500" appCopyToClipboard
+        [textToCopy]="textToCopy" [copyMessage]="copyMessage">
+        <i class="pi pi-copy" style="font-size: 1rem"></i>
+    </div>
+</div>

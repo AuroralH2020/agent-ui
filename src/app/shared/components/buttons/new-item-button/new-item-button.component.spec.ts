@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RegisterItemButtonComponent } from './register-item-button.component';
+import { NewItemButtonComponent } from './new-item-button.component';
 
 describe('RegisterItemButtonComponent', () => {
-  let component: RegisterItemButtonComponent;
-  let fixture: ComponentFixture<RegisterItemButtonComponent>;
+  let component: NewItemButtonComponent;
+  let fixture: ComponentFixture<NewItemButtonComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [RegisterItemButtonComponent]
+      declarations: [NewItemButtonComponent]
     });
-    fixture = TestBed.createComponent(RegisterItemButtonComponent);
+    fixture = TestBed.createComponent(NewItemButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,1 +1,2 @@
-<div #editor style="width: 100%; height: 100%"></div>
+<div #editor style="width: 100%; height: 100%" [ngClass]="[readOnly ? 'editor-readonly': focused ? 'editor-focused': 'editor-blur']">
+</div>

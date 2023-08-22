@@ -5,7 +5,7 @@ import { SnackBarService } from '@core/services/snack-bar/snack-bar.service'
   selector: '[appCopyToClipboard]',
 })
 export class CopyToClipboardDirective {
-  @Input() textToCopy?: string
+  @Input() textToCopy: string | null | undefined
   @Input() copyMessage?: string
 
   constructor(private _snackbar: SnackBarService) {}
@@ -15,7 +15,7 @@ export class CopyToClipboardDirective {
     event.stopPropagation()
     if (this.textToCopy) {
       navigator.clipboard.writeText(this.textToCopy)
-      this._snackbar.showMessage(this.copyMessage ?? 'Copied to clipboard')
+      this._snackbar.showSuccess(this.copyMessage ?? 'Copied to clipboard')
     }
   }
 }

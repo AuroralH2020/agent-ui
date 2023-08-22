@@ -1,0 +1,24 @@
+<div *ngIf="loading" class="w-full h-full flex items-center justify-center">
+    <app-spinner></app-spinner>
+</div>
+<div class="w-full h-full flex flex-col">
+    <div class="grow">
+        <app-json-editor [hidden]="loading" [formControl]="td" [readOnly]="!edit"></app-json-editor>
+    </div>
+    <div class="flex items-center w-full mt-8" [ngClass]=" showCopy ? 'justify-between': 'justify-end'">
+        <app-platform-copy *ngIf="showCopy" label="Copy TD" [textToCopy]="thingDescription"
+            copyMessage="TD copied to clipboard"></app-platform-copy>
+        <p-button *ngIf="edit" label="Update TD" icon="pi pi-upload" [loading]="updating" (click)="updateItem()">
+        </p-button>
+    </div>
+</div>
+<div *ngIf="!remote && allowEditTogle" class="fixed top-4 right-14">
+    <div class="flex items-center gap-2">
+        <div class="item-label">Edit:</div>
+        <p-tag [value]="edit ? 'On': 'Off'" [severity]="edit ? 'success': 'warning'"></p-tag>
+        <div class="w-12 h-12">
+            <p-button *ngIf="!edit" icon="pi pi-pencil" styleClass="p-button-text"
+                (click)="togleEdit()"></p-button>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core'
 import { FormControl, Validators } from '@angular/forms'
-import { ItemsService } from '@core/services/item/item.service'
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy'
 import { DynamicDialogRef } from 'primeng/dynamicdialog'
 
@@ -14,8 +13,6 @@ export class CreateItemComponent implements OnInit {
   disabledFile: boolean = true
   disabledCode: boolean = true
 
-  loading: boolean = false
-
   fileControl = new FormControl('', {
     updateOn: 'change',
     validators: [Validators.required],
@@ -28,7 +25,6 @@ export class CreateItemComponent implements OnInit {
 
   constructor(
     private _dialogRef: DynamicDialogRef,
-    private _itemsService: ItemsService
   ) {
   }
 
@@ -51,16 +47,7 @@ export class CreateItemComponent implements OnInit {
     })
   }
 
-  async createItem(control: FormControl) {
-    if (control.valid) {
-      const td = control.value
-      this.loading = true
-      try {
-        await this._itemsService.registerNewItem(JSON.parse(td))
-        this._dialogRef.close()
-      } finally {
-        this.loading = false
-      }
-    }
+  onSuccess() {
+    this._dialogRef.close()
   }
 }

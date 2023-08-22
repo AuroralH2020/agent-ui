@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, ContentChild, Input, OnInit, TemplateRef, ViewEncapsulation } from '@angular/core'
 import { FormGroup, FormControl } from '@angular/forms'
 import { SnackBarService } from '@core/services/snack-bar/snack-bar.service'
 import { FileUploadHandlerEvent } from 'primeng/fileupload'
@@ -7,10 +7,13 @@ import { FileUploadHandlerEvent } from 'primeng/fileupload'
   selector: 'app-td-upload',
   templateUrl: './td-upload.component.html',
   styleUrls: ['./td-upload.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class TdUploadComponent implements OnInit {
 
   @Input() control!: FormControl
+
+  @ContentChild('actions') actions: TemplateRef<any> | undefined
 
   uploaded: boolean = false
   protected form!: FormGroup
@@ -32,7 +35,7 @@ export class TdUploadComponent implements OnInit {
       const td = await file?.text()
       this.uploaded = true
       this.control.setValue(td)
-      this._snackBar.showMessage('TD File Uploaded')
+      this._snackBar.showSuccess('TD File Uploaded')
     }
   }
 }

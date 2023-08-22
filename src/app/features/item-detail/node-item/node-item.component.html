@@ -1,7 +1,7 @@
 <app-detail [item]="item" back="My Node items" [organisation]="organisation">
   <ng-template #itemActions>
     <div class="mt-8 flex flex-col">
-      <app-show-td-button [item]="item" [edit]="false" [remote]="false"></app-show-td-button>
+      <app-show-td-button [item]="item" [edit]="false" [remote]="false" (onUpdate)="onUpdate()"></app-show-td-button>
       <app-show-td-button [item]="item" [edit]="true" [remote]="false" (onUpdate)="onUpdate()"></app-show-td-button>
       <div class="px-5">
         <p-divider></p-divider>

@@ -11,14 +11,18 @@ import { FormControl } from '@angular/forms';
   encapsulation: ViewEncapsulation.None,
 })
 export class QueryResultComponent implements OnInit, OnChanges {
+  @Input() title?: string = 'Result'
   @Input() queryResult?: string
   @Input() loading: boolean = false
   @Input() height!: string
   @Input() noResultDesc?: string
 
   ref: DynamicDialogRef | undefined
+  mac: boolean = false
 
-  constructor(private _dialogService: DialogService) { }
+  constructor(
+    private _dialogService: DialogService,
+  ) { }
 
   protected result: FormControl = new FormControl('', {
     updateOn: 'change',
@@ -43,7 +47,7 @@ export class QueryResultComponent implements OnInit, OnChanges {
 
   expandResult() {
     this.ref = this._dialogService.open(QueryResultDialogComponent, {
-      header: 'Result',
+      header: this.title,
       width: 'calc(100vw - 80px)',
       height: 'calc(100vh - 20px)',
       contentStyle: { overflow: 'auto' },

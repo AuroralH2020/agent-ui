@@ -1,6 +1,10 @@
-<div style="width: 100%; height: calc(100vh - 256px)">
-  <app-json-editor [formControl]="td"></app-json-editor>
-  <div class="flex items-center w-full justify-end mt-8">
-    <p-button label="Create Item" icon="pi pi-plus" [loading]="loading" (click)="createItem()"></p-button>
+<div class="w-full h-full flex flex-col">
+  <div class="w-full grow">
+    <app-json-editor [formControl]="td"></app-json-editor>
+  </div>
+  <div class="flex items-center w-full justify-between mt-8">
+    <app-platform-copy label="Copy TD" [textToCopy]="tdStr" copyMessage="TD copied to clipboard"></app-platform-copy>
+    <app-create-item-button [disabled]="!this.td.valid" [td]="this.td.value" (onSuccess)="onSuccess()">
+    </app-create-item-button>
   </div>
 </div>

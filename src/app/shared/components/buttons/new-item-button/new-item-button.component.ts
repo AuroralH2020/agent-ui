@@ -7,12 +7,12 @@ import { DynamicDialogRef, DialogService } from 'primeng/dynamicdialog'
 import { Menu } from 'primeng/menu'
 
 @Component({
-  selector: 'app-register-item-button',
-  templateUrl: './register-item-button.component.html',
-  styleUrls: ['./register-item-button.component.scss'],
+  selector: 'app-new-item-button',
+  templateUrl: './new-item-button.component.html',
+  styleUrls: ['./new-item-button.component.scss'],
   providers: [DialogService],
 })
-export class RegisterItemButtonComponent implements OnInit {
+export class NewItemButtonComponent implements OnInit {
   @ViewChild('menu') menu!: Menu
 
   addItemMenuOptions: MenuItem[] = [

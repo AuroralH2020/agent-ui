@@ -6,16 +6,14 @@
         <div>File</div>
       </div>
     </ng-template>
-    <div>
-      <app-td-upload [control]="fileControl"></app-td-upload>
-      <div class="flex items-center w-full justify-end mt-8">
-        <p-button
-          label="Create Item"
-          icon="pi pi-plus"
-          [disabled]="disabledFile"
-          [loading]="loading"
-          (click)="createItem(fileControl)"
-        ></p-button>
+    <div style="width: 100%; height: calc(100vh - 346px)" class=" flex flex-col">
+      <div class="w-full grow">
+        <app-td-upload [control]="fileControl">
+          <ng-template #actions>
+            <app-create-item-button [disabled]="disabledFile" [td]="fileControl.value" (onSuccess)="onSuccess()">
+            </app-create-item-button>
+          </ng-template>
+        </app-td-upload>
       </div>
     </div>
   </p-tabPanel>
@@ -26,18 +24,15 @@
         <div>Code</div>
       </div>
     </ng-template>
-    <div>
-      <div style="width: 800px; height: calc(100vh - 362px)">
+    <div style="width: 100%; height: calc(100vh - 346px)" class=" flex flex-col">
+      <div class="w-full grow">
         <app-json-editor [formControl]="codeControl"></app-json-editor>
       </div>
-      <div class="flex items-center w-full justify-end mt-8">
-        <p-button
-          label="Create Item"
-          icon="pi pi-plus"
-          [disabled]="disabledCode"
-          [loading]="loading"
-          (click)="createItem(codeControl)"
-        ></p-button>
+      <div class="flex items-center w-full justify-between mt-8">
+        <app-platform-copy label="Copy TD" [textToCopy]="codeControl.value" copyMessage="TD copied to clipboard">
+        </app-platform-copy>
+        <app-create-item-button [disabled]="disabledCode" [td]="codeControl.value" (onSuccess)="onSuccess()">
+        </app-create-item-button>
       </div>
     </div>
   </p-tabPanel>

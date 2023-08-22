@@ -3,7 +3,6 @@ import { ItemUI } from '@core/models/item.model'
 import { ItemsService } from '@core/services/item/item.service'
 import { SnackBarService } from '@core/services/snack-bar/snack-bar.service'
 import { ConfirmationService } from 'primeng/api'
-import { delay } from 'src/app/utils'
 
 @Component({
   selector: 'app-actions',
@@ -38,7 +37,7 @@ export class ActionsComponent {
     this.deleting = true
     try {
       await this._itemsService.removeItems([this.item.oid])
-      this._snackbar.showMessage(`Item: ${this.item.name} has been deleted`)
+      this._snackbar.showSuccess(`Item: ${this.item.name} has been deleted`)
     } finally {
       this.deleting = false
     }

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, ViewChild, forwardRef } from '@angular/core'
+import { AfterViewInit, Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild, forwardRef } from '@angular/core'
 import { NG_VALUE_ACCESSOR } from '@angular/forms'
 import * as ace from 'ace-builds'
 
@@ -14,7 +14,7 @@ import * as ace from 'ace-builds'
     },
   ],
 })
-export class JsonEditorComponent implements AfterViewInit {
+export class JsonEditorComponent implements AfterViewInit, OnChanges {
   @ViewChild('editor') private editor!: ElementRef<HTMLElement>
 
   @Input() fontSize: number = 14
@@ -37,6 +37,14 @@ export class JsonEditorComponent implements AfterViewInit {
     this.aceEditor.renderer.setShowPrintMargin(false)
     this.aceEditor.session.setMode('ace/mode/json')
     this._listenForChange()
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.aceEditor) {
+      ace.config.set('fontSize', `${this.fontSize}px`)
+      this.aceEditor.setReadOnly(this.readOnly)
+      this.aceEditor.renderer.setShowGutter(this.showGutter)
+    }
   }
 
   _ignore = false
@@ -72,8 +80,8 @@ export class JsonEditorComponent implements AfterViewInit {
     return this._value
   }
 
-  onChange = (value: string) => {}
-  onTouched = () => {}
+  onChange = (value: string) => { }
+  onTouched = () => { }
 
   writeValue(value: string) {
     this.value = value
