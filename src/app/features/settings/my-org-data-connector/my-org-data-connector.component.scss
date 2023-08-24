@@ -1,0 +1,9 @@
+@import 'styles';
+
+.firs-reg-item {
+    @apply py-4 text-text-500 font-medium leading-tight pr-4;
+}
+
+.data-connector-card {
+    @apply card flex items-center justify-between gap-4 cursor-pointer py-2;
+}

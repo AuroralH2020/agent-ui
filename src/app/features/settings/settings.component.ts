@@ -20,7 +20,7 @@ export class SettingsComponent implements OnInit {
 
   settingsChanged: boolean = false
 
-  constructor(private _adminService: AdminService, private _itemsService: ItemsService, private _snackBar: SnackBarService) { }
+  constructor(private _adminService: AdminService, private _snackBar: SnackBarService) { }
 
   ngOnInit(): void {
     this.oldSettings = { ...this.settings }
@@ -28,14 +28,6 @@ export class SettingsComponent implements OnInit {
     this.settings$.pipe(untilDestroyed(this)).subscribe(newSettings => {
       this.oldSettings = { ...newSettings }
     })
-  }
-
-  chageDataConnector: boolean = false
-
-  changeDataConnector(item: ItemUI | null) {
-    this.newSettings.myOrgDataConnector = item
-    this._checkIfSettingsChanged()
-    this.chageDataConnector = false
   }
 
   saveSettings() {
@@ -49,9 +41,7 @@ export class SettingsComponent implements OnInit {
     this.settingsChanged = false
   }
 
-  private _checkIfSettingsChanged() {
-    console.log(this.oldSettings)
-    console.log(this.newSettings)
+  checkIfSettingsChanged() {
     this.settingsChanged = !deepEqual(this.oldSettings, this.newSettings)
   }
 
@@ -61,9 +51,5 @@ export class SettingsComponent implements OnInit {
 
   get settings() {
     return this._adminService.settings
-  }
-
-  get myItems() {
-    return this._itemsService.myItems
   }
 }
