@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core'
 import { Router } from '@angular/router'
 import { ItemsService } from '@core/services/item/item.service'
-import { CreateItemComponent } from '@features/items/components/create-item/create-item.component'
+import { CreateItemComponent } from '@features/my-node/components/create-item/create-item.component'
 import { MenuItem } from 'primeng/api'
 import { DynamicDialogRef, DialogService } from 'primeng/dynamicdialog'
 import { Menu } from 'primeng/menu'

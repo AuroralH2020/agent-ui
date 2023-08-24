@@ -13,6 +13,7 @@ export class NavSectionComponent implements OnInit {
   @Input() path!: string
   @Input() name: string | undefined
   @Input() icon: IconProp | undefined
+  @Input() marginTop: string | undefined
 
   folded: boolean = true
 

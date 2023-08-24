@@ -19,6 +19,8 @@ import { RouteReuseStrategy } from '@angular/router'
 import { CacheRouteReuseStrategy } from '@core/route-strategy/cache-route-reuse.strategy';
 import { PartnershipModule } from './features/partnership/partnership.module';
 import { CommunityModule } from './features/community/community.module';
+import { MyOrgModule } from './features/my-org/my-org.module';
+import { SettingsModule } from './features/settings/settings.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,6 +33,8 @@ import { CommunityModule } from './features/community/community.module';
     SharedModule,
     PartnershipModule,
     CommunityModule,
+    MyOrgModule,
+    SettingsModule,
   ],
   providers: [
     { provide: 'BASE_URL', useValue: environment.baseurl },

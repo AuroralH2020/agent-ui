@@ -18,7 +18,7 @@ import { MenuLabelComponent } from './components/menu/menu-label/menu-label.comp
 import { MenuContentComponent } from './components/menu/menu-content/menu-content.component'
 import { MenuItemComponent } from './components/menu/menu-item/menu-item.component'
 import { SparqlEditorComponent } from './components/inputs/sparql-editor/sparql-editor.component'
-import { PictogramComponent } from './components/pictograms/pictogram/pictogram.component'
+import { PictogramComponent } from './components/pictograms/pictogram.component'
 import { ItemPictogramComponent } from './components/pictograms/item-pictogram/item-pictogram.component'
 import { NodePictogramComponent } from './components/pictograms/node-pictogram/node-pictogram.component'
 import { OrgPictogramComponent } from './components/pictograms/org-pictogram/org-pictogram.component'
@@ -32,14 +32,15 @@ import { PropsPreviewComponent } from './components/tables/items-table/props-pre
 import { PropsTableComponent } from './components/tables/props-table/props-table.component';
 import { TooltipComponent } from './components/tooltip/tooltip.component';
 import { NewItemButtonComponent } from './components/buttons/new-item-button/new-item-button.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { BottomSheetComponent } from './components/bottom-sheet/bottom-sheet.component';
+import { SidebarComponent } from './components/overlays/sidebar/sidebar.component';
+import { BottomSheetComponent } from './components/overlays/bottom-sheet/bottom-sheet.component';
 import { QueryResultComponent } from './components/query-result/query-result.component';
 import { QueryResultDialogComponent } from './components/query-result/query-result-dialog/query-result-dialog.component';
 import { PlatformCopyComponent } from './components/platform-copy/platform-copy.component';
 import { CreateItemButtonComponent } from './components/buttons/create-item-button/create-item-button.component';
 import { ShowTdButtonComponent } from './components/buttons/show-td-button/show-td-button.component';
 import { ShowTdDialogComponent } from './components/buttons/show-td-button/show-td-dialog/show-td-dialog.component';
+import { OverlayComponent } from './components/overlays/overlay.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { ShowTdDialogComponent } from './components/buttons/show-td-button/show-
     CreateItemButtonComponent,
     ShowTdButtonComponent,
     ShowTdDialogComponent,
+    OverlayComponent,
   ],
   imports: [
     CommonModule,
@@ -133,6 +135,7 @@ import { ShowTdDialogComponent } from './components/buttons/show-td-button/show-
     PlatformCopyComponent,
     CreateItemButtonComponent,
     ShowTdButtonComponent,
+    OverlayComponent,
   ],
 })
 export class SharedModule {}

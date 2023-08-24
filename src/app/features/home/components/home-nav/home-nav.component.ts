@@ -8,6 +8,7 @@ interface HomeNav {
   path: string
   icon?: IconProp
   children?: HomeNav[]
+  marginTop?: string
 }
 
 const homeNav: HomeNav[] = [
@@ -17,19 +18,9 @@ const homeNav: HomeNav[] = [
     icon: 'circle-nodes',
   },
   {
-    name: 'Items',
-    path: '/home/items/',
-    icon: 'cube',
-    children: [
-      {
-        name: 'My Node',
-        path: 'my-node',
-      },
-      {
-        name: 'My Org',
-        path: 'my-org',
-      }
-    ]
+    name: 'My Org',
+    path: '/home/my-org/',
+    icon: 'user-group',
   },
   {
     name: 'Partnerships',
@@ -49,20 +40,30 @@ const homeNav: HomeNav[] = [
       {
         name: 'My Node',
         path: 'my-node',
+        icon: 'circle-nodes',
       },
       {
         name: 'My Org',
         path: 'my-org',
+        icon: 'user-group',
       },
       {
         name: 'Partnership',
         path: 'partnership',
+        icon: 'handshake',
       },
       {
         name: 'Community',
         path: 'community',
+        icon: 'users',
       }
     ]
+  },
+  {
+    name: 'Settings',
+    path: '/home/settings/',
+    icon: 'cog',
+    marginTop: '24px',
   },
 ]
 

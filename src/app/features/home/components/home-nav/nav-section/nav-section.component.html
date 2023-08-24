@@ -24,7 +24,7 @@
   [ngClass]="[
     'bg-transparent flex items-center cursor-pointer text-xs font-medium text-white select-none h-12 tracking-wider hover:bg-primary-400',
     (menuFolded$ | async) ? 'w-12' : 'w-40'
-  ]"
+  ]" [style]="{marginTop: marginTop}"
 >
   <div class="flex items-center text-white px-4">
     <fa-icon *ngIf="icon" class="w-8 text-white pr-4" style="font-size: 1rem" [icon]="icon"></fa-icon>

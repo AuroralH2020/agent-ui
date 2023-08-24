@@ -6,4 +6,5 @@ export abstract class CONSTANTS {
   static readonly USERNAME = 'username';
   static readonly PASSWORD = 'password';
   static readonly MENU_FOLDED = 'menu-folded';
+  static readonly SETTINGS = 'settings';
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import { ItemUI } from '@core/models/item.model'
+import { AdminService } from '@core/services/admin/admin.service'
 import { ItemsService } from '@core/services/item/item.service'
 import { NodesService } from '@core/services/nodes/nodes.service'
 
@@ -17,6 +18,7 @@ export class MyOrgItemComponent {
     private _router: Router,
     private _nodeService: NodesService,
     private _itemsService: ItemsService,
+    private _adminService: AdminService,
   ) { }
 
   ngOnInit(): void {
@@ -33,6 +35,10 @@ export class MyOrgItemComponent {
 
   get organisation(): string {
     return this._nodeService.myNode.organisation
+  }
+
+  get myOrgDataConnector(): ItemUI | null {
+    return this._adminService.settings.myOrgDataConnector
   }
 
   get oidOfmyNodesFirstItem(): string | undefined {

@@ -32,6 +32,6 @@ export class CreateItemComponent implements OnInit {
 
   onSuccess() {
     this._ref.close()
-    this._router.navigateByUrl('/home/items/my-node')
+    this._router.navigateByUrl('/home/my-node')
   }
 }

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NodesService } from '@core/services/nodes/nodes.service';
 import { SnackBarService } from '@core/services/snack-bar/snack-bar.service';
-import { Size } from '../pictogram/pictogram.component';
+import { Size } from '../pictogram.component';
 
 @Component({
   selector: 'app-node-pictogram',

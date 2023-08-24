@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ItemUI } from '@core/models/item.model';
 import { ItemsService } from '@core/services/item/item.service';
 import { NodesService } from '@core/services/nodes/nodes.service';
 
 @Component({
-  selector: 'app-my-org-items',
-  templateUrl: './my-org-items.component.html',
-  styleUrls: ['./my-org-items.component.scss']
+  selector: 'app-my-org',
+  templateUrl: './my-org.component.html',
+  styleUrls: ['./my-org.component.scss']
 })
-export class MyOrgItemsComponent implements OnInit {
+export class MyOrgComponent {
   itemsUI: ItemUI[] = [];
 
   constructor(

@@ -1,0 +1,52 @@
+<div class="section w-full h-full flex flex-col">
+    <div class="pt-4 px-6 w-full h-full flex flex-col">
+        <div class="w-full grow overflow-y-auto fade-bottom pr-10">
+            <app-setting-item name="My org data connector" description="The item used to retrieve data from my organisation items">
+                <ng-template #content>
+                    <div class="data-connector-card" (click)="chageDataConnector = true">
+                        <div *ngIf="newSettings.myOrgDataConnector">
+                            <app-item-pictogram [item]="newSettings.myOrgDataConnector"></app-item-pictogram>
+                        </div>
+                        <div *ngIf="!newSettings.myOrgDataConnector" class="firs-reg-item">
+                            First item registered under this Node
+                        </div>
+                        <div class="mt-1.5">
+                            <i class="pi pi-chevron-down" style="font-size: 1rem"></i>
+                        </div>
+                    </div>
+                </ng-template>
+            </app-setting-item>
+        </div>
+        <div class="h-32 w-full flex items-center gap-4">
+            <p-button label="Save Changes" icon="pi pi-save" (click)="saveSettings()" [disabled]="!settingsChanged">
+            </p-button>
+            <p-button label="Discard Changes" icon="pi pi-trash" styleClass="p-button-danger p-button-text"
+                (click)="discardChanges()" [disabled]="!settingsChanged">
+            </p-button>
+        </div>
+    </div>
+</div>
+<p-dialog header="Select my org data connector" [(visible)]="chageDataConnector" [modal]="true"
+    [style]="{ width: '400px', height: '600px' }" [draggable]="false" [resizable]="false">
+    <div class="w-full h-full flex flex-col">
+        <div class="data-connector-card" (click)="changeDataConnector(null)">
+            <div class="firs-reg-item">
+                First item registered under this Node
+            </div>
+            <div class="mt-1.5">
+                <i class="pi pi-chevron-right" style="font-size: 1rem"></i>
+            </div>
+        </div>
+        <p-divider align="center">
+            <div class="text-text-300 font-bold px-4">or</div>
+        </p-divider>
+        <div class="grow overflow-y-auto fade-bottom pr-5">
+            <div *ngFor="let item of myItems" class="data-connector-card mb-4" (click)="changeDataConnector(item)">
+                <app-item-pictogram [item]="item"></app-item-pictogram>
+                <div class="mt-1.5">
+                    <i class="pi pi-chevron-right" style="font-size: 1rem"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</p-dialog>

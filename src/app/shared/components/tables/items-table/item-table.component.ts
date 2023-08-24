@@ -6,7 +6,7 @@ import { Table } from 'primeng/table'
 import { itemTypes } from 'src/app/data'
 import { inflect } from 'src/app/utils'
 import { FilterService } from 'primeng/api'
-import { SidebarComponent } from '@shared/components/sidebar/sidebar.component'
+import { SidebarComponent } from '@shared/components/overlays/sidebar/sidebar.component'
 
 @Component({
   selector: 'app-items-table',

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Size } from '../pictogram/pictogram.component';
+import { Size } from '../pictogram.component';
 
 @Component({
   selector: 'app-org-pictogram',

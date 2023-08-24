@@ -15,6 +15,8 @@ export class NavButtonComponent implements OnInit {
   @Input() name: string | undefined
   @Input() icon: IconProp | undefined
   @Input() symbol: string | undefined
+  @Input() paddingLeft: string | undefined
+  @Input() marginTop: string | undefined
 
   constructor(private _router: Router, private _adminService: AdminService) {}
 

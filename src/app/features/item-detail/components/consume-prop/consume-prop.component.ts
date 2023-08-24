@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core'
 import { ItemUI, PropertyUI } from '@core/models/item.model'
-import { SidebarComponent } from '@shared/components/sidebar/sidebar.component'
+import { SidebarComponent } from '@shared/components/overlays/sidebar/sidebar.component'
 
 @Component({
   selector: 'app-consume-prop',

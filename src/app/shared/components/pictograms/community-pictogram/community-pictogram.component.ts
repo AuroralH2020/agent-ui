@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core'
 import { Community } from '@core/models/collaboration.model'
-import { Size } from '../pictogram/pictogram.component'
+import { Size } from '../pictogram.component'
 
 @Component({
   selector: 'app-community-pictogram',

@@ -31,7 +31,7 @@
               </div>
               <div *ngIf="requestParams.length !== 0" class="section custom-table">
                 <p-table [value]="requestParams" styleClass="p-datatable-sm" [scrollable]="true"
-                  scrollHeight="calc(100vh - 432px)">
+                  scrollHeight="calc(100vh - 424px)">
                   <ng-template pTemplate="header">
                     <tr>
                       <th>Key</th>
@@ -92,7 +92,7 @@
                   </div>
                 </div>
               </div>
-              <div *ngIf="addBody" class="w-full h-[calc(100vh-364px)] flex flex-col">
+              <div *ngIf="addBody" class="w-full h-[calc(100vh-368px)] flex flex-col">
                 <div class="grow w-full">
                   <app-json-editor [formControl]="body" [fontSize]="12">
                   </app-json-editor>
@@ -121,7 +121,7 @@
       <div class="grow mt-4">
         <app-query-result [title]="prop.name" [queryResult]="queryResult  | json" [loading]="loading"
           noResultDesc="To see the result, please run the query"
-          [height]="queryResult ? 'calc(100vh - 348px)' : 'calc(100vh - 372px)'">
+          [height]="queryResult ? 'calc(100vh - 371px)' : 'calc(100vh - 388px)'">
         </app-query-result>
       </div>
     </div>

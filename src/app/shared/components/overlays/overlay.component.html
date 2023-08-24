@@ -1,0 +1,7 @@
+<div *ngIf="visible" class="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-40"
+    [ngClass]="[ closing ? 'fade-out': 'fade-in']" style="z-index: 100;" (click)="close($event)">
+</div>
+<div *ngIf="content">
+    <ng-template [ngTemplateOutlet]="content">
+    </ng-template>
+</div>

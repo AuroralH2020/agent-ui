@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core'
 import { ItemUI } from '@core/models/item.model'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
-import { Size } from '../pictogram/pictogram.component'
+import { Size } from '../pictogram.component'
 import tinycolor from 'tinycolor2'
 
 @Component({

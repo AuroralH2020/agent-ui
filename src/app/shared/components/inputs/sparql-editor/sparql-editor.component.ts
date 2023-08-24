@@ -18,8 +18,6 @@ import * as ace from 'ace-builds'
 export class SparqlEditorComponent implements OnInit, ControlValueAccessor, AfterViewInit {
   @ViewChild('editor') private editor!: ElementRef<HTMLElement>
 
-  @Input() style?: string;
-
   aceEditor!: ace.Ace.Editor
 
   private _value: string = ''

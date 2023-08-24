@@ -17,8 +17,8 @@ const routes: Routes = [
         loadChildren: () => import('../my-node/my-node.module').then((m) => m.MyNodeModule),
       },
       {
-        path: 'items',
-        loadChildren: () => import('../items/items.module').then((m) => m.ItemsModule),
+        path: 'my-org',
+        loadChildren: () => import('../my-org/my-org.module').then((m) => m.MyOrgModule),
       },
       {
         path: 'partnership',
@@ -31,6 +31,10 @@ const routes: Routes = [
       {
         path: 'query',
         loadChildren: () => import('../query/query.module').then((m) => m.QueryModule),
+      },
+      {
+        path: 'settings',
+        loadChildren: () => import('../settings/settings.module').then((m) => m.SettingsModule),
       },
     ],
   },
