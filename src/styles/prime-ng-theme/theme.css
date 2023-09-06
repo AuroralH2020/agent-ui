@@ -2907,6 +2907,7 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
   > .p-datatable-table
   > .p-datatable-tfoot {
   background-color: #f8f9fa;
+  z-index: 100
 }
 .p-datatable .p-datatable-loading-icon {
   font-size: 2rem;
