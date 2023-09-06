@@ -14,47 +14,47 @@ interface HomeNav {
 const homeNav: HomeNav[] = [
   {
     name: 'My Node',
-    path: '/home/my-node/',
+    path: '/home/my-node',
     icon: 'circle-nodes',
   },
   {
     name: 'My Org',
-    path: '/home/my-org/',
+    path: '/home/my-org',
     icon: 'user-group',
   },
   {
     name: 'Partnerships',
-    path: '/home/partnership/',
+    path: '/home/partnership',
     icon: 'handshake',
   },
   {
     name: 'Communities',
-    path: '/home/community/',
+    path: '/home/community',
     icon: 'users',
   },
   {
     name: 'Query',
-    path: '/home/query/',
+    path: '/home/query',
     icon: 'database',
     children: [
       {
         name: 'My Node',
-        path: 'my-node',
+        path: '/my-node',
         icon: 'circle-nodes',
       },
       {
         name: 'My Org',
-        path: 'my-org',
+        path: '/my-org',
         icon: 'user-group',
       },
       {
         name: 'Partnership',
-        path: 'partnership',
+        path: '/partnership',
         icon: 'handshake',
       },
       {
         name: 'Community',
-        path: 'community',
+        path: '/community',
         icon: 'users',
       }
     ]
