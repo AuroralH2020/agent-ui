@@ -1,0 +1,21 @@
+<app-overlay #ol [visible]="visible" (visibleChange)="onVisibleChange($event)" (closingChange)="onClosingChange($event)">
+    <ng-template #content>
+        <div *ngIf="visible" class="fixed bottom-0 left-0 w-screen px-12" style="z-index: 101;">
+            <div class="flex flex-col gap-4 w-full items-end justify-end content"
+                [ngClass]="[ closing ? 'slide-out-bottom': 'slide-in-bottom']">
+                <div (click)="close($event)" class="w-full flex justify-end">
+                    <p-button icon="pi pi-times" styleClass="p-button-rounded p-button-danger p-button-raised "
+                        (click)="close($event)">
+                    </p-button>
+                </div>
+                <div class="bg-white h-[calc(100vh-80px)] w-full rounded-t-sm px-4 py-4 shadow-top">
+                    <div *ngIf="header" class="absolute card-dense w-fit top-9 h-14 flex flex-col justify-center">
+                        <ng-template [ngTemplateOutlet]="header"> </ng-template>
+                    </div>
+                    <div *ngIf="header" class="h-7"></div>
+                    <ng-content></ng-content>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</app-overlay>

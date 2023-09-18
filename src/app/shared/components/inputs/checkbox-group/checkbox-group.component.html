@@ -3,22 +3,11 @@
     class="field-checkbox flex gap-2 bg-lightGrey px-5 py-2 rounded-sm w-full items-center"
     [style.background-color]="highlightColor"
   >
-    <p-checkbox
-      [(ngModel)]="allSelected"
-      [binary]="true"
-      inputId="binary"
-      (onChange)="toggleAll()"
-    ></p-checkbox>
+    <p-checkbox [(ngModel)]="allSelected" [binary]="true" inputId="binary" (onChange)="toggleAll()"></p-checkbox>
     <div class="flex items-center gap-8 w-full justify-between">
       <span *ngIf="search; else elseAllBlock" class="p-input-icon-right">
         <i class="pi pi-search"></i>
-        <input
-          [(ngModel)]="searchText"
-          type="text"
-          pInputText
-          class="w-48"
-          (ngModelChange)="searchChanged()"
-        />
+        <input [(ngModel)]="searchText" type="text" pInputText class="w-48" (ngModelChange)="searchChanged()" />
       </span>
       <ng-template #elseAllBlock>All</ng-template>
       <div *ngIf="showStatus">
@@ -34,12 +23,9 @@
           'background-color': dividerColor
         }"
       ></div>
-      <div class="ml-4 pr-5">
+      <div class="ml-4 pr-5 overflow-y-auto w-full" [style]="{ height: height }">
         <div *ngIf="displayedItems.length !== 0; else elseEmptyBlock">
-          <div
-            *ngFor="let item of displayedItems"
-            class="field-checkbox flex gap-2 py-3"
-          >
+          <div *ngFor="let item of displayedItems" class="field-checkbox flex gap-2 py-3">
             <p-checkbox
               name="group"
               value="item"

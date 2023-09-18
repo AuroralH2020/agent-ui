@@ -1,0 +1,10 @@
+<app-detail [item]="item" back="Communities">
+  <ng-template #itemActions>
+    <div class="mt-8">
+      <app-show-td-button [item]="item" [edit]="false" [remote]="true"></app-show-td-button>
+    </div>
+  </ng-template>
+  <ng-template #propsTable>
+    <app-props-table [props]="item.properties"> </app-props-table>
+  </ng-template>
+</app-detail>

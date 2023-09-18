@@ -1,0 +1,30 @@
+<app-detail [item]="item" back="My Node" [organisation]="organisation">
+  <ng-template #itemActions>
+    <div class="mt-8 flex flex-col">
+      <app-show-td-button [item]="item" [edit]="false" [remote]="false" (onUpdate)="onUpdate()"></app-show-td-button>
+      <app-show-td-button [item]="item" [edit]="true" [remote]="false" (onUpdate)="onUpdate()"></app-show-td-button>
+      <div class="px-5">
+        <p-divider></p-divider>
+      </div>
+      <p-button label="Remove Item" icon="pi pi-trash" styleClass="p-button-text p-button-danger"
+        [loading]="loadingRemove" (click)="removeItem()"></p-button>
+    </div>
+  </ng-template>
+  <ng-template #propsTable>
+    <app-props-table [props]="item.properties">
+      <ng-template #propActions let-prop>
+        <app-consume-prop [oid]="item.oid" [item]="item" [prop]="prop"></app-consume-prop>
+      </ng-template>
+    </app-props-table>
+  </ng-template>
+</app-detail>
+<p-confirmDialog #cd [style]="{ width: '600px' }">
+  <ng-template pTemplate="header">
+    <h3 class="font-bold text-md">Remove Item</h3>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <p-button label="Do nothing" (click)="cd.reject()"></p-button>
+    <p-button styleClass="p-button-text p-button-danger" icon="pi pi-trash" label="Remove Item" (click)="cd.accept()">
+    </p-button>
+  </ng-template>
+</p-confirmDialog>

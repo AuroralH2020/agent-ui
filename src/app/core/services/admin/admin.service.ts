@@ -1,16 +1,61 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { firstValueFrom, take } from 'rxjs'
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy'
+import { BehaviorSubject } from 'rxjs'
+import { CONSTANTS } from '../constants'
+import { Settings } from '@core/models/settings.model'
+import { defaultSettings } from 'src/app/settings'
 
+@UntilDestroy()
 @Injectable({
   providedIn: 'root',
 })
 export class AdminService {
-  private _adminUrl = '/api/ui/admin'
+  private _menuFolded!: BehaviorSubject<boolean>
+  private _settings!: BehaviorSubject<Settings>
 
-  constructor(private _http: HttpClient) {}
+  constructor(private _http: HttpClient) {
+    this._init()
+  }
 
-  async refresh(): Promise<void> {
-    return await firstValueFrom(this._http.get<void>(this._adminUrl + '/refresh').pipe(take(1)))
+  private _init() {
+    this._menuFolded = new BehaviorSubject<boolean>(JSON.parse(localStorage.getItem(CONSTANTS.MENU_FOLDED) ?? 'false'))
+    this._menuFolded.pipe(untilDestroyed(this)).subscribe((value) => {
+      localStorage.setItem(CONSTANTS.MENU_FOLDED, JSON.stringify(value))
+    })
+
+    var settings = JSON.parse(localStorage.getItem(CONSTANTS.SETTINGS) ?? 'null')
+    if (!settings) {
+      settings = defaultSettings
+      localStorage.setItem(CONSTANTS.SETTINGS, JSON.stringify(settings))
+    }
+    this._settings = new BehaviorSubject<Settings>(settings)
+    this._settings.pipe(untilDestroyed(this)).subscribe((value) => {
+      localStorage.setItem(CONSTANTS.SETTINGS, JSON.stringify(value))
+    })
+  }
+
+  toggleMenu() {
+    this._menuFolded.next(!this.menuFolded)
+  }
+
+  updateSettings(settings: Settings) {
+    this._settings.next(settings)
+  }
+
+  get menuFolded$() {
+    return this._menuFolded.asObservable()
+  }
+
+  get menuFolded() {
+    return this._menuFolded.value
+  }
+
+  get settings$() {
+    return this._settings.asObservable()
+  }
+
+  get settings() {
+    return this._settings.value
   }
 }

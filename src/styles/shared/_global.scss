@@ -7,8 +7,9 @@
   outline: none !important;
 }
 
-html, body {
-	font-size: 14px;
+html,
+body {
+  font-size: 14px;
 }
 
 body {
@@ -18,37 +19,37 @@ body {
   /* scrollbar theme overridden with below theme */
 
   ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
+    width: 6px;
+    height: 6px;
   }
 
   /* Track */
   ::-webkit-scrollbar-track {
-      @apply bg-transparent;
+    @apply bg-transparent;
   }
 
   /* Handle, default i.e will not go below this dimensions */
   ::-webkit-scrollbar-thumb {
-      @apply bg-grey;
-      @apply rounded-sm;
-      width: 100px;
-      height: 100px;
+    @apply py-1;
+    @apply bg-borderGrey;
+    @apply rounded-sm;
+    width: 100px;
+    height: 100px;
   }
 
   ::-webkit-scrollbar-corner {
-      @apply bg-transparent;
+    @apply bg-transparent;
   }
 
   /* Thumb on hover */
   ::-webkit-scrollbar-thumb:hover {
-      @apply bg-grey;
-      @apply rounded-sm;
+    @apply bg-primary-200;
+    @apply rounded-sm;
   }
 
   /* For mobile taps, remove blue tap */
   -webkit-tap-highlight-color: transparent;
 }
-
 
 .ellipsis {
   @apply overflow-hidden whitespace-nowrap overflow-ellipsis;
@@ -62,11 +63,11 @@ body {
 
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 
@@ -81,7 +82,7 @@ body {
 .card {
   @apply bg-lightGrey;
   @apply rounded-sm;
-  border: 1px solid #DEE2E6;
+  border: 1px solid #dee2e6;
   padding-left: 1.25rem;
   padding-right: 1.25rem;
 }
@@ -111,7 +112,17 @@ body {
 
 .section {
   @apply rounded-sm bg-white p-3;
-  border: 1px solid #DEE2E6;
+  border: 1px solid #dee2e6;
+}
+
+.section {
+  @apply rounded-sm bg-white p-3;
+  border: 1px solid #dee2e6;
+}
+
+.section-bg-lightGrey {
+  @apply section;
+  @apply bg-lightGrey;
 }
 
 .section-pt-0 {
@@ -124,29 +135,40 @@ body {
   @apply pt-1;
 }
 
-button, [type='button'], [type='reset'], [type='submit'] {
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
   background-color: none;
+}
+
+.link {
+  @apply hover:underline text-primary-500 font-bold cursor-pointer;
 }
 
 .selectable-table {
   th {
-    @apply cursor-default
+    @apply cursor-default;
   }
-  
+
   tr {
-    @apply cursor-pointer
+    @apply cursor-pointer;
   }
 }
 
 // <-- Arrow
 
 .bounce {
-	-moz-animation: bounce 3s infinite;
-	-webkit-animation: bounce 3s infinite;
-	animation: bounce 3s infinite;
+  -moz-animation: bounce 3s infinite;
+  -webkit-animation: bounce 3s infinite;
+  animation: bounce 3s infinite;
 }
 @-moz-keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
     -moz-transform: translateX(0);
     transform: translateX(0);
   }
@@ -160,7 +182,11 @@ button, [type='button'], [type='reset'], [type='submit'] {
   }
 }
 @-webkit-keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
     -webkit-transform: translateX(0);
     transform: translateX(0);
   }
@@ -174,7 +200,11 @@ button, [type='button'], [type='reset'], [type='submit'] {
   }
 }
 @keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
     -moz-transform: translateX(0);
     -ms-transform: translateX(0);
     -webkit-transform: translateX(0);
@@ -196,7 +226,6 @@ button, [type='button'], [type='reset'], [type='submit'] {
 
 // Arrow -->
 
-
 .fade-bottom::after {
   content: '';
   display: inline-block;
@@ -207,4 +236,8 @@ button, [type='button'], [type='reset'], [type='submit'] {
   left: 0;
   background: linear-gradient(to top, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0) 100%);
   pointer-events: none;
+}
+
+#app-wrapper {
+  margin-top: 58px;
 }

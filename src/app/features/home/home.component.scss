@@ -1,6 +1,5 @@
 .content-wrapper {
-  position: fixed;
   overflow-y: scroll;
-  width: 100vw;
-  height: calc(100% - 58px);
+  width: 100%;
+  height: calc(100vh - 58px);
 }

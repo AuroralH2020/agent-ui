@@ -1,10 +1,19 @@
-<app-pictogram size="small" [pictogramColor]="pictogramColor" [contentColor]="contentColor">
+<app-pictogram
+  size="small"
+  [pictogramColor]="pictogramColor"
+  [contentColor]="contentColor"
+  shape="square"
+  [size]="size"
+>
   <ng-template #pictogramRef>
-    <div [ngStyle]="padding">
+    <app-tooltip [width]="28" [height]="28" [top]="-6" [left]="-10">
       <fa-icon class="text-white" [icon]="itemIcon"></fa-icon>
-    </div>
+      <ng-template #overlay>
+        <app-type-icon [type]="item.type"></app-type-icon>
+      </ng-template>
+    </app-tooltip>
   </ng-template>
-  <div class="leading-9 text-text-500">
+  <div class="h-8 text-sm text-text-500 font-medium">
     {{ item.name }}
   </div>
 </app-pictogram>

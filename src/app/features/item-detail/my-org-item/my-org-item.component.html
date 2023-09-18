@@ -1,0 +1,19 @@
+<app-detail [item]="item" back="My Org" [organisation]="organisation">
+  <ng-template #itemActions>
+    <div class="mt-8">
+      <app-show-td-button [item]="item" [edit]="false" [remote]="true"></app-show-td-button>
+    </div>
+  </ng-template>
+  <ng-template #propsTable>
+    <div *ngIf="!oidOfmyNodesFirstItem" class="pb-4">
+      <p-message severity="warn" text="Unable to get data - you don't have any items registereg under this node">
+      </p-message>
+    </div>
+    <app-props-table [props]="item.properties">
+      <ng-template #propActions let-prop>
+        <app-consume-prop [oid]="myOrgDataConnector?.oid ?? oidOfmyNodesFirstItem" [item]="item" [prop]="prop"
+          disabledTooltip="No items registered"></app-consume-prop>
+      </ng-template>
+    </app-props-table>
+  </ng-template>
+</app-detail>

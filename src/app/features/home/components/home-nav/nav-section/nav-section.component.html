@@ -1,0 +1,39 @@
+<!-- <div
+  (click)="toggleFolded()"
+  [ngClass]="[
+    'bg-primary-600 text-xs font-bold tracking-wider text-white cursor-pointer hover:bg-primary-400',
+    (menuFolded$ | async) ? 'w-12' : 'w-40'
+  ]"
+>
+  <div class="px-4 h-12 flex items-center justify-center">
+    <div *ngIf="icon" class="w-4 pr-4 flex items-center justify-center">
+      <fa-icon class="text-white" style="font-size: 1rem" [icon]="icon"></fa-icon>
+    </div>
+    <div *ngIf="!(menuFolded$ | async)">{{ name }}</div>
+    <div class="w-12 flex items-center justify-center">
+      <i [ngClass]="['pi', folded ? 'pi-chevron-right' : 'pi-chevron-down']" style="font-size: 0.8rem"></i>
+    </div>
+  </div>
+</div>
+<div *ngIf="!folded" class="mb-4">
+  <ng-content></ng-content>
+</div> -->
+
+<div
+  (click)="toggleFolded()"
+  [ngClass]="[
+    'bg-transparent flex items-center cursor-pointer text-xs font-medium text-white select-none h-12 tracking-wider hover:bg-primary-400',
+    (menuFolded$ | async) ? 'w-12' : 'w-40'
+  ]" [style]="{marginTop: marginTop}"
+>
+  <div class="flex items-center text-white px-4">
+    <fa-icon *ngIf="icon" class="w-8 text-white pr-4" style="font-size: 1rem" [icon]="icon"></fa-icon>
+    <div *ngIf="!(menuFolded$ | async)">{{ name ?? 'Menu item' }}</div>
+    <div class="w-12 flex items-center justify-center">
+      <i [ngClass]="['pi', folded ? 'pi-chevron-right' : 'pi-chevron-down']" style="font-size: 0.8rem"></i>
+    </div>
+  </div>
+</div>
+<div *ngIf="!folded" [ngClass]="['mb-4']">
+  <ng-content></ng-content>
+</div>

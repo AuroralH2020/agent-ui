@@ -23,9 +23,17 @@ import { MessagesModule } from 'primeng/messages'
 import { MessageModule } from 'primeng/message'
 import { TooltipModule } from 'primeng/tooltip'
 import { InputTextareaModule } from 'primeng/inputtextarea'
-import { ScrollTopModule } from 'primeng/scrolltop';
-import { KeyFilterModule } from 'primeng/keyfilter';
-import { MenuModule } from 'primeng/menu';
+import { ScrollTopModule } from 'primeng/scrolltop'
+import { KeyFilterModule } from 'primeng/keyfilter'
+import { MenuModule } from 'primeng/menu'
+import { TreeModule } from 'primeng/tree'
+import { BadgeModule } from 'primeng/badge';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { FileUploadModule } from 'primeng/fileupload';
+import { DividerModule } from 'primeng/divider';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ListboxModule } from 'primeng/listbox';
 
 @NgModule({
   declarations: [],
@@ -56,6 +64,14 @@ import { MenuModule } from 'primeng/menu';
     ScrollTopModule,
     KeyFilterModule,
     MenuModule,
+    TreeModule,
+    BadgeModule,
+    OverlayPanelModule,
+    FileUploadModule,
+    DividerModule,
+    ConfirmDialogModule,
+    ConfirmPopupModule,
+    ListboxModule,
   ],
   exports: [
     InputTextModule,
@@ -82,7 +98,15 @@ import { MenuModule } from 'primeng/menu';
     InputTextareaModule,
     ScrollTopModule,
     KeyFilterModule,
-    MenuModule
+    MenuModule,
+    TreeModule,
+    BadgeModule,
+    OverlayPanelModule,
+    FileUploadModule,
+    DividerModule,
+    ConfirmDialogModule,
+    ConfirmPopupModule,
+    ListboxModule,
   ],
 })
 export class PrimeNgModule {}

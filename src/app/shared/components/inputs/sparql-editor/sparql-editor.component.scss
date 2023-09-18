@@ -1,0 +1,21 @@
+@import 'styles';
+
+.ace_content{
+    @apply my-2
+}
+
+.ace_gutter {
+    @apply py-2
+}
+
+.editor-blur {
+    @apply border border-borderGrey
+}
+
+.editor-blur:hover {
+    @apply border border-primary-500
+}
+
+.editor-focused {
+    @apply border border-secondary-500
+}

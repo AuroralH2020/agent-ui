@@ -26,6 +26,7 @@ export class CheckboxGroupComponent implements OnInit {
   @Input() showStatus: boolean = false;
   @Input() highlightColor: string | undefined;
   @Input() dividerColor: string | undefined;
+  @Input() height: string | undefined;
 
   @ContentChild("labelRef") labelRef: TemplateRef<any> | undefined;
 

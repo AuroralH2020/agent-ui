@@ -1,0 +1,39 @@
+<app-setting-item name="My org data connector" description="The item used to retrieve data from my organisation items">
+    <ng-template #content>
+        <div class="data-connector-card" (click)="showDialog = true">
+            <div *ngIf="settings.myOrgDataConnector">
+                <app-item-pictogram [item]="settings.myOrgDataConnector"></app-item-pictogram>
+            </div>
+            <div *ngIf="!settings.myOrgDataConnector" class="firs-reg-item">
+                First item registered under this Node
+            </div>
+            <div class="mt-1.5">
+                <i class="pi pi-chevron-down" style="font-size: 1rem"></i>
+            </div>
+        </div>
+    </ng-template>
+</app-setting-item>
+<p-dialog header="Select my org data connector" [(visible)]="showDialog" [modal]="true"
+    [style]="{ width: '400px', height: '600px' }" [draggable]="false" [resizable]="false">
+    <div class="w-full h-full flex flex-col">
+        <div class="data-connector-card" (click)="changeDataConnector(null)">
+            <div class="firs-reg-item">
+                First item registered under this Node
+            </div>
+            <div class="mt-1.5">
+                <i class="pi pi-chevron-right" style="font-size: 1rem"></i>
+            </div>
+        </div>
+        <p-divider align="center">
+            <div class="text-text-300 font-bold px-4">or</div>
+        </p-divider>
+        <div class="grow overflow-y-auto fade-bottom pr-5">
+            <div *ngFor="let item of myItems" class="data-connector-card mb-4" (click)="changeDataConnector(item)">
+                <app-item-pictogram [item]="item"></app-item-pictogram>
+                <div class="mt-1.5">
+                    <i class="pi pi-chevron-right" style="font-size: 1rem"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</p-dialog>

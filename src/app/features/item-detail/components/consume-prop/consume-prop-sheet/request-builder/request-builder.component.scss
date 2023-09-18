@@ -1,0 +1,15 @@
+.custom-table {
+  th:nth-child(even) {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  
+  td:nth-child(even) {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  input {
+    width: 100%;
+  }
+}

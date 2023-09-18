@@ -5,12 +5,16 @@ import { MessageService } from 'primeng/api'
   providedIn: 'root',
 })
 export class SnackBarService {
-  constructor(private _snackBar: MessageService) {}
+  constructor(private _snackBar: MessageService) { }
   showError(message: string) {
     this._snackBar.add({ key: 'toast', severity: 'error', summary: 'Error', detail: message })
   }
 
-  showMessage(message: string) {
+  showSuccess(message: string) {
+    this._snackBar.add({ key: 'toast', severity: 'success', summary: 'Success', detail: message })
+  }
+
+  showInfo(message: string) {
     this._snackBar.add({ key: 'toast', severity: 'info', summary: 'Info', detail: message })
   }
 }

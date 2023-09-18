@@ -1,0 +1,9 @@
+@import 'styles';
+
+.stat-item {
+    @apply flex items-start gap-4 w-fit pb-2 cursor-pointer;
+}
+
+.stat-item-b {
+    @apply stat-item  border-b border-borderGrey;
+}

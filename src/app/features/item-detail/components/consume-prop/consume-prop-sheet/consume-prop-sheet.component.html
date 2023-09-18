@@ -1,0 +1,20 @@
+<div class="flex-col h-full">
+  <app-menu>
+    <app-menu-item>
+      <app-menu-label>
+        <div class="get">GET</div>
+      </app-menu-label>
+      <app-menu-content>
+        <app-request-builder requestType="get" [oid]="oid" [item]="item" [prop]="prop"></app-request-builder>
+      </app-menu-content>
+    </app-menu-item>
+    <app-menu-item>
+      <app-menu-label>
+        <div class="put">PUT</div>
+      </app-menu-label>
+      <app-menu-content>
+        <app-request-builder requestType="put" [oid]="oid" [item]="item" [prop]="prop"></app-request-builder>
+      </app-menu-content>
+    </app-menu-item>
+  </app-menu>
+</div>

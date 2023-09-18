@@ -1,9 +1,33 @@
-<div class="fixed z-10 h-full">
+<div class="h-full overflow-y-auto">
   <div class="h-full flex grow">
-    <div [ngClass]="['bg-primary-600', folded ? 'w-12' : 'w-56']">
-      <div style="height: 12px"></div>
-      <app-nav-button path="components-library" name="Components" icon="pi-th-large" [folded]="folded"></app-nav-button>
-      <app-nav-button path="items" name="Items" icon="pi-list" [folded]="folded"></app-nav-button>
+    <div [ngClass]="['bg-primary-600', (menuFolded$ | async) ? 'w-12' : 'w-40']">
+      <div class="h-4 w-full"></div>
+      <ng-container *ngFor="let item of nav">
+        <app-nav-button
+          *ngIf="!item.children"
+          [path]="item.path"
+          [name]="item.name"
+          [icon]="item.icon"
+          [marginTop]="item.marginTop"
+        ></app-nav-button>
+        <app-nav-section *ngIf="item.children" [name]="item.name" [path]="item.path" [icon]="item.icon">
+          <!-- <app-nav-button
+            *ngFor="let child of item.children"
+            [path]="item.path + child.path"
+            [name]="child.name"
+            [icon]="child.icon"
+            symbol="│"
+          ></app-nav-button> -->
+          <app-nav-button
+            *ngFor="let child of item.children"
+            [path]="item.path + child.path"
+            [name]="child.name"
+            [icon]="child.icon"
+            paddingLeft="16px"
+            [marginTop]="child.marginTop"
+          ></app-nav-button>
+        </app-nav-section>
+      </ng-container>
     </div>
   </div>
 </div>

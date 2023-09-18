@@ -1,0 +1,8 @@
+<div class="w-full h-full flex flex-col">
+  <div class="w-full grow">
+    <app-json-editor [formControl]="result" [readOnly]="true"></app-json-editor>
+  </div>
+  <div class="mt-8">
+    <app-platform-copy label="Copy Result" [textToCopy]="result.value" copyMessage="Result copied to clipboard"></app-platform-copy>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div [pTooltip]="oid ? undefined : disabledTooltip" tooltipPosition="bottom" class="w-fit">
+  <button pButton pRipple type="button" label="Consume" icon="pi pi-database" class="p-button-outlined p-button-sm"
+    [disabled]="!oid" (click)="openDetailDialog()"></button>
+</div>
+<div *ngIf="oid">
+  <app-bottom-sheet #sb [(visible)]="showDetail">
+    <ng-template #header>
+      <div class="text-text-500 text-sm font-bold">
+        <span class="text-text-300">{{item.name}}:</span> {{ prop.name }}
+      </div>
+    </ng-template>
+    <app-consume-prop-sheet [oid]="oid" [item]="item" [prop]="prop">
+    </app-consume-prop-sheet>
+  </app-bottom-sheet>
+</div>

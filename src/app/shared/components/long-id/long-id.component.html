@@ -1,0 +1,21 @@
+<div class="flex items-center">
+  <div
+    [ngClass]="['h-4 leading-none', hidden ? 'truncate h-4' : '']"
+    [style.width]="hidden ? (width ?? 64) + 'px' : 'fit-content'"
+  >
+    {{ id }}
+  </div>
+  <div class="flex items-center justify-end pl-1 text-primary-500">
+    <div class="h-8 w-8 flex items-center justify-center cursor-pointer" (click)="toggleVisibility($event)">
+      <i [class]="['pi', hidden ? 'pi-eye' : 'pi-eye-slash']" style="font-size: 1.5rem"></i>
+    </div>
+    <div
+      class="h-8 w-8 ml-0.5 flex items-center justify-center cursor-pointer"
+      appCopyToClipboard
+      [textToCopy]="id"
+      [copyMessage]="copyMessage"
+    >
+      <i class="pi pi-copy" style="font-size: 1.5rem"></i>
+    </div>
+  </div>
+</div>

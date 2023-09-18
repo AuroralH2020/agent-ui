@@ -1,16 +1,12 @@
-<div class="w-full h-full">
-  <app-home-nav [folded]="folded"></app-home-nav>
+<div class="w-full h-full flex">
+  <app-home-nav></app-home-nav>
   <div class="w-full h-full">
-    <div class="content-wrapper">
-      <div [ngClass]="['h-full', folded ? 'pl-12' : 'pl-56']">
-        <div class="px-3 pt-3 h-[calc(100%-70px)]">
-          <router-outlet></router-outlet>
-        </div>
-        <app-eu-contrib></app-eu-contrib>
-      </div>
+    <div class="px-3 pt-3 h-[calc(100%-70px)]">
+      <router-outlet></router-outlet>
     </div>
+    <app-eu-contrib></app-eu-contrib>
   </div>
-  <div class="fixed pl-56 top-0 left-0 -z-10">
+  <!-- <div class="fixed pl-40 top-0 left-0 -z-10">
     <div
       [ngClass]="[
         'bg-primary-50',
@@ -26,5 +22,5 @@
     >
       <i class="pi pi-bars" style="font-size: 1rem"></i>
     </div>
-  </div>
+  </div> -->
 </div>

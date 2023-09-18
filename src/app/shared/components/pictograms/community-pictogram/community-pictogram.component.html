@@ -1,0 +1,9 @@
+<app-pictogram shape="circle" [size]="size">
+  <ng-template #pictogramRef>
+    <fa-icon class="text-text-400" icon="users" [style]="{ fontSize: size === 'normal' ? '1.5rem' : '1rem' }"></fa-icon>
+  </ng-template>
+  <div class="flex flex-col gap-1" [style.width]="width + 'px'" [style.minWidth]="minWidth + 'px'" class="font-medium">
+    <div class="text-text-500 h-7 truncate">{{ community }}</div>
+    <div *ngIf="description" class="text-text-300 text-xs leading-none pb-2 mt-1 w-full">{{ description }}</div>
+  </div>
+</app-pictogram>

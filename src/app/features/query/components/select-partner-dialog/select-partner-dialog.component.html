@@ -1,0 +1,16 @@
+<div class="text-text-400 w-96">To see the items from specific partnership please select a partner:</div>
+<div class="mt-6">
+  <div>
+    <span class="p-input-icon-left ml-auto">
+      <i class="pi pi-search"></i>
+      <input pInputText type="text" (input)="search($event)" placeholder="Search for partner..." style="width: 256px" />
+    </span>
+    <div class="flex flex-col gap-2 mt-8 max-h-96 overflow-auto">
+      <div *ngFor="let partner of displayedPartners">
+        <div (click)="selectPartner(partner)" class="cursor-pointer">
+          <app-org-pictogram [organisation]="partner.name" [minWidth]="180"></app-org-pictogram>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

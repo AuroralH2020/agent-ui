@@ -10,14 +10,17 @@ import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { FakeBackendInterceptor } from '@core/services/fake-backend.interceptor'
 import { JwtInterceptor } from '@core/services/jwt.interceptor'
-import { PrimeNgModule } from './prime-ng/prime-ng.module'
 import { MessageService } from 'primeng/api'
-import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import { FaIconLibrary } from '@fortawesome/angular-fontawesome'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { far } from '@fortawesome/free-regular-svg-icons'
 import { SharedModule } from '@shared/shared.module'
 import { RouteReuseStrategy } from '@angular/router'
-import { CacheRouteReuseStrategy } from '@core/route-strategy/cache-route-reuse.strategy'
+import { CacheRouteReuseStrategy } from '@core/route-strategy/cache-route-reuse.strategy';
+import { PartnershipModule } from './features/partnership/partnership.module';
+import { CommunityModule } from './features/community/community.module';
+import { MyOrgModule } from './features/my-org/my-org.module';
+import { SettingsModule } from './features/settings/settings.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,9 +30,11 @@ import { CacheRouteReuseStrategy } from '@core/route-strategy/cache-route-reuse.
     AppRoutingModule,
     CoreModule,
     HttpClientModule,
-    PrimeNgModule,
-    FontAwesomeModule,
     SharedModule,
+    PartnershipModule,
+    CommunityModule,
+    MyOrgModule,
+    SettingsModule,
   ],
   providers: [
     { provide: 'BASE_URL', useValue: environment.baseurl },

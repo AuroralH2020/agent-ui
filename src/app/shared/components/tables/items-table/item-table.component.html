@@ -1,0 +1,170 @@
+<div class="w-full h-full">
+  <div class="flex items-center gap-4 w-full justify-between">
+    <div *ngIf="header">
+      <ng-template [ngTemplateOutlet]="header"> </ng-template>
+    </div>
+  </div>
+  <div class="w-full h-full">
+    <div *ngIf="showTable" class="w-full h-full">
+      <div *ngIf="loadingData; else elseTableBlock" class="h-full w-full">
+        <div class="flex justify-center items-center h-full w-full">
+          <app-spinner></app-spinner>
+        </div>
+      </div>
+      <ng-template #elseTableBlock>
+        <div class="w-full mt-6">
+          <div class="w-full flex justify-between">
+            <div *ngIf="showSearch" class="h-12 mb-4">
+              <span class="p-input-icon-left ml-auto">
+                <i class="pi pi-search"></i>
+                <input
+                  pInputText
+                  type="text"
+                  (input)="search($event)"
+                  placeholder="Search for item..."
+                  style="width: 194px; height: 44px"
+                />
+              </span>
+            </div>
+            <p-button
+              *ngIf="!filterActive"
+              label="Filter"
+              styleClass="p-button-outlined"
+              icon="pi pi-sliders-h"
+              (click)="filterVisible = true"
+            ></p-button>
+            <div *ngIf="filterActive" class="flex gap-4">
+              <p-button label="Change Filter" icon="pi pi-sliders-h" (click)="filterVisible = true"></p-button>
+              <p-button
+                label="Clear"
+                styleClass="p-button-outlined"
+                icon="pi pi-times"
+                (click)="clearFilter($event)"
+              ></p-button>
+            </div>
+          </div>
+          <div class="w-full flex gap-4">
+            <div class="w-full fade-bottom">
+              <div class="text-text-300 font-medium text-sm pb-4 ml-6">{{ itemsCount }}</div>
+              <p-table
+                #dt
+                [value]="itemsUI"
+                [selectionMode]="itemsUI.length > 0 ? 'single' : null"
+                dataKey="oid"
+                [filterDelay]="0"
+                [class]="itemsUI.length > 0 ? 'selectable-table' : ''"
+                styleClass="p-datatable-sm"
+                [scrollable]="true"
+                scrollDirection="both"
+                scrollHeight="calc(100vh - 346px)"
+              >
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th>Name</th>
+                    <th>Properties</th>
+                    <th>Oid</th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-item>
+                  <tr [routerLink]="[linkToDetail, item.oid]" [state]="combineState(item)">
+                    <td style="width: 30%">
+                      <div class="shrink-0">
+                        <div class="flex items-center gap-4">
+                          <app-item-pictogram [item]="item" size="small"></app-item-pictogram>
+                          <div *ngIf="isNew(item)"><p-tag severity="warning" value="New!"></p-tag></div>
+                        </div>
+                      </div>
+                    </td>
+                    <td style="width: 30%">
+                      <div class="w-fit">
+                        <app-props-preview [properties]="item.properties"></app-props-preview>
+                      </div>
+                    </td>
+                    <td style="width: 30%">
+                      <div class="w-fit">
+                        <div class="w-96 text-text-500">
+                          <app-long-id [id]="item.oid" copyMessage="Oid copied to clipboard"></app-long-id>
+                        </div>
+                      </div>
+                    </td>
+                    <td style="width: 5%">
+                      <div class="w-fit">
+                        <div *ngIf="actions" class="">
+                          <ng-template
+                            [ngTemplateOutlet]="actions"
+                            [ngTemplateOutletContext]="{
+                            $implicit: item,
+                          }"
+                          >
+                          </ng-template>
+                        </div>
+                      </div>
+                    </td>
+                    <td style="width: 5%">
+                      <div class="flex justify-end mr-4">
+                        <i class="pi pi-chevron-right text-primary-500" style="font-size: 1rem"></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr *ngIf="itemsUI.at(-1) === item" class="pointer-events-none">
+                    <div class="w-full h-8"></div>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="emptymessage" let-columns>
+                  <tr>
+                    <td colspan="4">
+                      <div class="flex flex-col w-full h-96 justify-center text-center">
+                        <app-sad-face></app-sad-face>
+                        No items found
+                      </div>
+                    </td>
+                    <td></td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+<app-sidebar #sb [(visible)]="filterVisible" >
+  <div class="w-80">
+    <div class="item-label">Filter by type:</div>
+    <div class="mt-4">
+      <div class="fade-bottom">
+        <app-checkbox-group
+          [items]="typesFilter"
+          [(selectedItems)]="selectedTypesFilter"
+          [search]="searchTypesFilter"
+          height="calc(100vh - 288px)"
+        >
+          <ng-template #labelRef let-type let-selected="selected">
+            <div class="px-4">
+              <app-type-icon [type]="type.value"></app-type-icon>
+            </div>
+          </ng-template>
+        </app-checkbox-group>
+      </div>
+      <div class="w-full flex items-center gap-4 justify-center">
+        <button
+          pButton
+          label="Apply"
+          icon="pi pi-sliders-h"
+          (click)="filter($event)"
+          style="width: 100%"
+        ></button>
+        <p-button
+          label="Clear"
+          icon="pi pi-times"
+          styleClass="p-button-outlined"
+          (click)="clearFilter($event)"
+        ></p-button>
+      </div>
+    </div>
+  </div>
+</app-sidebar>

@@ -1,0 +1,15 @@
+<div class="section w-full h-full flex flex-col">
+    <div class="pt-4 px-6 w-full h-full flex flex-col">
+        <div class="w-full grow overflow-y-auto fade-bottom pr-10">
+            <app-my-org-data-connector [settings]="newSettings" (onChange)="checkIfSettingsChanged()">
+            </app-my-org-data-connector>
+        </div>
+        <div class="h-32 w-full flex items-center gap-4">
+            <p-button label="Save Changes" icon="pi pi-save" (click)="saveSettings()" [disabled]="!settingsChanged">
+            </p-button>
+            <p-button label="Discard Changes" icon="pi pi-trash" styleClass="p-button-danger p-button-text"
+                (click)="discardChanges()" [disabled]="!settingsChanged">
+            </p-button>
+        </div>
+    </div>
+</div>

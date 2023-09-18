@@ -1,0 +1,34 @@
+<div class="w-full h-full">
+  <form [formGroup]="form" class="w-full h-full">
+    <p-fileUpload *ngIf="!uploaded" name="myfile[]" [multiple]="false" accept=".jsonld,.json" [maxFileSize]="1000000"
+      [auto]="true" [customUpload]="true" (uploadHandler)="onFileUpload($event)" chooseLabel="Choose a file"
+      chooseIcon="pi pi-folder-open" styleClass="w-full h-full">
+      <ng-template pTemplate="content">
+        <div [ngClass]="[
+            'w-full h-full border-2 rounded-sm items-center justify-center',
+            over ? ' border-secondary-500' : ' border-text-300 border-dashed'
+          ]" (dragover)="over = true" (dragleave)="over = false">
+          <div class="w-full h-full">
+            <div class="flex flex-col items-center justify-center w-full h-full">
+              <i class="pi pi-file-import" style="font-size: 2rem"></i>
+              <div class="text-sm font-medium"><span class="font-bold">Choose a file</span> or drag it here</div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </p-fileUpload>
+    <div [hidden]="!uploaded" class="w-full h-full">
+      <div class="w-full h-full flex flex-col">
+        <div class="w-full grow">
+          <app-json-editor formControlName="td"></app-json-editor>
+        </div>
+        <div class="w-full flex items-center justify-between mt-8">
+          <app-platform-copy label="Copy TD" [textToCopy]="control.value" copyMessage="TD copied to clipboard"></app-platform-copy>
+          <div *ngIf="actions">
+            <ng-template [ngTemplateOutlet]="actions"> </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,20 @@
+<app-detail [item]="item" back="Partnerships" [organisation]="organisation">
+  <ng-template #itemActions>
+    <div class="mt-8">
+      <app-show-td-button [item]="item" [edit]="false" [remote]="true"></app-show-td-button>
+    </div>
+  </ng-template>
+  <ng-template #propsTable>
+    <div *ngIf="!oidOfmyFirstItemInContract" class="pb-4">
+      <p-message severity="warn"
+        [text]="'Unable to get data - you don\'t have any items in a contract with ' + selectedPartner.name">
+      </p-message>
+    </div>
+    <app-props-table [props]="item.properties">
+      <ng-template #propActions let-prop>
+        <app-consume-prop [oid]="oidOfmyFirstItemInContract" [item]="item" [prop]="prop"
+          disabledTooltip="No items in contract"></app-consume-prop>
+      </ng-template>
+    </app-props-table>
+  </ng-template>
+</app-detail>

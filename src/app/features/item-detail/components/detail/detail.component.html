@@ -1,0 +1,73 @@
+<div class="flex justify-center h-full w-full">
+  <div class="container mb-16">
+    <div class="h-14 flex flex-col justify-center">
+      <p-button (click)="onBack()" icon="pi pi-chevron-left" [label]="back" styleClass="p-button-text"></p-button>
+    </div>
+    <div class="">
+      <div class="card-loose">
+        <div class="pb-16">
+          <div class="grid grid-cols-12 gap-6">
+            <div #info class="col-span-12 md:col-span-12 lg:col-span-3">
+              <div [ngClass]="[infoFixed ? 'lg:fixed lg:top-20' : '']" [style.width]="dynamicWidth + 'px'">
+                <div>
+                  <div class="pb-2">
+                    <app-type-icon [type]="item.type"></app-type-icon>
+                  </div>
+                  <div class="text-text-500 text-md font-medium">{{ item.name }}</div>
+                </div>
+                <div class="mt-4 section text-sm font-medium text-text-500">
+                  <div class="px-5">
+                    <div class="w-60 pb-4">
+                      <div class="item-label">Oid:</div>
+                      <div class="flex justify-end items-end">
+                        <div>
+                          {{ item.oid }}
+                          <span
+                            class="justify-center cursor-pointer text-primary-500"
+                            appCopyToClipboard
+                            [textToCopy]="item.oid"
+                            copyMessage="Oid copied to clipboard"
+                          >
+                            <i class="pi pi-copy" style="font-size: 1.25rem"></i>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div *ngIf="item.desc && item.desc.length > 0" class="w-72 pb-4">
+                      <div class="item-label">Description:</div>
+                      <div>
+                        {{ item.desc }}
+                      </div>
+                    </div>
+                    <div *ngIf="organisation && organisation.length > 0" class="w-72 pb-4">
+                      <div class="item-label">Owner:</div>
+                      <div class="mt-1">
+                        <div class="flex items-center gap-2">
+                          <p-avatar [label]="organisation.charAt(0).toUpperCase()" shape="circle" size="normal"></p-avatar>
+                          <div class="leading-none">
+                            {{ organisation }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="itemActions" class="pb-4">
+                    <ng-template [ngTemplateOutlet]="itemActions"></ng-template>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-span-12 md:col-span-12 lg:col-span-9">
+              <div class="props">
+                <p-fieldset legend="Properties">
+                  <ng-template *ngIf="propsTable" [ngTemplateOutlet]="propsTable"></ng-template>
+                  <div style="height: 8px"></div>
+                </p-fieldset>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

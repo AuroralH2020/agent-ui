@@ -1,0 +1,10 @@
+<app-pictogram shape="circle" [size]="size">
+  <ng-template #pictogramRef>
+    <div class="font-bold text-text-500">
+      {{ organisation.charAt(0).toUpperCase() }}
+    </div>
+  </ng-template>
+  <div [style.width]="width + 'px'" [style.minWidth]="minWidth + 'px'" class="truncate font-medium leading-none h-8 flex items-center">
+    {{ organisation }}
+  </div>
+</app-pictogram>

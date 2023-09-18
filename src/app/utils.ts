@@ -49,14 +49,3 @@ export function inflect(num: number, zero: string, one: string, many: string) {
       return many
   }
 }
-
-export function valueBasedOnItemType(item: ItemUI, whenDevice: any, whenService: any, whenOther: any): any {
-  switch (item.type.toLowerCase()) {
-    case 'device':
-      return whenDevice
-    case 'service':
-      return whenService
-    default:
-      return whenOther
-  }
-}
