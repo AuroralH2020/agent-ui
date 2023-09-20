@@ -27,7 +27,7 @@ export class TdEditorComponent {
   private _handle(data: any) {
     if (typeof data === 'string' || data instanceof String) {
       if (data === 'close') {
-        this._router.navigateByUrl('/home/items/my-node')
+        this._router.navigateByUrl('/home/my-node')
       }
     } else {
       if (data && data.name && data.td) {
