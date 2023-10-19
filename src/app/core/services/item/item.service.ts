@@ -30,6 +30,9 @@ export class ItemsService {
   private _newItems: string[] = []
 
   public async initItems(orgAgids: string[]) {
+    if (orgAgids.length === 0) {
+      return
+    }
     try {
       await Promise.all([this._initMyItems(), this._initMyOrgItems(orgAgids)])
     } catch (error: any) {
