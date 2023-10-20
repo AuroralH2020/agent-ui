@@ -27,8 +27,8 @@ export const itemTypes: ItemType[] = [
   },
   {
     id: '3',
-    title: 'Thing',
-    icon: 'circle',
+    title: 'Dataset',
+    icon: 'file-lines',
     color: '#979797',
   },
   {
