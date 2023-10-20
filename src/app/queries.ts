@@ -23,7 +23,7 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
         ?property td:title ?name .
         ?property td:name ?pid .
         OPTIONAL { ?property td:type ?datatype . }
-        OPTIONAL { ?property td:measures ?units . }
+        OPTIONAL { ?property td:unit ?units . }
         OPTIONAL { ?property rdf:type ?type . }
         OPTIONAL { ?property td:description ?desc . }
         BIND ( replace(str(?td), 'https://oeg.fi.upm.es/wothive/', '', 'i') as ?oid)

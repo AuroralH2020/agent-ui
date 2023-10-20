@@ -30,9 +30,6 @@ export class ItemsService {
   private _newItems: string[] = []
 
   public async initItems(orgAgids: string[]) {
-    if (orgAgids.length === 0) {
-      return
-    }
     try {
       await Promise.all([this._initMyItems(), this._initMyOrgItems(orgAgids)])
     } catch (error: any) {
@@ -75,6 +72,9 @@ export class ItemsService {
   }
 
   async getRemoteItems(agids: string[]): Promise<ItemUI[]> {
+    if (agids.length <= 0) {
+      return []
+    }
     let params = new HttpParams()
     params = params.append('agids', agids.join(','))
     const res = await Promise.all([
