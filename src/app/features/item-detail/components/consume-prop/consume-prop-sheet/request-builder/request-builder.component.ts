@@ -1,3 +1,4 @@
+import { DOCUMENT } from '@angular/common'
 import { AfterViewInit, Component, ElementRef, Inject, Input, QueryList, ViewChildren } from '@angular/core'
 import { FormControl } from '@angular/forms'
 import { ItemUI, PropertyUI } from '@core/models/item.model'
@@ -18,13 +19,12 @@ export type RequestType = 'get' | 'put'
   styleUrls: ['./request-builder.component.scss'],
 })
 export class RequestBuilderComponent implements AfterViewInit {
-
   @Input() requestType: RequestType = 'get'
   @Input() oid!: string
   @Input() item!: ItemUI
   @Input() prop!: PropertyUI
 
-  @ViewChildren('key') keys!: QueryList<ElementRef>;
+  @ViewChildren('key') keys!: QueryList<ElementRef>
 
   queryResult: any
 
@@ -34,15 +34,15 @@ export class RequestBuilderComponent implements AfterViewInit {
   requestParams: RequestParam[] = []
   body: FormControl = new FormControl<string>('')
 
-  constructor(private _itemsService: ItemsService, @Inject('BASE_URL') private _baseUrl: string) { }
+  constructor(private _itemsService: ItemsService, @Inject(DOCUMENT) private readonly _document: any) {}
 
   ngAfterViewInit() {
-    this.keys.changes.pipe(untilDestroyed(this)).subscribe(children => {
+    this.keys.changes.pipe(untilDestroyed(this)).subscribe((children) => {
       const last = children.last
       if (last && last.nativeElement) {
-        last.nativeElement.focus();
+        last.nativeElement.focus()
       }
-    });
+    })
   }
 
   addParam() {
@@ -84,19 +84,18 @@ export class RequestBuilderComponent implements AfterViewInit {
       switch (this.requestType) {
         case 'get':
           this.queryResult = await this._itemsService.getDataFromProperty(this.oid, this.item.oid, this.prop.pid, params)
-          break;
+          break
         case 'put':
           this.queryResult = await this._itemsService.updateProperty(this.oid, this.item.oid, this.prop.pid, params, body)
-          break;
+          break
       }
-    }
-    finally {
+    } finally {
       this.loading = false
     }
   }
 
   get url(): string {
-    const params = this.requestParams.map(param => `${param.key}=${param.value}`).join('&')
-    return `${this._baseUrl}/api/properties/${this.oid}/${this.item.oid}/${this.prop.pid}${params.length > 0 ? `?${params}` : ''}`
+    const params = this.requestParams.map((param) => `${param.key}=${param.value}`).join('&')
+    return `${this._document.location.origin}/api/properties/${this.oid}/${this.item.oid}/${this.prop.pid}${params.length > 0 ? `?${params}` : ''}`
   }
 }
